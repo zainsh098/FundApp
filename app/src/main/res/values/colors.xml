@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="Violet_100">#7F3DFF</color>
+    <color name="Violet_20">#F4EEFD</color>
+
+    <color name="Light_100">#FFFFFF</color>
+    <color name="Dark50">#212325</color>
+    <color name="Dark25">#292B2D</color>
+
+    <color name="Light_20">#91919F</color>
+    <color name="Light_80">#FCFCFC</color>
+    <color name="Light_60">#F1F1FA</color>
+</resources>
