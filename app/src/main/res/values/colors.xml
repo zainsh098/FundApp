@@ -14,4 +14,5 @@
     <color name="Light_20">#91919F</color>
     <color name="Light_80">#FCFCFC</color>
     <color name="Light_60">#F1F1FA</color>
+    <color name="menu_card_color">#F4F4F8</color>
 </resources>

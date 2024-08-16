@@ -1,4 +1,4 @@
-package com.example.fundapp.splash
+package com.example.fundapp.fragments.googlelogin.splash
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,9 +27,8 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         lifecycleScope.launch {
-            delay(3000L)
+            delay(2000L)
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }
     }

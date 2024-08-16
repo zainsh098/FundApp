@@ -1,4 +1,4 @@
-package com.example.fundapp.googlelogin
+package com.example.fundapp.fragments.googlelogin
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
@@ -60,6 +60,8 @@ class LoginFragment : Fragment() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)!!
+
+
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 binding.progressBar.visibility = View.GONE
@@ -80,7 +82,6 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener(requireActivity()) { task ->
                 binding.progressBar.visibility = View.GONE
                 binding.buttonLoginGoogle.isEnabled = true
-
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 } else {
