@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card1"
+        android:layout_height="wrap_content"
+        style="@style/user_card_style_home"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        app:cardBackgroundColor="#F4F4F8"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="@color/Light_60"
+        app:strokeColor="@color/Violet_100">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/_5sdp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardImage"
+                style="@style/avatar_card_menu"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/circularImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/file" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/cardUserName"
+                style="@style/home_text_style"
+                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/cardImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.6"
+                tools:text="Name" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/curren_balance_card"
+                app:cardBackgroundColor="#668BC34A"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardImage"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/cardCurrentBalance"
+                    style="@style/current_balance_text_style"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardImage"
+                    app:layout_constraintTop_toBottomOf="@+id/cardUserName"
+                    app:layout_constraintWidth_percent="0.6"
+                    tools:text="Rs: 5000" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/textViewTotalDeposit"
+                style="@style/total_deposit_text_style"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Rs: 12000" />
+
+            <TextView
+                android:id="@+id/textViewtotalWithdraw"
+                style="@style/total_withdraw_text_style"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Rs: 18000" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:src="@drawable/depositcardicon"
+                app:layout_constraintEnd_toStartOf="@+id/textViewTotalDeposit"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:src="@drawable/withdraw"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textViewtotalWithdraw"
+                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

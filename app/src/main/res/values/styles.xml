@@ -94,9 +94,7 @@
 
     <style name="user_card_style_home">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/_60sdp</item>
-        <item name="android:layout_marginHorizontal">@dimen/_16sdp</item>
-        <item name="android:layout_marginTop">@dimen/_80sdp</item>
+        <item name="android:layout_marginTop">@dimen/_10sdp</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
     </style>

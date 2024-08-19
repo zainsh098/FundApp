@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentLoginBinding
+import com.example.fundapp.model.User
+import com.example.fundapp.viewmodel.UserViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -18,13 +21,13 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
-
 class LoginFragment : Fragment() {
 
     private val RC_SIGN_IN = 13
     private lateinit var binding: FragmentLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.client_id))
@@ -61,7 +65,6 @@ class LoginFragment : Fragment() {
             try {
                 val account = task.getResult(ApiException::class.java)!!
 
-
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 binding.progressBar.visibility = View.GONE
@@ -83,7 +86,23 @@ class LoginFragment : Fragment() {
                 binding.progressBar.visibility = View.GONE
                 binding.buttonLoginGoogle.isEnabled = true
                 if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    val userId = user?.uid ?: ""
+                    val name = user?.displayName ?: ""
+                    val email = user?.email ?: ""
+                    val photoUrl = user?.photoUrl?.toString() ?: ""
+
+                    val newUser = User(
+                        userId = userId,
+                        name = name,
+                        email = email,
+                        photoUrl = photoUrl
+                    )
+
+                    userViewModel.saveUser(newUser)
+
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+
                 } else {
                     Toast.makeText(
                         requireContext(),
