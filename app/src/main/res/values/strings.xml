@@ -15,5 +15,6 @@
     <string name="withdraw_funds">Withdraw Funds</string>
     <string name="submit_deposit">Submit Deposit</string>
     <string name="fund_policies">Fund Policies</string>
+    <string name="deposit_amount">Deposit Amount</string>
 
 </resources>
