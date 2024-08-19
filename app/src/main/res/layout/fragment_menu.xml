@@ -7,35 +7,31 @@
     android:background="@color/Light_100"
     tools:context=".fragments.googlelogin.menu.MenuFragment">
 
-
     <include
         android:id="@+id/component_toolbar"
         layout="@layout/component_toolbar" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card1"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="100dp"
-        android:clickable="true"
-        android:focusable="true"
+        style="@style/card_menu_style"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_80sdp"
         app:cardBackgroundColor="@color/menu_card_color"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="@color/Light_20">
+        app:rippleColor="@color/Light_20"
+        app:strokeColor="@color/Violet_100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="@dimen/_13sdp">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageView21"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingVertical="15dp"
@@ -48,32 +44,25 @@
                 app:layout_constraintWidth_percent="0.2" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginRight="40dp"
-                android:fontFamily="@font/inter_medium"
-                android:text="Approve Requests"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                style="@style/card_meu_text_style"
+                android:text="@string/approve_request"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/imageView172"
+                app:layout_constraintStart_toEndOf="@+id/imageView21"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.6" />
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="18dp"
-                android:paddingStart="15dp"
+                android:id="@+id/imageView172"
+                style="@style/menu_arrow_image_style"
+                android:paddingVertical="@dimen/_16sdp"
+                android:paddingStart="@dimen/_12sdp"
                 android:src="@drawable/next"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.2" />
+                app:layout_constraintWidth_percent="0.2"
+                tools:ignore="RtlSymmetry" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -82,62 +71,47 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card2"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:focusable="true"
-
+        style="@style/card_menu_style"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/menu_card_color"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card1"
-        app:rippleColor="@color/Violet_100">
+        app:rippleColor="@color/Light_20"
+        app:strokeColor="@color/Violet_100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="@dimen/_13sdp">
 
             <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="15dp"
-                android:paddingRight="20dp"
+                android:id="@+id/imageView212"
+                style="@style/menu_image_style"
                 android:src="@drawable/filewithdraw"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintWidth_percent="0.2" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="My Requests"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                style="@style/card_meu_text_style"
+                android:text="@string/my_request"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewAr1"
+                app:layout_constraintStart_toEndOf="@+id/imageView212"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.6" />
 
             <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="18dp"
-                android:paddingStart="15dp"
+                android:id="@+id/imageViewAr1"
+                style="@style/menu_arrow_image_style"
+                android:paddingVertical="@dimen/_16sdp"
+                android:paddingStart="@dimen/_12sdp"
                 android:src="@drawable/next"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -150,62 +124,48 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card3"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:focusable="true"
-
+        style="@style/card_menu_style"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/menu_card_color"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card2"
-        app:rippleColor="@color/Violet_100">
+        app:rippleColor="@color/Light_20"
+        app:strokeColor="@color/Violet_100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="@dimen/_13sdp">
 
             <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="15dp"
-                android:paddingRight="20dp"
+                android:id="@+id/imageViewWithdraw"
+                style="@style/menu_image_style"
                 android:src="@drawable/receive_money"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
+
                 app:layout_constraintWidth_percent="0.2" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="Withdraw Funds"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                style="@style/card_meu_text_style"
+                android:text="@string/withdraw_funds"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView7"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewAr2"
+                app:layout_constraintStart_toEndOf="@+id/imageViewWithdraw"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.6" />
 
             <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="18dp"
-                android:paddingStart="15dp"
+                android:id="@+id/imageViewAr2"
+                style="@style/menu_arrow_image_style"
+                android:paddingVertical="@dimen/_16sdp"
+                android:paddingStart="@dimen/_12sdp"
                 android:src="@drawable/next"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -218,34 +178,27 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card4"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:focusable="true"
-
+        style="@style/card_menu_style"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/menu_card_color"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="2dp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card3"
-        app:rippleColor="@color/Violet_100">
+        app:rippleColor="@color/Light_20"
+        app:strokeColor="@color/Violet_100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="@dimen/_13sdp">
 
             <ImageView
                 android:id="@+id/imageView10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="15dp"
-                android:paddingRight="20dp"
+                style="@style/menu_image_style"
                 android:src="@drawable/moneydeposit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -254,12 +207,8 @@
                 app:layout_constraintWidth_percent="0.2" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="Submit Deposit"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                style="@style/card_meu_text_style"
+                android:text="@string/submit_deposit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView17"
                 app:layout_constraintStart_toEndOf="@+id/imageView10"
@@ -268,12 +217,10 @@
 
             <ImageView
                 android:id="@+id/imageView17"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="18dp"
-                android:paddingStart="15dp"
+                style="@style/menu_arrow_image_style"
+                android:paddingVertical="@dimen/_16sdp"
+                android:paddingStart="@dimen/_12sdp"
                 android:src="@drawable/next"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -286,34 +233,26 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card5"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
-        android:clickable="true"
-        android:focusable="true"
-
+        style="@style/card_menu_style"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/menu_card_color"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card4"
-        app:rippleColor="@color/Violet_100">
+        app:rippleColor="@color/Violet_100"
+        app:strokeColor="@color/Violet_100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="16dp">
+            android:paddingHorizontal="@dimen/_13sdp">
 
             <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="15dp"
-                android:paddingRight="20dp"
+                android:id="@+id/imageViewFunds"
+                style="@style/menu_image_style"
                 android:src="@drawable/policy"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -322,26 +261,20 @@
                 app:layout_constraintWidth_percent="0.2" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="Fund Policies"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
+                style="@style/card_meu_text_style"
+                android:text="@string/fund_policies"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView171"
-                app:layout_constraintStart_toEndOf="@+id/imageView11"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewAr3"
+                app:layout_constraintStart_toEndOf="@+id/imageViewFunds"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.6" />
 
             <ImageView
-                android:id="@+id/imageView171"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingVertical="18dp"
-                android:paddingStart="15dp"
+                android:id="@+id/imageViewAr3"
+                style="@style/menu_arrow_image_style"
+                android:paddingVertical="@dimen/_16sdp"
+                android:paddingStart="@dimen/_12sdp"
                 android:src="@drawable/next"
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

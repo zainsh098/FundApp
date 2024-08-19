@@ -1,11 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <gradient
-        android:angle="135"
-        android:endColor="@color/Light_60"
-        android:gradientRadius="100dp"
-        android:startColor="@color/Light_100"
-        android:type="radial" />
-    <corners android:radius="16dp" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Ripple effect when button is pressed -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="180"
+                android:startColor="#B37F3DFF"
+                android:endColor="@color/Light_60"
+                android:gradientRadius="1dp"
+                android:centerX="1"
+                android:centerY="50"
+                android:type="linear" />
+            <corners android:radius="16dp" />
+            <solid android:color="@color/white" />  <!-- Transparent to show ripple effect -->
+        </shape>
+    </item>
+    <!-- Default state -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="180"
+                android:startColor="@color/Violet_100"
+                android:endColor="@color/Light_60"
+                android:gradientRadius="30dp"
+
+                android:type="linear" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+</selector>
