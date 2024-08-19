@@ -21,7 +21,6 @@ class MenuFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -29,9 +28,6 @@ class MenuFragment : Fragment() {
 
             textToolbar.text = getString(R.string.menu)
             backArrow.setImageResource(R.drawable.arrow_back)
-
-
-
             backArrow.setOnClickListener {
 
                 findNavController().navigate(R.id.action_menuFragment_to_homeFragment)
@@ -39,8 +35,5 @@ class MenuFragment : Fragment() {
             }
         }
 
-
     }
-
-
 }
