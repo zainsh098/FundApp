@@ -9,10 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentLoginBinding
 import com.example.fundapp.model.User
+import com.example.fundapp.remote.FirebaseDataSource
+import com.example.fundapp.viewmodel.TransactionViewModel
 import com.example.fundapp.viewmodel.UserViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -20,6 +23,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -28,6 +33,8 @@ class LoginFragment : Fragment() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
     private lateinit var userViewModel: UserViewModel
+    private lateinit var transactionViewModel: TransactionViewModel
+    private  lateinit var  firestore: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +46,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        firestore= FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.client_id))
@@ -91,15 +100,29 @@ class LoginFragment : Fragment() {
                     val name = user?.displayName ?: ""
                     val email = user?.email ?: ""
                     val photoUrl = user?.photoUrl?.toString() ?: ""
+                    lifecycleScope.launch {
+                        val dataSource = FirebaseDataSource(firestore)
+                        val existingUser = dataSource.getUser(userId)
+                        if (existingUser != null) {
+                            // User already exists, update the UI with the existing user data
+                            val updatedUser = existingUser.copy(
+                                name = name,
+                                email = email,
+                                photoUrl = photoUrl
+                            )
+                            dataSource.saveUser(updatedUser)
+                        } else {
+                            // User doesn't exist, create a new user object
+                            val newUser = User(
+                                userId = userId,
+                                name = name,
+                                email = email,
+                                photoUrl = photoUrl
+                            )
+                            dataSource.saveUser(newUser)
+                        }
+                    }
 
-                    val newUser = User(
-                        userId = userId,
-                        name = name,
-                        email = email,
-                        photoUrl = photoUrl
-                    )
-
-                    userViewModel.saveUser(newUser)
 
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
 
