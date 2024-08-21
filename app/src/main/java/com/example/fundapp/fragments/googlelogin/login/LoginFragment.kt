@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin
+package com.example.fundapp.fragments.googlelogin.login
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent

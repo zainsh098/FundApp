@@ -33,6 +33,15 @@ class MenuFragment : Fragment() {
                 findNavController().navigate(R.id.action_menuFragment_to_homeFragment)
 
             }
+            binding.cardDeposit.setOnClickListener {
+                findNavController().navigate(R.id.action_menuFragment_to_depositFragment)
+
+            }
+            binding.cardWithdrawFunds.setOnClickListener {
+
+                findNavController().navigate(R.id.action_menuFragment_to_withdrawFragment)
+
+            }
         }
 
     }

@@ -1,10 +1,11 @@
-package com.example.fundapp
+package com.example.fundapp.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.fundapp.R
 import com.example.fundapp.databinding.UserItemBinding
 import com.example.fundapp.model.User
 
@@ -21,15 +22,15 @@ class UserAdapter(private val context: Context, private val users: MutableList<U
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = users[position]
         holder.binding.cardUserName.text = user.name
-        holder.binding.cardCurrentBalance.text = "Rs: ${user.currentBalance}"
+//        holder.binding.cardCurrentBalance.text = "Rs: ${user.currentBalance}"
         holder.binding.textViewTotalDeposit.text = "Rs: ${user.totalDeposited}"
-        holder.binding.textViewtotalWithdraw.text = "Rs: ${user.totalWithdrawn}"
+        holder.binding.textViewtotalWithdraw.text = "Rs: ${user.totalWithdrawAmount}"
 
         user.photoUrl?.let { url ->
             Glide.with(context)
                 .load(url)
                 .placeholder(R.drawable.deposit)
-                .into(holder.binding.circularImageView)
+//                .into(holder.binding.circularImageView)
         }
     }
 

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fundapp.model.User
 import com.example.fundapp.remote.FirebaseDataSource
+import com.example.fundapp.remote.TransactionDataSource
 import com.example.fundapp.repository.UserRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
@@ -14,8 +15,9 @@ class UserViewModel : ViewModel() {
     private val firestore = FirebaseFirestore.getInstance()
 
     private val userRepository = UserRepository(FirebaseDataSource(firestore))
+    private  val transactionDataSource=TransactionDataSource(firestore)
 
-    private val user: MutableLiveData<User?> = MutableLiveData()
+    val user: MutableLiveData<User?> = MutableLiveData()
     val users: MutableLiveData<List<User>> = MutableLiveData()
 
     fun saveUser(user: User) {
@@ -35,4 +37,7 @@ class UserViewModel : ViewModel() {
             users.value = userRepository.getAllUsers()
         }
     }
+
+
+
 }

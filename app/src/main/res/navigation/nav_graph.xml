@@ -19,10 +19,13 @@
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_withdrawFragment"
+            app:destination="@id/withdrawFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.LoginFragment"
+        android:name="com.example.fundapp.fragments.googlelogin.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -53,5 +56,40 @@
             app:exitAnim="@animator/slide_in_left"
             app:popEnterAnim="@animator/fade_in"
             app:popExitAnim="@animator/fade_out" />
+        <action
+            android:id="@+id/action_menuFragment_to_depositFragment"
+            app:destination="@id/depositFragment"
+            app:exitAnim="@animator/fade_out" />
+        <action
+            android:id="@+id/action_menuFragment_to_withdrawFragment"
+            app:destination="@id/withdrawFragment"
+            app:exitAnim="@animator/slide_in_left"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/depositFragment"
+        android:name="com.example.fundapp.fragments.googlelogin.deposit.DepositFragment"
+        android:label="fragment_deposit"
+        tools:layout="@layout/fragment_deposit">
+        <action
+            android:id="@+id/action_depositFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:enterAnim="@animator/slide_in_right"
+
+            app:popEnterAnim="@animator/fade_in"
+            app:popExitAnim="@animator/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/withdrawFragment"
+        android:name="com.example.fundapp.withdraw.WithdrawFragment"
+        android:label="fragment_withdraw"
+        tools:layout="@layout/fragment_withdraw">
+        <action
+            android:id="@+id/action_withdrawFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:enterAnim="@animator/slide_in_right"
+            app:exitAnim="@animator/slide_in_left"
+
+            />
     </fragment>
 </navigation>

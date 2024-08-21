@@ -1,68 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.googlelogin.DepositFragment">
-
+    android:background="@color/Light_100"
+    tools:context=".fragments.googlelogin.deposit.DepositFragment">
 
     <include
         android:id="@+id/component_toolbar"
-        layout="@layout/component_toolbar"/>
-
+        layout="@layout/component_toolbar" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/textFieldEmail"
+        android:id="@+id/textFieldDeposit"
         style="@style/text_edit"
-        android:layout_marginTop="@dimen/_130sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:hint="@string/deposit_amount"
+        android:layout_marginTop="@dimen/_90sdp"
         android:inputType="number"
         android:maxLines="0"
         android:textColorHint="@color/Light_20"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.214" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewAttachment"
         style="@style/text_edit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
-        app:strokeWidth="0dp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginHorizontal="@dimen/_20sdp"
         app:cardBackgroundColor="@color/Light_60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldEmail">
+        app:layout_constraintTop_toBottomOf="@+id/textFieldDeposit"
+        app:strokeWidth="0dp">
 
         <ImageView
-
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_50sdp"
-
-            android:padding="@dimen/_5sdp"
-            android:src="@drawable/file">
-        </ImageView>
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/attachment" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_90sdp"
             android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginStart="@dimen/_100sdp"
-            android:text="Add attachment"
             android:fontFamily="@font/inter"
-
+            android:text="Add attachment"
             android:textColor="@color/Light_20"
-            android:textSize="@dimen/_13ssp">
-
-
-        </TextView>
+            android:textSize="@dimen/_13ssp" />
 
     </com.google.android.material.card.MaterialCardView>
 
+    <ImageView
+        android:id="@+id/imageViewSelectedFile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_160sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/button_Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardViewAttachment" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_Login"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_70sdp"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:paddingTop="@dimen/_10sdp"
+        android:text="@string/button_text_deposit"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

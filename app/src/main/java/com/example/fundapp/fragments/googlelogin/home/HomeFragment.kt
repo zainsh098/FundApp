@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.R
-import com.example.fundapp.UserAdapter
+import com.example.fundapp.adapter.UserAdapter
 import com.example.fundapp.databinding.FragmentHomeBinding
 import com.example.fundapp.viewmodel.UserViewModel
 
@@ -32,9 +31,9 @@ class HomeFragment : Fragment() {
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         userAdapter = UserAdapter(requireContext(), mutableListOf())
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        binding.recyclerView.adapter = userAdapter
+//        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//
+//        binding.recyclerView.adapter = userAdapter
 
         userViewModel.users.observe(viewLifecycleOwner) { users ->
             userAdapter.updateList(users)

@@ -7,36 +7,144 @@
     android:background="@color/Light_100"
     tools:context=".fragments.googlelogin.home.HomeFragment">
 
-    <include
-        android:id="@+id/component_toolbar"
-        layout="@layout/component_toolbar" />
 
-
-    <LinearLayout
-        android:layout_marginTop="@dimen/_70sdp"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="@dimen/_250sdp"
+        android:background="@drawable/card_round_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@drawable/card_round_home">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <include
+            android:id="@+id/component_toolbar"
+            layout="@layout/component_toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/component_toolbar"
-            tools:listitem="@layout/user_item" />
+            android:layout_height="match_parent">
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textHomeGreetings"
+                style="@style/text_style_toolbar"
+                android:fontFamily="@font/inter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.288"
+                tools:text="GoodAfter Noon" />
+
+            <TextView
+                android:id="@+id/textHomeUserName"
+                style="@style/text_style_toolbar"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/inter_medium"
+                android:textSize="@dimen/_13ssp"
+
+                app:layout_constraintHorizontal_bias="0.088"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textHomeGreetings"
+                app:layout_constraintVertical_bias="0.105"
+                tools:text="Hello, Zain Shakoor" />
 
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_25sdp"
+                app:cardBackgroundColor="#5CF1F1FA"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:strokeWidth="0dp">
 
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textHomeCurrentBalanceName"
+                        style="@style/text_style_toolbar"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/inter"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.079"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Current Balance" />
+
+                    <TextView
+                        android:id="@+id/textHomeCurrentBalanceValue"
+                        style="@style/text_style_toolbar"
+                        android:fontFamily="@font/inter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.079"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textHomeCurrentBalanceName"
+                        tools:text="Rs: 11900" />
+
+                    <TextView
+                        android:id="@+id/textHomeDeposited"
+                        style="@style/text_style_toolbar"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inter"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.155"
+
+                        tools:text="Deposited" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/up_arrow"
+                        tools:layout_editor_absoluteY="25dp" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_marginTop="@dimen/_70sdp"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--        <androidx.recyclerview.widget.RecyclerView-->
+    <!--            android:id="@+id/recyclerView"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/component_toolbar"-->
+    <!--            tools:listitem="@layout/user_item" />-->
+
+
+    <!--    </LinearLayout>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
