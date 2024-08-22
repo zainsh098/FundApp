@@ -36,7 +36,7 @@ class MenuFragment : Fragment() {
                 context?.let {
                     Glide.with(it)
                         .load(auth.currentUser?.photoUrl)
-                        .placeholder(R.drawable.deposit)
+                        .placeholder(R.drawable.baseline_person_24)
                         .into(binding.componentToolbar.circularImageView)
                 }
 

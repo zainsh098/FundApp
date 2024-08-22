@@ -50,12 +50,11 @@ class HomeFragment : Fragment() {
                 context?.let {
                     Glide.with(it)
                         .load(user.photoUrl)
-                        .placeholder(R.drawable.deposit)
+                        .placeholder(R.drawable.baseline_person_24)
                         .into(binding.componentToolbar.circularImageView)
 
                 }
             }
-
 
 
         }
@@ -63,9 +62,9 @@ class HomeFragment : Fragment() {
 
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.home)
-       backArrow.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_menuFragment)
-        }
+            backArrow.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_menuFragment)
+            }
         }
     }
 
