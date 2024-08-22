@@ -4,23 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/Light_100"
-    >
+    android:background="@color/Light_100">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card1"
-        android:layout_height="@dimen/_120sdp"
         style="@style/user_card_style_home"
-        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         app:cardBackgroundColor="@color/Light_60"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="10dp"
+        app:cardCornerRadius="5dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="@color/Light_60"
-        app:strokeColor="@color/Light_60"
-       >
+        app:strokeColor="@color/Light_60">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,58 +27,52 @@
 
 
             <TextView
-                android:id="@+id/cardUserName"
+                android:id="@+id/transcationType"
                 style="@style/home_text_style"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/inter_medium"
                 android:textSize="@dimen/_14ssp"
-
-
-                android:layout_marginEnd="80dp"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.6"
-                tools:text="Current Amount" />
+                tools:text="Deposit" />
 
 
             <TextView
-                android:id="@+id/textViewTotalDeposit"
-                style="@style/total_deposit_text_style"
-                android:layout_marginTop="52dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Rs: 12000" />
-
-            <TextView
-                android:id="@+id/textViewtotalWithdraw"
-                style="@style/total_withdraw_text_style"
+                android:id="@+id/transcationID"
+                style="@style/home_text_style"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:fontFamily="@font/inter"
+                android:textSize="@dimen/_8ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Rs: 18000" />
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintWidth_percent="0.6"
+                tools:text="ID:06b457cb-a10e-4600-ae00-119546e75b15" />
 
             <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="84dp"
-                android:src="@drawable/depositcardicon"
-                app:layout_constraintEnd_toStartOf="@+id/textViewTotalDeposit"
+                android:id="@+id/imageView3"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:src="@drawable/transaction"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:layout_marginEnd="@dimen/_4sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:src="@drawable/withdraw"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textViewtotalWithdraw"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
+            <TextView
+                android:id="@+id/transcationAmount"
+                style="@style/home_text_style"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:textColor="#4CAF50"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Rs: 2900" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

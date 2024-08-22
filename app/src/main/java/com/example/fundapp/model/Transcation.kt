@@ -2,14 +2,15 @@ package com.example.fundapp.model
 
 
 data class TransactionUser(
-    val transactionId: String,
-    val userId: String,
-    val type: String, // "deposit" or "withdrawal"
-    val amount: Int,
-    val date: String,
+    val transactionId: String = "",
+    val userId: String = "",
+    val amount: Int = 0,
+    val date: String = "",
+    val type: String = "",
+    val status: String = "",
     val proofOfDeposit: String? = null,
-    val comments: String? = null,
     val reason: String? = null,
-    val status: String = "pending" // "pending", "accepted", "rejected"
+    val comments: String? = null
 )
+
 

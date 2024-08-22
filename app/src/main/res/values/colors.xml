@@ -16,4 +16,5 @@
     <color name="Light_60">#F1F1FA</color>
     <!--    <color name="menu_card_color">#F4F4F8</color>-->
     <color name="menu_card_color">@color/Light_60</color>
+    <color name="ffffff">#FFFFFF</color>
 </resources>

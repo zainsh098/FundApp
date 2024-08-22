@@ -23,5 +23,6 @@
     <string name="submit_withdraw">Submit Withdraw</string>
     <string name="select_date">Select Date</string>
     <string name="withdraw">Withdraw\n</string>
+    <string name="see_all">see all</string>
 
 </resources>

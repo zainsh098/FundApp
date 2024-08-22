@@ -11,19 +11,24 @@ import kotlinx.coroutines.launch
 
 class TransactionViewModel : ViewModel() {
 
-
     private val firestore = FirebaseFirestore.getInstance()
     private val transactionRepository = TransactionRepository(TransactionDataSource(firestore))
-    private val depositAmount: MutableLiveData<TransactionUser?> = MutableLiveData()
+    val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
 
     fun submitDeposit(transaction: TransactionUser) {
         viewModelScope.launch {
 
             transactionRepository.depositAmount(transaction)
-
         }
-
     }
+
+    fun getTransactionHistory(userId: String) {
+        viewModelScope.launch {
+            val history = transactionRepository.getTransactionHistory(userId)
+            transactionHistory.value = history
+        }
+    }
+
 
 }
 

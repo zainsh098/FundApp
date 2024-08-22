@@ -7,8 +7,8 @@
     android:background="@color/Light_100"
     tools:context=".fragments.googlelogin.home.HomeFragment">
 
-
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView3"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_260sdp"
         android:background="@drawable/card_round_home"
@@ -52,7 +52,6 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-
                 android:layout_height="@dimen/_110sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginRight="@dimen/_20sdp"
@@ -62,7 +61,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:strokeWidth="0dp">
-
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -101,7 +99,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-
                     <ImageView
                         android:id="@+id/imageViewuparrow"
                         android:layout_width="@dimen/_16sdp"
@@ -133,7 +130,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageViewuparrow" />
 
-
                     <TextView
                         android:id="@+id/textHomeDepositedValue"
                         style="@style/text_style_toolbar"
@@ -156,46 +152,49 @@
                         tools:text="Rs 25000" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </com.google.android.material.card.MaterialCardView>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:id="@+id/homeTranscationHistory"
+        style="@style/home_text_style"
+        android:text="Transcation History"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView3"
+        app:layout_constraintWidth_percent="0.6" />
 
+    <TextView
+        android:id="@+id/seeAllTrasnscation"
+        style="@style/home_text_style"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:text="@string/see_all"
+        android:textColor="@color/Light_20"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
 
-    <!--    <LinearLayout-->
-    <!--        android:layout_marginTop="@dimen/_70sdp"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="vertical"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent">-->
+        <androidx.recyclerview.widget.RecyclerView
 
-    <!--        <androidx.recyclerview.widget.RecyclerView-->
-    <!--            android:id="@+id/recyclerView"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
+            android:id="@+id/recyclerViewTrasncation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/component_toolbar"
+            tools:listitem="@layout/user_item" />
 
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/component_toolbar"-->
-    <!--            tools:listitem="@layout/user_item" />-->
-
-
-    <!--    </LinearLayout>-->
-
-
-
-
-
-
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

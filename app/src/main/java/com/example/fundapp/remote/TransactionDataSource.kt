@@ -8,10 +8,10 @@ import kotlinx.coroutines.tasks.await
 class TransactionDataSource(private val firestore: FirebaseFirestore) {
 
     suspend fun depositAmount(transaction: TransactionUser) {
-
-        firestore.collection("transactions").document(transaction.transactionId).set(transaction)
-            .await()
+        firestore.collection("transactions").document(transaction.transactionId)
+            .set(transaction).await()
     }
+
 
     suspend fun getUser(userId: String): User? {
         return firestore.collection("users").document(userId).get().await()
@@ -22,5 +22,12 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
         firestore.collection("users").document(user.userId).set(user).await()
     }
 
-
+    suspend fun getTransactionHistory(userId: String): List<TransactionUser?> {
+        return firestore.collection("transactions")
+            .whereEqualTo("userId", userId)
+            .get()
+            .await()
+            .documents
+            .map { it.toObject(TransactionUser::class.java) }
+    }
 }

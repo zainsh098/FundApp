@@ -22,4 +22,10 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
             dataSource.updateUserBalance(it)
         }
     }
+
+
+    suspend fun getTransactionHistory(userId: String): List<TransactionUser> {
+        return dataSource.getTransactionHistory(userId).filterNotNull()
+    }
+
 }
