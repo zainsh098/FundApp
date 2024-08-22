@@ -63,7 +63,7 @@
         <action
             android:id="@+id/action_menuFragment_to_withdrawFragment"
             app:destination="@id/withdrawFragment"
-            app:exitAnim="@animator/slide_in_left"
+
             />
     </fragment>
     <fragment

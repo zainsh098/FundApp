@@ -7,15 +7,54 @@
     android:background="@color/Light_100"
     tools:context=".fragments.googlelogin.menu.MenuFragment">
 
-    <include
-        android:id="@+id/component_toolbar"
-        layout="@layout/component_toolbar" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"
+        android:background="@drawable/card_round_home"
+        app:cardBackgroundColor="@color/Violet_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/component_toolbar"
+            layout="@layout/component_toolbar" />
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_320sdp"
+
+        android:layout_marginTop="100dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="0dp">
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card1"
         style="@style/card_menu_style"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_90sdp"
         app:cardBackgroundColor="@color/Light_60"
         app:cardCornerRadius="@dimen/_8sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +94,7 @@
                 android:id="@+id/imageView172"
                 style="@style/menu_arrow_image_style"
                 android:paddingVertical="@dimen/_18sdp"
-                android:paddingStart="@dimen/_12sdp"
+                android:paddingStart="@dimen/_15sdp"
                 android:src="@drawable/next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +110,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card2"
         style="@style/card_menu_style"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/menu_card_color"
         app:cardCornerRadius="@dimen/_8sdp"
@@ -109,7 +148,7 @@
                 style="@style/menu_arrow_image_style"
                 android:layout_height="wrap_content"
                 android:paddingVertical="@dimen/_18sdp"
-                android:paddingStart="@dimen/_12sdp"
+                android:paddingStart="@dimen/_15sdp"
                 android:src="@drawable/next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +163,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardWithdrawFunds"
         style="@style/card_menu_style"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/Light_60"
         app:cardCornerRadius="@dimen/_8sdp"
@@ -161,7 +200,8 @@
                 android:id="@+id/imageViewAr2"
                 style="@style/menu_arrow_image_style"
                 android:paddingVertical="@dimen/_18sdp"
-                android:paddingStart="@dimen/_12sdp"
+                android:paddingStart="@dimen/_15sdp"
+
                 android:src="@drawable/next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -176,7 +216,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardDeposit"
         style="@style/card_menu_style"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/Light_60"
         app:cardCornerRadius="@dimen/_8sdp"
@@ -215,7 +255,8 @@
                 style="@style/menu_arrow_image_style"
                 android:paddingVertical="@dimen/_18sdp"
 
-                android:paddingStart="@dimen/_12sdp"
+                android:paddingStart="@dimen/_15sdp"
+
                 android:src="@drawable/next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -230,7 +271,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card5"
         style="@style/card_menu_style"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/Light_60"
         app:cardCornerRadius="@dimen/_8sdp"
@@ -268,7 +309,7 @@
                 android:id="@+id/imageViewAr3"
                 style="@style/menu_arrow_image_style"
                 android:paddingVertical="@dimen/_18sdp"
-                android:paddingStart="@dimen/_12sdp"
+                android:paddingStart="@dimen/_15sdp"
                 android:src="@drawable/next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

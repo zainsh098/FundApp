@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var userViewModel: UserViewModel
     private lateinit var transactionViewModel: TransactionViewModel
-    private  lateinit var  firestore: FirebaseFirestore
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +46,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        firestore= FirebaseFirestore.getInstance()
+        firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
@@ -104,15 +104,15 @@ class LoginFragment : Fragment() {
                         val dataSource = FirebaseDataSource(firestore)
                         val existingUser = dataSource.getUser(userId)
                         if (existingUser != null) {
-                            // User already exists, update the UI with the existing user data
+                            // User already exists  update  ui with the existing user data
                             val updatedUser = existingUser.copy(
                                 name = name,
                                 email = email,
                                 photoUrl = photoUrl
                             )
                             dataSource.saveUser(updatedUser)
+                            // create new user
                         } else {
-                            // User doesn't exist, create a new user object
                             val newUser = User(
                                 userId = userId,
                                 name = name,

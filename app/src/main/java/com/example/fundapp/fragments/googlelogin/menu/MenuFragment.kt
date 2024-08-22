@@ -6,13 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentMenuBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MenuFragment : Fragment() {
 
 
     private lateinit var binding: FragmentMenuBinding
+
+    private lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,11 +27,22 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
 
         binding.componentToolbar.apply {
 
             textToolbar.text = getString(R.string.menu)
-            backArrow.setImageResource(R.drawable.arrow_back)
+            binding.componentToolbar.apply {
+                context?.let {
+                    Glide.with(it)
+                        .load(auth.currentUser?.photoUrl)
+                        .placeholder(R.drawable.deposit)
+                        .into(binding.componentToolbar.circularImageView)
+                }
+
+            }
+
+            backArrow.setImageResource(R.drawable.back)
             backArrow.setOnClickListener {
 
                 findNavController().navigate(R.id.action_menuFragment_to_homeFragment)
