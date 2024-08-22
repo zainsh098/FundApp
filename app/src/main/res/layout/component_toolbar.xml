@@ -11,6 +11,7 @@
         android:id="@+id/back_arrow"
         android:layout_width="@dimen/_27sdp"
         android:layout_height="@dimen/_27sdp"
+        android:padding="@dimen/_2sdp"
         android:layout_marginStart="@dimen/_5sdp"
         app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,10 +23,12 @@
         android:id="@+id/textToolbar"
         style="@style/text_style_toolbar"
         android:fontFamily="@font/inter_semibold"
+        android:layout_marginRight="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_1sdp"
         tools:text="Home" />
 
 

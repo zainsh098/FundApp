@@ -19,12 +19,19 @@ class UserViewModel : ViewModel() {
 
     val user: MutableLiveData<User?> = MutableLiveData()
     val users: MutableLiveData<List<User>> = MutableLiveData()
+    val usersDetails: MutableLiveData<List<User>> = MutableLiveData()
 
     fun saveUser(user: User) {
         viewModelScope.launch {
             userRepository.saveUser(user)
         }
     }
+
+//    fun getUserDetails(user: User) {
+//        viewModelScope.launch {
+//            usersDetails.value = listOf(userRepository.getUserData(user.userId.toString()))
+//        }
+//    }
 
     fun getUser(userId: String) {
         viewModelScope.launch {

@@ -10,6 +10,11 @@ class FirebaseDataSource(private val firestore: FirebaseFirestore) {
         firestore.collection("users").document(user.userId).set(user).await()
     }
 
+
+//    suspend fun getUserData(user: String): User {
+//        return firestore.collection("users").document(user.userId).get().await()
+//            .toObject(User::class.java)!!
+//    }
     suspend fun getUser(userId: String): User? {
         return firestore.collection("users").document(userId).get().await()
             .toObject(User::class.java)
