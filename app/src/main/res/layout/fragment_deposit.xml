@@ -7,16 +7,57 @@
     android:background="@color/Light_100"
     tools:context=".fragments.googlelogin.deposit.DepositFragment">
 
-    <include
-        android:id="@+id/component_toolbar"
-        layout="@layout/component_toolbar" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_250sdp"
+
+        android:background="@drawable/card_round_home"
+        app:cardBackgroundColor="@color/Violet_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/component_toolbar"
+            layout="@layout/component_toolbar" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Light_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_320sdp"
+            android:layout_marginTop="100dp"
+
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textFieldDeposit"
         style="@style/text_edit"
+        android:layout_marginTop="@dimen/_95sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:hint="@string/deposit_amount"
-        android:layout_marginTop="@dimen/_90sdp"
         android:inputType="number"
         android:maxLines="0"
         android:textColorHint="@color/Light_20"
@@ -45,7 +86,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_50sdp"
             android:padding="@dimen/_10sdp"
-            android:src="@drawable/attachment" />
+            android:src="@drawable/attachmenticon" />
 
         <TextView
             android:layout_width="wrap_content"

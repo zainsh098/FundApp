@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_60sdp"
+    android:layout_height="@dimen/_70sdp"
     android:paddingHorizontal="@dimen/_12sdp"
-    android:paddingVertical="@dimen/_10sdp">
+    android:paddingVertical="@dimen/_15sdp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/back_arrow"
@@ -23,12 +23,11 @@
         android:id="@+id/textToolbar"
         style="@style/text_style_toolbar"
         android:fontFamily="@font/inter_medium"
-        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_2sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardImage"
+        app:layout_constraintStart_toEndOf="@+id/back_arrow"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/_1sdp"
         tools:text="Home" />
 
 

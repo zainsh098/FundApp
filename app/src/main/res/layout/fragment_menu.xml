@@ -9,26 +9,24 @@
 
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_250sdp"
+        android:layout_height="@dimen/_100sdp"
         android:background="@drawable/card_round_home"
-
         app:cardBackgroundColor="@color/Violet_100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <include
             android:id="@+id/component_toolbar"
             layout="@layout/component_toolbar" />
 
-
     </com.google.android.material.card.MaterialCardView>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -47,7 +45,6 @@
         </com.google.android.material.card.MaterialCardView>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card1"

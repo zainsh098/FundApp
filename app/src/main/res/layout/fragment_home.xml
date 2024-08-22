@@ -10,7 +10,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_250sdp"
+        android:layout_height="@dimen/_260sdp"
         android:background="@drawable/card_round_home"
         app:cardBackgroundColor="@color/Violet_100"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
             <TextView
                 android:id="@+id/textHomeGreetings"
                 style="@style/text_style_toolbar"
-                android:layout_marginTop="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_65sdp"
                 android:fontFamily="@font/inter_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.081"
@@ -52,10 +52,11 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
+
                 android:layout_height="@dimen/_110sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginRight="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
                 app:cardBackgroundColor="#5CF1F1FA"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
