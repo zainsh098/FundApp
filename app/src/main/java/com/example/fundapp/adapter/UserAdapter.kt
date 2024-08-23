@@ -55,11 +55,11 @@ class UserAdapter(private val context: Context, private var users: MutableList<U
         val localPart = emailParts[0]
         val domain = emailParts[1]
 
-        val maskedLocalPart = localPart.substring(0, 2) + "***" + localPart.substring(localPart.length - 2)
+        val maskedLocalPart =
+            localPart.substring(0, 2) + "***" + localPart.substring(localPart.length - 2)
 
         return "$maskedLocalPart@$domain"
     }
-
 
 
 }

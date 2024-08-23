@@ -5,119 +5,98 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_10sdp"
-
-    android:background="@color/Light_100">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:paddingHorizontal="@dimen/_5sdp">
-
-        <TextView
-            android:id="@+id/userName"
-            style="@style/home_text_style"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:fontFamily="@font/inter_medium"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintStart_toEndOf="@+id/cardImage"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.6"
-            tools:text="Name" />
-
-        <TextView
-            android:id="@+id/emailID"
-            style="@style/home_text_style"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:fontFamily="@font/inter_medium"
-            android:textColor="@color/Light_20"
-            android:textSize="@dimen/_10ssp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cardImage"
-            app:layout_constraintWidth_percent="0.6"
-            tools:text="Email" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardImage"
-            style="@style/avatar_card_menu"
-            android:padding="10dp"
-            app:cardCornerRadius="50dp"
-            app:cardElevation="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/circularImageView"
-                android:layout_width="match_parent"
-                android:layout_height="51dp"
-                android:layout_gravity="center"
-                android:src="@drawable/baseline_person_24"
-                tools:ignore="ContentDescription" />
-        </com.google.android.material.card.MaterialCardView>
+    android:background="@color/Light_100"
+    android:paddingStart="@dimen/_5sdp">
 
 
-        <ImageView
-            android:id="@+id/imageViewuparrow"
-            android:layout_width="@dimen/_15sdp"
-            android:layout_height="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_3sdp"
-            android:src="@drawable/uparrow_green"
-            app:layout_constraintEnd_toStartOf="@+id/totalDepositedValue"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/userName"
+        style="@style/home_text_style"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toEndOf="@+id/cardImage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.6"
+        tools:text="Name" />
 
-        <ImageView
-            android:id="@+id/imageView2downarrow"
-            android:layout_width="@dimen/_15sdp"
-            android:layout_height="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_3sdp"
-            android:src="@drawable/arrowdown"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/totalWithdrawValue"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewuparrow"
-            tools:ignore="ContentDescription" />
+    <TextView
+        android:id="@+id/emailID"
+        style="@style/home_text_style"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/Light_20"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardImage"
+        app:layout_constraintWidth_percent="0.6"
+        tools:text="Email" />
 
-        <TextView
-            android:id="@+id/totalDepositedValue"
-            style="@style/home_text_style"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:fontFamily="@font/inter_medium"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.6"
-            tools:text="Deposited" />
-
-        <TextView
-            android:id="@+id/totalWithdrawValue"
-            style="@style/home_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:fontFamily="@font/inter_medium"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/totalDepositedValue"
-            app:layout_constraintVertical_bias="1.0"
-            app:layout_constraintWidth_percent="0.6"
-            tools:text="Withdraw" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <com.google.android.material.divider.MaterialDivider
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_50sdp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardImage"
+        style="@style/avatar_card_menu"
+        android:padding="10dp"
+        app:cardCornerRadius="50dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.divider.MaterialDivider>
+        <ImageView
+            android:id="@+id/circularImageView"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_person_24"
+            tools:ignore="ContentDescription" />
+    </com.google.android.material.card.MaterialCardView>
 
+    <ImageView
+        android:id="@+id/imageViewuparrow"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_3sdp"
+        android:src="@drawable/uparrow_green"
+        app:layout_constraintEnd_toStartOf="@+id/totalDepositedValue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2downarrow"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_3sdp"
+        android:src="@drawable/arrowdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/totalWithdrawValue"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewuparrow"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/totalDepositedValue"
+        style="@style/home_text_style"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Deposited" />
+
+    <TextView
+        android:id="@+id/totalWithdrawValue"
+        style="@style/home_text_style"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/totalDepositedValue"
+        tools:text="Withdraw" />
 </androidx.constraintlayout.widget.ConstraintLayout>
