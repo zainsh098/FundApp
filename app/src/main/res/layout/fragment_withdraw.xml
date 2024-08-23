@@ -10,7 +10,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_250sdp"
+        android:layout_height="wrap_content"
 
         android:background="@drawable/card_round_home"
         app:cardBackgroundColor="@color/Violet_100"
@@ -56,7 +56,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textFieldWithdraw"
         style="@style/text_edit"
-        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_120sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:fontFamily="@font/inter"
         android:hint="@string/Withdraw_amount"

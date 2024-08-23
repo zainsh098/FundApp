@@ -89,6 +89,12 @@ class HomeFragment : Fragment() {
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_menuFragment)
             }
+
+            circularImageView.setOnClickListener {
+
+                findNavController().navigate(R.id.action_homeFragment_to_transactionDetailsFragment)
+            }
+
         }
     }
 

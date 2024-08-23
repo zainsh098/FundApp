@@ -1,6 +1,7 @@
 package com.example.fundapp.fragments.googlelogin.deposit
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentDepositBinding
 import com.example.fundapp.model.TransactionUser
@@ -18,6 +20,7 @@ import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import java.util.Calendar
 import java.util.UUID
 
 class DepositFragment : Fragment() {
@@ -28,6 +31,7 @@ class DepositFragment : Fragment() {
     private val storage = FirebaseStorage.getInstance()
     private lateinit var auth: FirebaseAuth
     private var selectedFileUri: Uri? = null
+    private var date: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +47,25 @@ class DepositFragment : Fragment() {
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
 
         binding.componentToolbar.textToolbar.text = getString(R.string.deposit)
-        binding.componentToolbar.backArrow.setImageResource(R.drawable.arrow_back)
+        binding.componentToolbar.backArrow.setImageResource(R.drawable.back)
 
+        binding.componentToolbar.apply {
+            context?.let {
+                Glide.with(it)
+                    .load(auth.currentUser?.photoUrl)
+                    .placeholder(R.drawable.baseline_person_24)
+                    .into(binding.componentToolbar.circularImageView)
+            }
+            textToolbar.text = getString(R.string.withdraw)
+            backArrow.setImageResource(R.drawable.back)
+            backArrow.setOnClickListener {
+
+                findNavController().navigate(R.id.action_withdrawFragment_to_menuFragment)
+
+            }
+
+
+        }
 
         binding.apply {
             componentToolbar.backArrow.setOnClickListener {
@@ -63,6 +84,12 @@ class DepositFragment : Fragment() {
         binding.buttonLogin.setOnClickListener {
             submitDeposit()
         }
+        binding.textViewSelectedDate.setOnClickListener {
+
+            selectDate()
+
+        }
+
     }
 
     private fun pickFile() {
@@ -101,7 +128,6 @@ class DepositFragment : Fragment() {
                     status = ""
                 )
 
-                // Submit the transaction to ViewModel
                 transactionViewModel.submitDeposit(transaction)
             }
         } else {
@@ -125,4 +151,24 @@ class DepositFragment : Fragment() {
             ).show()
         }
     }
+
+
+    private fun selectDate() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            { _, selectedYear, selectedMonth, selectedDay ->
+                date = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+                binding.textViewSelectedDate.text = date
+            }, year, month, day
+        )
+
+        datePickerDialog.show()
+    }
+
+
 }

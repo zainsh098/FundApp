@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_homeFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transactionDetailsFragment"
+            app:destination="@id/transactionDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -92,4 +95,9 @@
 
             />
     </fragment>
+    <fragment
+        android:id="@+id/transactionDetailsFragment"
+        android:name="com.example.fundapp.fragments.googlelogin.transactiondetails.TransactionDetailsFragment"
+        android:label="fragment_transaction_details"
+        tools:layout="@layout/fragment_transaction_details" />
 </navigation>

@@ -29,6 +29,7 @@
                 android:id="@+id/textHomeGreetings"
                 style="@style/text_style_toolbar"
                 android:layout_marginTop="@dimen/_65sdp"
+                android:layout_marginStart="@dimen/_3sdp"
                 android:fontFamily="@font/inter_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.081"
@@ -40,7 +41,8 @@
             <TextView
                 android:id="@+id/textHomeUserName"
                 style="@style/text_style_toolbar"
-                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_18sdp"
+
                 android:fontFamily="@font/inter_medium"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintHorizontal_bias="0.088"
@@ -71,7 +73,8 @@
                         style="@style/text_style_toolbar"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/inter"
-                        android:text="Current Balance"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:text="@string/current_balance"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.079"
@@ -115,7 +118,7 @@
                         android:layout_marginStart="@dimen/_3sdp"
                         android:layout_marginBottom="@dimen/_38sdp"
                         android:fontFamily="@font/inter"
-                        android:text="Deposited"
+                        android:text="@string/deposited"
                         android:textSize="@dimen/_9ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageViewuparrow" />
@@ -123,7 +126,7 @@
                     <TextView
                         android:id="@+id/textHomeDepositedValue"
                         style="@style/text_style_toolbar"
-                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_35sdp"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/inter"
                         android:textSize="@dimen/_12ssp"
@@ -134,7 +137,7 @@
                     <TextView
                         android:id="@+id/textHomeWithdrawValue"
                         style="@style/text_style_toolbar"
-                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:layout_marginEnd="@dimen/_29sdp"
                         android:fontFamily="@font/inter"
                         android:textSize="@dimen/_12ssp"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -24,5 +24,9 @@
     <string name="select_date">Select Date</string>
     <string name="withdraw">Withdraw\n</string>
     <string name="see_all">see all</string>
+    <string name="_15_02_2020">15/02/2020</string>
+    <string name="current_balance">Current Balance</string>
+    <string name="deposited">Deposited</string>
+    <string name="add_attachment">Add attachment</string>
 
 </resources>

@@ -23,7 +23,7 @@
         android:id="@+id/textToolbar"
         style="@style/text_style_toolbar"
         android:layout_marginTop="@dimen/_2sdp"
-        android:fontFamily="@font/inter_medium"
+        android:fontFamily="@font/inter_semibold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cardImage"
         app:layout_constraintStart_toEndOf="@+id/back_arrow"
