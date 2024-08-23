@@ -64,6 +64,7 @@ class HomeFragment : Fragment() {
         userViewModel.getUser(currentUserId)
         userViewModel.getAllUsers()
         userViewModel.users.observe(viewLifecycleOwner) { user ->
+
             userAdapter.updateUsers(user)
 
         }

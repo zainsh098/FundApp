@@ -24,4 +24,12 @@ class FirebaseDataSource(private val firestore: FirebaseFirestore) {
         return firestore.collection("users").get()
             .await().documents.map { it.toObject(User::class.java)!! }
     }
+
+    // New method to get all user IDs
+    suspend fun getAllUserIds(): List<String> {
+        return firestore.collection("users").get()
+            .await().documents.map { it.id }
+    }
+
+
 }

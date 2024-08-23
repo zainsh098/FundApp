@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fundapp.databinding.TransactionDetailsItemBinding
 import com.example.fundapp.model.TransactionUser
 
-class TransactionAdapter(
+class TransactionAdapter(private  val context: Context,
     private var transactions: MutableList<TransactionUser>
 ) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
 
