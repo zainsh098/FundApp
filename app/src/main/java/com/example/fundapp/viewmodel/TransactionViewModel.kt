@@ -22,13 +22,20 @@ class TransactionViewModel : ViewModel() {
         }
     }
 
+    fun withdrawAmount(transaction: TransactionUser) {
+        viewModelScope.launch {
+
+            transactionRepository.withdrawAmount(transaction)
+        }
+    }
+
+
     fun getTransactionHistory(userId: String) {
         viewModelScope.launch {
             val history = transactionRepository.getTransactionHistory(userId)
             transactionHistory.value = history
         }
     }
-
 
 }
 

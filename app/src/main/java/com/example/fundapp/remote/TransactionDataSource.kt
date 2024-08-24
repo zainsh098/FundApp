@@ -12,6 +12,43 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
             .set(transaction).await()
     }
 
+    suspend fun withdrawAmount(transaction: TransactionUser) {
+        firestore.collection("transactions").document(transaction.transactionId)
+            .set(transaction).await()
+    }
+
+//    suspend fun  withdrawAmount(transaction: TransactionUser) {
+//
+//        firestore.collection("transactions").document(transaction.transactionId)
+//            .addSnapshotListener { snapshot, error ->
+//                if (error !=null)
+//
+//                {
+//
+//                    return@addSnapshotListener
+//
+//                }
+//
+//              if(snapshot!=null && snapshot.exists())
+//              {
+//
+//                  val transaction=snapshot.toObject(TransactionUser::class.java)
+//
+//
+//              }
+//
+//            }
+//
+//
+//    }
+//
+//
+
+
+
+
+
+
 
     suspend fun getUser(userId: String): User? {
         return firestore.collection("users").document(userId).get().await()
@@ -21,6 +58,14 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
     suspend fun updateUserBalance(user: User) {
         firestore.collection("users").document(user.userId).set(user).await()
     }
+
+
+
+    suspend fun updateWithdrawBalance(user: User) {
+        firestore.collection("users").document(user.userId).set(user).await()
+    }
+
+
 
     suspend fun getTransactionHistory(userId: String): List<TransactionUser?> {
         return firestore.collection("transactions")

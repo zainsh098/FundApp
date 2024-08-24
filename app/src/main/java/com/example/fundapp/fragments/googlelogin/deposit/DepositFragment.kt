@@ -18,7 +18,6 @@ import com.example.fundapp.databinding.FragmentDepositBinding
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.util.Calendar
 import java.util.UUID
@@ -27,7 +26,6 @@ class DepositFragment : Fragment() {
 
     private lateinit var binding: FragmentDepositBinding
     private lateinit var transactionViewModel: TransactionViewModel
-    private val firestore = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
     private lateinit var auth: FirebaseAuth
     private var selectedFileUri: Uri? = null
@@ -45,48 +43,35 @@ class DepositFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
-
         binding.componentToolbar.textToolbar.text = getString(R.string.deposit)
         binding.componentToolbar.backArrow.setImageResource(R.drawable.back)
 
         binding.componentToolbar.apply {
+            backArrow.setImageResource(R.drawable.back)
             context?.let {
                 Glide.with(it)
                     .load(auth.currentUser?.photoUrl)
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }
-            textToolbar.text = getString(R.string.withdraw)
-            backArrow.setImageResource(R.drawable.back)
+
             backArrow.setOnClickListener {
-
-                findNavController().navigate(R.id.action_withdrawFragment_to_menuFragment)
-
-            }
-
-
-        }
-
-        binding.apply {
-            componentToolbar.backArrow.setOnClickListener {
 
                 findNavController().navigate(R.id.action_depositFragment_to_menuFragment)
 
-
+            }
+        }
+        binding.apply {
+            cardViewAttachment.setOnClickListener {
+                pickFile()
             }
 
+            textViewSelectedDate.setOnClickListener { selectDate()
+            }
         }
-
-        binding.cardViewAttachment.setOnClickListener {
-            pickFile()
-        }
-
         binding.buttonLogin.setOnClickListener {
             submitDeposit()
-        }
-        binding.textViewSelectedDate.setOnClickListener {
 
-            selectDate()
 
         }
 
@@ -112,22 +97,21 @@ class DepositFragment : Fragment() {
 
     private fun submitDeposit() {
         val depositAmount = binding.textFieldDeposit.text.toString().toInt()
-
-        if (selectedFileUri != null) {
+        val dateDepositAmount=binding.textViewSelectedDate.text.toString()
+        if (selectedFileUri != null && binding.textFieldDeposit.text != null) {
             uploadFileToFirestore(selectedFileUri!!) { fileUrl ->
-
                 val transaction = TransactionUser(
                     transactionId = UUID.randomUUID().toString(),
                     userId = auth.currentUser!!.uid,
                     type = "deposit",
                     amount = depositAmount,
-                    date = "",
+                    dateDeposit = dateDepositAmount,
+                    dateWithdraw = "",
                     proofOfDeposit = fileUrl,
                     comments = null,
                     reason = null,
                     status = ""
                 )
-
                 transactionViewModel.submitDeposit(transaction)
             }
         } else {
@@ -152,7 +136,6 @@ class DepositFragment : Fragment() {
         }
     }
 
-
     private fun selectDate() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -166,9 +149,7 @@ class DepositFragment : Fragment() {
                 binding.textViewSelectedDate.text = date
             }, year, month, day
         )
-
         datePickerDialog.show()
     }
-
 
 }

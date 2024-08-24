@@ -46,8 +46,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
+        firestore=FirebaseFirestore.getInstance()
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
 
@@ -119,7 +119,7 @@ class LoginFragment : Fragment() {
                                 email = email,
                                 photoUrl = photoUrl
                             )
-                            dataSource.saveUser(newUser)
+                            userViewModel.saveUser(newUser)
                         }
                     }
 
