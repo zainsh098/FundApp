@@ -15,21 +15,21 @@ class TransactionViewModel : ViewModel() {
     private val transactionRepository = TransactionRepository(TransactionDataSource(firestore))
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
 
+    // Function to submit a deposit transaction
     fun submitDeposit(transaction: TransactionUser) {
         viewModelScope.launch {
-
             transactionRepository.depositAmount(transaction)
         }
     }
 
+    // Function to submit a withdrawal transaction
     fun withdrawAmount(transaction: TransactionUser) {
         viewModelScope.launch {
-
             transactionRepository.withdrawAmount(transaction)
         }
     }
 
-
+    // Function to retrieve the transaction history for a specific user
     fun getTransactionHistory(userId: String) {
         viewModelScope.launch {
             val history = transactionRepository.getTransactionHistory(userId)
@@ -37,6 +37,15 @@ class TransactionViewModel : ViewModel() {
         }
     }
 
+    // Function to listen for real-time updates to the user's transaction history
+    fun startTransactionListener(userId: String) {
+        transactionRepository.addTransactionListener(userId) { transactions ->
+            transactionHistory.postValue(transactions)
+        }
+    }
+
+    // Function to remove the transaction listener when no longer needed
+    fun stopTransactionListener() {
+        transactionRepository.removeTransactionListener()
+    }
 }
-
-

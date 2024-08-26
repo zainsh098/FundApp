@@ -52,8 +52,6 @@ class TransactionDetailsFragment : Fragment() {
 
         }
         userViewModel.getAllUserIds()
-
-
         binding.apply {
             recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
             recyclerViewTransactionDetails.adapter = transactionAdapter
@@ -63,6 +61,7 @@ class TransactionDetailsFragment : Fragment() {
             val nonNullHistory = history.filterNotNull()
             transactionAdapter.updateList(nonNullHistory)
         }
-        transactionViewModel.getTransactionHistory(currentUserId!!)
+        transactionViewModel.startTransactionListener(currentUserId!!)
+        transactionViewModel.stopTransactionListener()
     }
 }

@@ -11,7 +11,6 @@
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@drawable/card_round_home"
         app:cardBackgroundColor="@color/Violet_100"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,10 +21,7 @@
             android:id="@+id/component_toolbar"
             layout="@layout/component_toolbar" />
 
-
     </com.google.android.material.card.MaterialCardView>
-
-
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textFieldWithdraw"
@@ -37,7 +33,7 @@
         android:inputType="number"
         android:maxLines="0"
         android:textColorHint="@color/Light_20"
-        android:textSize="@dimen/_10ssp"
+        android:textSize="@dimen/_11ssp"
         app:layout_constraintBottom_toTopOf="@id/textFieldWithdrawReason"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -57,11 +53,10 @@
         android:maxLines="0"
         android:textAlignment="textStart"
         android:textColorHint="@color/Light_20"
-        android:textSize="@dimen/_10ssp"
+        android:textSize="@dimen/_11ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFieldWithdraw" />
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardDateView"
@@ -81,7 +76,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/inter"
             android:paddingTop="@dimen/_4sdp"
-            android:text="15/02/2020"
+            android:text="@string/_15_02_2020"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"

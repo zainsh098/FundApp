@@ -17,11 +17,10 @@ class UserRepository(private val dataSource: FirebaseDataSource) {
         return dataSource.getAllUserIds()
     }
 
-//    suspend fun  getUserData(user: String):User{
-//        return dataSource.getUserData(user)
-//
-//
-//    }
+    suspend fun getUserBalance(userId: String): Double? {
+        return dataSource.getUserCurrentBalance(userId)
+
+    }
 
     suspend fun getAllUsers(): List<User> {
         return dataSource.getAllUsers()

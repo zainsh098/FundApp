@@ -18,6 +18,7 @@ class UserViewModel : ViewModel() {
     val user: MutableLiveData<User?> = MutableLiveData()
     val users: MutableLiveData<List<User>> = MutableLiveData()
     val userIds: MutableLiveData<List<String>> = MutableLiveData()
+    val userBalance: MutableLiveData<Double?> = MutableLiveData()
 
     fun saveUser(user: User) {
         viewModelScope.launch {
@@ -50,6 +51,16 @@ class UserViewModel : ViewModel() {
             userIds.value = ids
         }
     }
+
+    fun getUserCurrentBalance(userId: String) {
+
+        viewModelScope.launch {
+            val balance = userRepository.getUserBalance(userId)
+            userBalance.value=balance
+
+        }
+    }
+
 
 }
 

@@ -10,11 +10,6 @@ class FirebaseDataSource(private val firestore: FirebaseFirestore) {
         firestore.collection("users").document(user.userId).set(user).await()
     }
 
-
-    //    suspend fun getUserData(user: String): User {
-//        return firestore.collection("users").document(user.userId).get().await()
-//            .toObject(User::class.java)!!
-//    }
     suspend fun getUser(userId: String): User? {
         return firestore.collection("users").document(userId).get().await()
             .toObject(User::class.java)
@@ -25,11 +20,15 @@ class FirebaseDataSource(private val firestore: FirebaseFirestore) {
             .await().documents.map { it.toObject(User::class.java)!! }
     }
 
-    // New method to get all user IDs
+    suspend fun getUserCurrentBalance(userId: String): Double? {
+        val documentSnapshot = firestore.collection("users").document(userId).get().await()
+        return documentSnapshot.getDouble("currentBalance")
+    }
+
+
     suspend fun getAllUserIds(): List<String> {
         return firestore.collection("users").get()
             .await().documents.map { it.id }
     }
-
 
 }

@@ -21,7 +21,6 @@
             android:id="@+id/component_toolbar"
             layout="@layout/component_toolbar" />
 
-
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout

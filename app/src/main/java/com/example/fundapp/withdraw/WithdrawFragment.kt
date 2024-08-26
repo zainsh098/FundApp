@@ -2,6 +2,7 @@ package com.example.fundapp.withdraw
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,21 +15,19 @@ import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentWithdrawBinding
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.viewmodel.TransactionViewModel
+import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Calendar
 import java.util.UUID
 
-
 class WithdrawFragment : Fragment() {
 
-
     private lateinit var binding: FragmentWithdrawBinding
-
     private lateinit var transactionViewModel: TransactionViewModel
-
+    private lateinit var userViewModel: UserViewModel
     private lateinit var auth: FirebaseAuth
     private var date: String = ""
-
+    private var currentUserBalance: Int = 0 // Store the observed balance
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +42,7 @@ class WithdrawFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
+        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.withdraw)
@@ -58,11 +58,19 @@ class WithdrawFragment : Fragment() {
             }
         }
 
+        userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
+
+            if (balance != null) {
+                currentUserBalance = balance.toInt()
+            }
+        }
+
+        userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
+
         binding.apply {
             buttonSelectDate.setOnClickListener {
                 selectDate()
             }
-
             buttonWithdrawAmount.setOnClickListener {
                 val withdrawAmountText = textFieldWithdraw.text.toString()
                 val withdrawReason = textFieldWithdrawReason.text.toString()
@@ -70,17 +78,35 @@ class WithdrawFragment : Fragment() {
                 if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
                     Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 } else {
+                    // Parse the withdrawal amount
                     val withdrawAmount = withdrawAmountText.toInt()
-                    val transaction = TransactionUser(
-                        amount = withdrawAmount,
-                        reason = withdrawReason,
-                        dateWithdraw = date,
-                        type = "withdraw",
-                        transactionId = UUID.randomUUID().toString(),
-                        userId = auth.currentUser!!.uid,
-                        status = "pending"
-                    )
-                    transactionViewModel.withdrawAmount(transaction)
+                    Log.d("WithdrawFragment", "Withdraw Amount: $withdrawAmount")
+
+                    // Check if the withdrawal amount is greater than the current balance
+                    if (withdrawAmount >= currentUserBalance) {
+                        Toast.makeText(
+                            context,
+                            "Withdrawal amount is greater than your current balance",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        // Proceed with the withdrawal
+                        val transaction = TransactionUser(
+                            amount = withdrawAmount,
+                            reason = withdrawReason,
+                            dateWithdraw = date,
+                            type = "withdraw",
+                            transactionId = UUID.randomUUID().toString(),
+                            userId = auth.currentUser!!.uid,
+                            status = "pending"
+                        )
+                        transactionViewModel.withdrawAmount(transaction)
+                        Toast.makeText(context, "Withdrawal successful", Toast.LENGTH_SHORT).show()
+                        textFieldWithdraw.text?.clear()
+                        textFieldWithdrawReason.text?.clear()
+                        textViewSelectedDate.text = R.string._15_02_2020.toString()
+
+                    }
                 }
             }
         }
@@ -103,4 +129,3 @@ class WithdrawFragment : Fragment() {
         datePickerDialog.show()
     }
 }
-

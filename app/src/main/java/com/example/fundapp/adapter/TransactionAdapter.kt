@@ -31,7 +31,6 @@ class TransactionAdapter(private  val context: Context,
     }
 
     override fun getItemCount(): Int = transactions.size
-
     fun updateList(newTransactions: List<TransactionUser>) {
         transactions.clear()
         transactions.addAll(newTransactions)
