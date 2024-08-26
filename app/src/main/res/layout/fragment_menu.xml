@@ -96,7 +96,7 @@
 
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card2"
+        android:id="@+id/cardMyRequest"
         style="@style/card_menu_style"
         android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
@@ -159,7 +159,7 @@
         app:cardCornerRadius="@dimen/_8sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card2"
+        app:layout_constraintTop_toBottomOf="@id/cardMyRequest"
         app:rippleColor="@color/Light_20"
         app:strokeColor="@color/Light_60">
 

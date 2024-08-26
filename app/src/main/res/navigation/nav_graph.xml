@@ -68,6 +68,9 @@
             app:destination="@id/withdrawFragment"
 
             />
+        <action
+            android:id="@+id/action_menuFragment_to_myRequestFragment"
+            app:destination="@id/myRequestFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFragment"
@@ -100,4 +103,13 @@
         android:name="com.example.fundapp.fragments.googlelogin.transactiondetails.TransactionDetailsFragment"
         android:label="fragment_transaction_details"
         tools:layout="@layout/fragment_transaction_details" />
+    <fragment
+        android:id="@+id/myRequestFragment"
+        android:name="com.example.fundapp.fragments.googlelogin.myrequest.MyRequestFragment"
+        android:label="fragment_my_request"
+        tools:layout="@layout/fragment_my_request" >
+        <action
+            android:id="@+id/action_myRequestFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
 </navigation>

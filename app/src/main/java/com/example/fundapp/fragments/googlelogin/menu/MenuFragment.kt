@@ -57,6 +57,12 @@ class MenuFragment : Fragment() {
                 findNavController().navigate(R.id.action_menuFragment_to_withdrawFragment)
 
             }
+
+            binding.cardMyRequest.setOnClickListener{
+
+                findNavController().navigate(R.id.action_menuFragment_to_myRequestFragment)
+
+            }
         }
 
     }

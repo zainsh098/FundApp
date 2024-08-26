@@ -61,7 +61,7 @@ class TransactionDetailsFragment : Fragment() {
             val nonNullHistory = history.filterNotNull()
             transactionAdapter.updateList(nonNullHistory)
         }
-        transactionViewModel.startTransactionListener(currentUserId!!)
-        transactionViewModel.stopTransactionListener()
+        transactionViewModel.getTransactionHistory(currentUserId!!)
+
     }
 }
