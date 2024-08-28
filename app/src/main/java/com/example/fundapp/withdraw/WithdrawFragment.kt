@@ -30,8 +30,7 @@ class WithdrawFragment : Fragment() {
     private var currentUserBalance: Int = 0 // Store the observed balance
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentWithdrawBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -48,8 +47,7 @@ class WithdrawFragment : Fragment() {
             textToolbar.text = getString(R.string.withdraw)
             backArrow.setImageResource(R.drawable.back)
             context?.let {
-                Glide.with(it)
-                    .load(auth.currentUser?.photoUrl)
+                Glide.with(it).load(auth.currentUser?.photoUrl)
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }
@@ -78,7 +76,6 @@ class WithdrawFragment : Fragment() {
                 if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
                     Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Parse the withdrawal amount
                     val withdrawAmount = withdrawAmountText.toInt()
                     Log.d("WithdrawFragment", "Withdraw Amount: $withdrawAmount")
 
@@ -90,8 +87,10 @@ class WithdrawFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
-                        // Proceed with the withdrawal
+                        // Proceed  the withdrawal
                         val transaction = TransactionUser(
+                            photoUrl = auth.currentUser!!.photoUrl.toString(),
+                            name = auth.currentUser!!.displayName!!,
                             amount = withdrawAmount,
                             reason = withdrawReason,
                             dateWithdraw = date,
@@ -119,8 +118,7 @@ class WithdrawFragment : Fragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            { _, selectedYear, selectedMonth, selectedDay ->
+            requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
                 date = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                 binding.textViewSelectedDate.text = date
             }, year, month, day

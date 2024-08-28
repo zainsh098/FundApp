@@ -43,6 +43,7 @@ class MyRequestFragment : Fragment() {
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
             val myRequestHistory = history.filterNotNull().filter { it.status == "pending" }
 
+
             // Parse the date string and sort by the date
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 

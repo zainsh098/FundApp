@@ -54,9 +54,7 @@ class DepositFragment : Fragment() {
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }
-
             backArrow.setOnClickListener {
-
                 findNavController().navigate(R.id.action_depositFragment_to_menuFragment)
 
             }
@@ -65,16 +63,13 @@ class DepositFragment : Fragment() {
             cardViewAttachment.setOnClickListener {
                 pickFile()
             }
-
-            textViewSelectedDate.setOnClickListener { selectDate()
+            textViewSelectedDate.setOnClickListener {
+                selectDate()
             }
         }
         binding.buttonLogin.setOnClickListener {
             submitDeposit()
-
-
         }
-
     }
 
     private fun pickFile() {
@@ -97,20 +92,18 @@ class DepositFragment : Fragment() {
 
     private fun submitDeposit() {
         val depositAmount = binding.textFieldDeposit.text.toString().toInt()
-        val dateDepositAmount=binding.textViewSelectedDate.text.toString()
+        val dateDepositAmount = binding.textViewSelectedDate.text.toString()
         if (selectedFileUri != null && binding.textFieldDeposit.text != null) {
             uploadFileToFirestore(selectedFileUri!!) { fileUrl ->
                 val transaction = TransactionUser(
+                    name = auth.currentUser!!.displayName!!,
                     transactionId = UUID.randomUUID().toString(),
                     userId = auth.currentUser!!.uid,
                     type = "deposit",
                     amount = depositAmount,
                     dateDeposit = dateDepositAmount,
-                    dateWithdraw = "",
                     proofOfDeposit = fileUrl,
-                    comments = null,
-                    reason = null,
-                    status = ""
+                    photoUrl = auth.currentUser!!.photoUrl.toString(),
                 )
                 transactionViewModel.submitDeposit(transaction)
             }

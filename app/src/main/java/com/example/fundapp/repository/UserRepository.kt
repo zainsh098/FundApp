@@ -21,7 +21,6 @@ class UserRepository(private val dataSource: FirebaseDataSource) {
         return dataSource.getUserCurrentBalance(userId)
 
     }
-
     suspend fun getAllUsers(): List<User> {
         return dataSource.getAllUsers()
     }

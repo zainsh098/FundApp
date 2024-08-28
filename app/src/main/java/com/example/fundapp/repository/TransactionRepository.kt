@@ -15,6 +15,13 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         updateWithdrawBalance(transaction.userId, transaction.amount)
     }
 
+
+
+    suspend fun  getAllWithdrawRequests(userId: String) : List<TransactionUser?> {
+        return dataSource.getAllWithdrawRequests(userId)
+
+    }
+
     private suspend fun updateDepositBalance(userId: String, depositAmount: Int) {
         val user = dataSource.getUser(userId)
         user?.apply {

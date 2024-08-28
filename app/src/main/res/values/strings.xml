@@ -28,5 +28,7 @@
     <string name="current_balance">Current Balance</string>
     <string name="deposited">Deposited</string>
     <string name="add_attachment">Add attachment</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
 
 </resources>

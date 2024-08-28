@@ -35,10 +35,10 @@ class TransactionDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
+        val currentUserId = auth.currentUser?.uid
 
         transactionAdapter = TransactionAdapter(requireContext(), mutableListOf())
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
-        val currentUserId = auth.currentUser?.uid
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
 

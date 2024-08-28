@@ -47,7 +47,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        firestore=FirebaseFirestore.getInstance()
+        firestore = FirebaseFirestore.getInstance()
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
 
@@ -108,7 +108,7 @@ class LoginFragment : Fragment() {
                             val updatedUser = existingUser.copy(
                                 name = name,
                                 email = email,
-                                photoUrl = photoUrl
+                                photoUrl = photoUrl,
                             )
                             dataSource.saveUser(updatedUser)
                             // create new user
@@ -117,7 +117,7 @@ class LoginFragment : Fragment() {
                                 userId = userId,
                                 name = name,
                                 email = email,
-                                photoUrl = photoUrl
+                                photoUrl = photoUrl,
                             )
                             userViewModel.saveUser(newUser)
                         }

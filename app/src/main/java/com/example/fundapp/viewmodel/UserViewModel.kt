@@ -53,7 +53,6 @@ class UserViewModel : ViewModel() {
     }
 
     fun getUserCurrentBalance(userId: String) {
-
         viewModelScope.launch {
             val balance = userRepository.getUserBalance(userId)
             userBalance.value=balance

@@ -8,6 +8,6 @@ data class User(
     var currentBalance: Int? = 0,
     var totalSubmittedAmount: Int? = 0,
     var totalWithdrawAmount: Int? = 0,
-    val role: String = "",
+    val role: String = "user",
     val photoUrl: String? = null
 )

@@ -71,6 +71,9 @@
         <action
             android:id="@+id/action_menuFragment_to_myRequestFragment"
             app:destination="@id/myRequestFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_approveRequestFragment"
+            app:destination="@id/approveRequestFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFragment"
@@ -110,6 +113,15 @@
         tools:layout="@layout/fragment_my_request" >
         <action
             android:id="@+id/action_myRequestFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/approveRequestFragment"
+        android:name="com.example.fundapp.fragments.googlelogin.approverequest.ApproveRequestFragment"
+        android:label="fragment_approve_request"
+        tools:layout="@layout/fragment_approve_request" >
+        <action
+            android:id="@+id/action_approveRequestFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
 </navigation>

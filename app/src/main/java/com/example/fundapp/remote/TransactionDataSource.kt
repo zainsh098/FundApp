@@ -37,23 +37,39 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
             .map { it.toObject(TransactionUser::class.java) }
     }
 
+    suspend fun getAllWithdrawRequests(userId: String): List<TransactionUser?> {
+        return firestore.collection("transactions")
+            .whereEqualTo("userId", userId)
+            .whereEqualTo("transactionType", "withdraw")
+            .whereEqualTo("status", "pending")
+            .get()
+            .await()
+            .documents
+            .map { it.toObject(TransactionUser::class.java) }
+    }
+
+
     // Function to add a snapshot listener for real-time updates
-  fun addTransactionListener(userId: String, onTransactionChanged: (List<TransactionUser?>) -> Unit) {
+    fun addTransactionListener(
+        userId: String,
+        onTransactionChanged: (List<TransactionUser?>) -> Unit
+    ) {
         listener = firestore.collection("transactions")
             .whereEqualTo("userId", userId)
             .addSnapshotListener { snapshot, e ->
                 if (e != null) {
-                    // Handle the error
                     return@addSnapshotListener
                 }
                 if (snapshot != null && !snapshot.isEmpty) {
-                    val transactions = snapshot.documents.map { it.toObject(TransactionUser::class.java) }
+                    val transactions =
+                        snapshot.documents.map { it.toObject(TransactionUser::class.java) }
                     onTransactionChanged(transactions)
                 } else {
                     onTransactionChanged(emptyList())
                 }
             }
     }
+
     fun removeTransactionListener() {
         if (::listener.isInitialized) {
             listener.remove()

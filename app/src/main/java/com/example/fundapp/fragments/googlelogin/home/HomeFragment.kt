@@ -57,14 +57,12 @@ class HomeFragment : Fragment() {
         userViewModel.getAllUsers()
 
         userViewModel.users.observe(viewLifecycleOwner) { users ->
-
-
             userAdapter.updateUsers(users)
         }
-
         userViewModel.user.observe(viewLifecycleOwner) { user ->
             user?.let {
-                val role = user?.role
+
+                UserSession.role = user.role
 
                 binding.textHomeUserName.text = "Hello, " + user.name
                 binding.textHomeCurrentBalanceValue.text = "Rs: ${user.currentBalance}"
@@ -97,6 +95,8 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_transactionDetailsFragment)
             }
         }
+
+
     }
 
     override fun onDestroyView() {
@@ -114,4 +114,8 @@ class HomeFragment : Fragment() {
             else -> "Invalid time"
         }
     }
+}
+
+object UserSession {
+    var role: String? = null
 }
