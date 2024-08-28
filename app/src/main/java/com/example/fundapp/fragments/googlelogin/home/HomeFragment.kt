@@ -1,6 +1,7 @@
 package com.example.fundapp.fragments.googlelogin.home
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,31 +38,34 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
         userAdapter = UserAdapter(requireContext(), mutableListOf())
-       transactionAdapter =TransactionAdapter(requireContext(), mutableListOf())
+        transactionAdapter = TransactionAdapter(requireContext(), mutableListOf())
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewUsers.adapter = userAdapter
 
-        // Initialize UserViewModel and TransactionViewModel
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        transactionViewModel = ViewModelProvider(this)[TransactionViewModel::class.java]
 
-        val currentUserId = auth.currentUser?.uid ?: return
+        val currentUserId = auth.currentUser?.uid
 
-        // Get initial data
-        userViewModel.getUser(currentUserId)
+        userViewModel.getUser(currentUserId!!)
         userViewModel.getAllUsers()
 
         userViewModel.users.observe(viewLifecycleOwner) { users ->
+
+
             userAdapter.updateUsers(users)
         }
 
         userViewModel.user.observe(viewLifecycleOwner) { user ->
             user?.let {
+                val role = user?.role
+
                 binding.textHomeUserName.text = "Hello, " + user.name
                 binding.textHomeCurrentBalanceValue.text = "Rs: ${user.currentBalance}"
                 binding.textHomeDepositedValue.text = "Rs: ${user.totalDeposited}"
@@ -80,7 +84,7 @@ class HomeFragment : Fragment() {
         transactionViewModel.startTransactionListener(currentUserId)
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { transactions ->
             // Update your UI or adapter with new transactions here
-           transactionAdapter.updateList(transactions.filterNotNull())
+            transactionAdapter.updateList(transactions.filterNotNull())
         }
 
         binding.componentToolbar.apply {

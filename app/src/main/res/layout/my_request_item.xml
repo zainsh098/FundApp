@@ -1,94 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_height="@dimen/_120sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
         app:cardBackgroundColor="@color/Light_60"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/Light_60">
-
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp">
 
+            <!-- User Avatar -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/circularImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/baseline_person_24"
+                    tools:ignore="ContentDescription" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Withdraw Amount -->
             <TextView
                 android:id="@+id/textViewWithdrawAmount"
                 style="@style/home_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_7sdp"
                 android:fontFamily="@font/inter_semibold"
                 android:textSize="@dimen/_14ssp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/cardImage"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.6"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Rs 1500" />
 
+            <!-- Transaction ID -->
             <TextView
                 android:id="@+id/textViewTransactionID"
                 style="@style/home_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:fontFamily="@font/inter_medium"
                 android:textColor="@color/Light_20"
-                android:textSize="@dimen/_8ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.6"
-                tools:text="07b07cca-7a9d-4785-bcec-c087d84fe069" />
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toEndOf="@id/cardImage"
+                app:layout_constraintTop_toBottomOf="@id/textViewWithdrawAmount"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Request #: 07b07cca-7a9d-4785-bcec-c087d84fe069" />
 
-
+            <!-- Transaction Date -->
             <TextView
                 android:id="@+id/textViewTransactionDate"
                 style="@style/home_text_style"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:layout_marginEnd="@dimen/_65sdp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:fontFamily="@font/inter_medium"
+                android:textColor="@color/Light_20"
                 android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toEndOf="@id/cardImage"
+                app:layout_constraintTop_toBottomOf="@id/textViewTransactionID"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.6"
-                tools:text="15-2-2023" />
+                tools:text="Date: 15-2-2023" />
 
-            <View
-                android:id="@+id/divider"
-                android:layout_width="3dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="@dimen/_55sdp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/divider"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <!-- Withdraw Reason -->
+            <TextView
+                android:id="@+id/textViewWithdrawReason"
+                style="@style/home_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/inter_medium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toEndOf="@id/cardImage"
+                app:layout_constraintTop_toBottomOf="@id/textViewTransactionDate"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:text="Reason: Personal Expenses" />
 
-
+            <!-- Withdrawal Status -->
             <TextView
                 android:id="@+id/textViewWithdrawlStatus"
                 style="@style/home_text_style"
-                android:layout_marginEnd="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
                 android:fontFamily="@font/inter_medium"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/Light_20"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.377"
-                app:layout_constraintWidth_percent="0.6"
+                app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="Pending" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
