@@ -54,6 +54,9 @@ class WithdrawFragment : Fragment() {
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_withdrawFragment_to_menuFragment)
             }
+
+            cardImage.visibility=View.GONE
+
         }
 
         userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->

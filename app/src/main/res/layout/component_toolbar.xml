@@ -19,11 +19,14 @@
     <TextView
         android:id="@+id/textToolbar"
         style="@style/text_style_toolbar"
+        android:layout_marginEnd="@dimen/_40sdp"
         android:fontFamily="@font/inter_medium"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/cardImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toEndOf="@id/back_arrow"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/back_arrow"
+        app:layout_constraintVertical_bias="0.151"
         tools:text="Home" />
 
     <com.google.android.material.card.MaterialCardView
