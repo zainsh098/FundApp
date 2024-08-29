@@ -11,3 +11,5 @@ data class User(
     val role: String = "user",
     val photoUrl: String? = null
 )
+
+

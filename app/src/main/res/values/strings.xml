@@ -20,7 +20,7 @@
     <string name="deposit">Deposit</string>
     <string name="Withdraw_amount">Withdraw Amount</string>
     <string name="reason_to_withdraw">Reason of Withdraw\n</string>
-    <string name="submit_withdraw">Submit Withdraw</string>
+    <string name="request">Request</string>
     <string name="select_date">Select Date</string>
     <string name="withdraw">Withdraw\n</string>
     <string name="see_all">see all</string>

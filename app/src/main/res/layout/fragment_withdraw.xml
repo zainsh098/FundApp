@@ -4,122 +4,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Light_100"
+    android:background="@color/Violet_100"
     tools:context=".withdraw.WithdrawFragment">
 
+    <include
+        android:id="@+id/component_toolbar"
+        layout="@layout/component_toolbar" />
+
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/card_round_home"
-        app:cardBackgroundColor="@color/Violet_100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="@dimen/_400sdp"
+        app:cardBackgroundColor="@color/Light_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:shapeAppearance="@drawable/round_shape"
+        app:shapeAppearanceOverlay="@style/RoundedTopCorners"
+        app:strokeColor="@color/Light_100">
 
-        <include
-            android:id="@+id/component_toolbar"
-            layout="@layout/component_toolbar" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/textFieldWithdraw"
-        style="@style/text_edit"
-        android:layout_marginTop="@dimen/_120sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:fontFamily="@font/inter"
-        android:hint="@string/Withdraw_amount"
-        android:inputType="number"
-        android:maxLines="0"
-        android:textColorHint="@color/Light_20"
-        android:textSize="@dimen/_11ssp"
-        app:layout_constraintBottom_toTopOf="@id/textFieldWithdrawReason"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.214" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/textFieldWithdrawReason"
-        style="@style/text_edit_reason"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:fontFamily="@font/inter"
-        android:hint="@string/reason_to_withdraw"
-        android:inputType="text"
-        android:maxLength="30"
-        android:maxLines="0"
-        android:textAlignment="textStart"
-        android:textColorHint="@color/Light_20"
-        android:textSize="@dimen/_11ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldWithdraw" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardDateView"
-        style="@style/text_edit"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
-        app:cardBackgroundColor="@color/Light_60"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldWithdrawReason"
-        app:strokeColor="@color/Light_60">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewSelectedDate"
-            style="@style/text_style"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/inter"
-            android:paddingTop="@dimen/_4sdp"
-            android:text="@string/_15_02_2020"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/buttonSelectDate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:background="@drawable/round_shape">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textFieldWithdraw"
+                style="@style/text_edit"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:fontFamily="@font/inter"
+                android:hint="@string/Withdraw_amount"
+                android:inputType="number"
+                android:maxLines="0"
+                android:textColorHint="@color/Light_20"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintBottom_toTopOf="@id/textFieldWithdrawReason"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.214" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/textFieldWithdrawReason"
+                style="@style/text_edit"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:fontFamily="@font/inter"
+                android:hint="@string/reason_to_withdraw"
+                android:inputType="text"
+                android:maxLength="20"
+                android:maxLines="0"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/Light_20"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textFieldWithdraw" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDateView"
+                style="@style/text_edit"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/round_shape"
+                app:cardBackgroundColor="@color/Light_100"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textFieldWithdrawReason"
+                app:strokeColor="@color/Light_60">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewSelectedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_shape"
+                    android:fontFamily="@font/inter"
+                    android:gravity="center"
+                    android:text="@string/_15_02_2020"
+                    android:textAlignment="center"
+                    android:textColor="@color/Light_20"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonSelectDate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--            <androidx.appcompat.widget.AppCompatButton-->
+            <!--                android:id="@+id/buttonSelectDate"-->
+            <!--                style="@style/button_style"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_marginTop="@dimen/_15sdp"-->
+            <!--                android:layout_marginEnd="@dimen/_20sdp"-->
+            <!--                android:fontFamily="@font/inter_semibold"-->
+            <!--                android:gravity="center"-->
+            <!--                android:includeFontPadding="false"-->
+            <!--                android:text="@string/select_date"-->
+            <!--                android:textSize="@dimen/_14ssp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="1.0"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/cardDateView" />-->
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonWithdrawAmount"
+                style="@style/button_style"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/request"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSelectDate"
-        style="@style/button_style"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:fontFamily="@font/inter_semibold"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="@string/select_date"
-        android:textSize="@dimen/_14ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardDateView" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonWithdrawAmount"
-        style="@style/button_style"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:fontFamily="@font/inter_semibold"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="@string/submit_withdraw"
-        android:textSize="@dimen/_14ssp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSelectDate" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

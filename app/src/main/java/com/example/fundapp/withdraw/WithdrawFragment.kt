@@ -66,9 +66,10 @@ class WithdrawFragment : Fragment() {
         userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
 
         binding.apply {
-            buttonSelectDate.setOnClickListener {
+            textViewSelectedDate.setOnClickListener {
                 selectDate()
             }
+
             buttonWithdrawAmount.setOnClickListener {
                 val withdrawAmountText = textFieldWithdraw.text.toString()
                 val withdrawReason = textFieldWithdrawReason.text.toString()

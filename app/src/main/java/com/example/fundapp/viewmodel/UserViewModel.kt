@@ -9,16 +9,18 @@ import com.example.fundapp.repository.UserRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
-class UserViewModel : ViewModel() {
+open class UserViewModel : ViewModel() {
 
     private val firestore = FirebaseFirestore.getInstance()
 
     private val userRepository = UserRepository(FirebaseDataSource(firestore))
 
-    val user: MutableLiveData<User?> = MutableLiveData()
-    val users: MutableLiveData<List<User>> = MutableLiveData()
+    val currentUser: MutableLiveData<User?> = MutableLiveData()
+    val allUsers: MutableLiveData<List<User>> = MutableLiveData()
     val userIds: MutableLiveData<List<String>> = MutableLiveData()
     val userBalance: MutableLiveData<Double?> = MutableLiveData()
+
+
 
     fun saveUser(user: User) {
         viewModelScope.launch {
@@ -34,13 +36,13 @@ class UserViewModel : ViewModel() {
 
     fun getUser(userId: String) {
         viewModelScope.launch {
-            user.value = userRepository.getUser(userId)
+            currentUser.value = userRepository.getUser(userId)
         }
     }
 
     fun getAllUsers() {
         viewModelScope.launch {
-            users.value = userRepository.getAllUsers()
+            allUsers.value = userRepository.getAllUsers()
         }
     }
 

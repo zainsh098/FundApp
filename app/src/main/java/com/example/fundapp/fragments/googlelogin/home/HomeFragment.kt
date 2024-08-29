@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,12 +25,13 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var transactionViewModel: TransactionViewModel
-    private lateinit var userViewModel: UserViewModel
+
     private lateinit var userAdapter: UserAdapter
     private lateinit var transactionAdapter: TransactionAdapter
     private lateinit var auth: FirebaseAuth
-    private val dateNow = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
+
+    private val homeViewModel : HomeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,27 +50,25 @@ class HomeFragment : Fragment() {
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewUsers.adapter = userAdapter
 
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         transactionViewModel = ViewModelProvider(this)[TransactionViewModel::class.java]
 
-        val currentUserId = auth.currentUser?.uid
 
-        userViewModel.getUser(currentUserId!!)
-        userViewModel.getAllUsers()
-
-        userViewModel.users.observe(viewLifecycleOwner) { users ->
+        homeViewModel.allUsers.observe(viewLifecycleOwner) { users ->
             userAdapter.updateUsers(users)
         }
-        userViewModel.user.observe(viewLifecycleOwner) { user ->
+        homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
             user?.let {
 
                 UserSession.role = user.role
+                binding.apply {
+                    textHomeUserName.text = "Hello, " + user.name
+                    textHomeCurrentBalanceValue.text = "Rs: ${user.currentBalance}"
+                    textHomeDepositedValue.text = "Rs: ${user.totalDeposited}"
+                    textHomeWithdrawValue.text = "Rs: ${user.totalWithdrawAmount}"
+                }
 
-                binding.textHomeUserName.text = "Hello, " + user.name
-                binding.textHomeCurrentBalanceValue.text = "Rs: ${user.currentBalance}"
-                binding.textHomeDepositedValue.text = "Rs: ${user.totalDeposited}"
-                binding.textHomeWithdrawValue.text = "Rs: ${user.totalWithdrawAmount}"
-                binding.textHomeGreetings.text = setMessage()
+
+//                binding.textHomeGreetings.text = setMessage() todo shift to viewmodel
                 context?.let {
                     Glide.with(it)
                         .load(user.photoUrl)
@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
         }
 
         // Start listening to transaction updates
-        transactionViewModel.startTransactionListener(currentUserId)
+//        transactionViewModel.startTransactionListener(currentUserId)
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { transactions ->
             // Update your UI or adapter with new transactions here
             transactionAdapter.updateList(transactions.filterNotNull())
@@ -105,15 +105,7 @@ class HomeFragment : Fragment() {
         transactionViewModel.stopTransactionListener()
     }
 
-    private fun setMessage(): String {
-        return when (dateNow) {
-            in 0..5 -> "Good Night"
-            in 6..11 -> "Good Morning"
-            in 12..16 -> "Good Afternoon"
-            in 17..23 -> "Good Evening"
-            else -> "Invalid time"
-        }
-    }
+
 }
 
 object UserSession {

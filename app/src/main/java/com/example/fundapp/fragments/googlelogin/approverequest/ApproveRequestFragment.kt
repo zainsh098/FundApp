@@ -38,8 +38,6 @@ class ApproveRequestFragment : Fragment() {
         transactionViewModel = ViewModelProvider(this)[TransactionViewModel::class.java]
 
         transactionViewModel.withdrawalRequests.observe(viewLifecycleOwner) { withdrawalRequests ->
-
-
             Log.d("ApproveRequestFragment", "Withdrawal Requests: $withdrawalRequests")
             val nonNullHistory = withdrawalRequests.filterNotNull()
             adapter.updateList(nonNullHistory)
