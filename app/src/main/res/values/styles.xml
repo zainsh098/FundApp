@@ -166,6 +166,23 @@
         <item name="android:background">@drawable/edit_field_round</item>
     </style>
 
+
+    <style name="text_edit_style_material_new">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:layout_height">@dimen/_45sdp</item>
+        <item name="android:layout_marginStart">@dimen/_16sdp</item>
+    </style>
+
+    <style name="text_edit_attachment">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">@dimen/_12sdp</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:layout_height">@dimen/_45sdp</item>
+        <item name="android:layout_marginStart">@dimen/_16sdp</item>
+
+    </style>
+
     <style name="text_edit_reason">
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">@dimen/_16sdp</item>
