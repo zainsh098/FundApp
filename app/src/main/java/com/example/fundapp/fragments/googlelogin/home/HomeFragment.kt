@@ -17,9 +17,7 @@ import com.example.fundapp.adapter.TransactionAdapter
 import com.example.fundapp.adapter.UserAdapter
 import com.example.fundapp.databinding.FragmentHomeBinding
 import com.example.fundapp.viewmodel.TransactionViewModel
-import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
-import java.util.Calendar
 
 class HomeFragment : Fragment() {
 
@@ -31,7 +29,7 @@ class HomeFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
 
 
-    private val homeViewModel : HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,12 +48,21 @@ class HomeFragment : Fragment() {
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewUsers.adapter = userAdapter
 
+
         transactionViewModel = ViewModelProvider(this)[TransactionViewModel::class.java]
 
+
+        homeViewModel.message.observe(viewLifecycleOwner) { message ->
+
+            binding.textHomeGreetings.text = message
+
+        }
 
         homeViewModel.allUsers.observe(viewLifecycleOwner) { users ->
             userAdapter.updateUsers(users)
         }
+
+
         homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
             user?.let {
 
@@ -68,7 +75,7 @@ class HomeFragment : Fragment() {
                 }
 
 
-//                binding.textHomeGreetings.text = setMessage() todo shift to viewmodel
+//           binding.textHomeGreetings.text = setMessage() todo shift to viewmodel
                 context?.let {
                     Glide.with(it)
                         .load(user.photoUrl)

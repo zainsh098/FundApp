@@ -1,5 +1,7 @@
 package com.example.fundapp.fragments.googlelogin.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Calendar
@@ -8,14 +10,19 @@ class HomeViewModel : UserViewModel() {
 
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid.orEmpty()
     private val dateNow = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+    private val _message: MutableLiveData<String> = MutableLiveData()
+    val message: LiveData<String> = _message
+
 
     init {
         getUser(currentUserId)
         getAllUsers()
+        setMessage()
     }
 
-    private fun setMessage(): String {
-        return when (dateNow) {
+
+    private fun setMessage() {
+        _message.value = when (dateNow) {
             in 0..5 -> "Good Night"
             in 6..11 -> "Good Morning"
             in 12..16 -> "Good Afternoon"
