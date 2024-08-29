@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_splashFragment_to_withdrawFragment"
             app:destination="@id/withdrawFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_depositFragment"
+            app:destination="@id/depositFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"

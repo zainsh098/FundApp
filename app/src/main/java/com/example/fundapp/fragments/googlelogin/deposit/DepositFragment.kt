@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -66,10 +68,11 @@ class DepositFragment : Fragment() {
             textViewSelectedDate.setOnClickListener {
                 selectDate()
             }
+            buttonLogin.setOnClickListener {
+                submitDeposit()
+            }
         }
-        binding.buttonLogin.setOnClickListener {
-            submitDeposit()
-        }
+
     }
 
     private fun pickFile() {
@@ -82,13 +85,16 @@ class DepositFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            selectedFileUri = data?.data
+            val selectedFileUri = data?.data
             selectedFileUri?.let { uri ->
-                binding.imageViewSelectedFile.setImageURI(uri)
-                binding.imageViewSelectedFile.visibility = View.VISIBLE
+                binding.cardViewAttachment.findViewById<TextView>(R.id.textViewAttachment).text =
+                    "File Attached"
+                binding.cardViewAttachment.findViewById<ImageView>(R.id.imageViewAttachment)
+                    .setImageResource(R.drawable.attachfile)
             }
         }
     }
+
 
     private fun submitDeposit() {
         val depositAmount = binding.textFieldDeposit.text.toString().toInt()
