@@ -1,13 +1,13 @@
 package com.example.fundapp.adapter
 
-import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundapp.databinding.TransactionDetailsItemBinding
 import com.example.fundapp.model.TransactionUser
 
-class TransactionAdapter(private  val context: Context,
+class TransactionAdapter(
     private var transactions: MutableList<TransactionUser>
 ) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
 
@@ -25,9 +25,19 @@ class TransactionAdapter(private  val context: Context,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val transaction = transactions[position]
+
+        if (transaction.type == "withdraw") {
+            holder.binding.transcationAmount.setTextColor(Color.RED)
+
+        } else {
+            holder.binding.transcationAmount.setTextColor(Color.GREEN)
+
+        }
+
+        holder.binding.transcationAmount.text = "Rs: " + transaction.amount.toString()
+
         holder.binding.transcationType.text = transaction.type
         holder.binding.transcationID.text = "ID # " + transaction.transactionId
-        holder.binding.transcationAmount.text = "Rs: " + transaction.amount.toString()
     }
 
     override fun getItemCount(): Int = transactions.size

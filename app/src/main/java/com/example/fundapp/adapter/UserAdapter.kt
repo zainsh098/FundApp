@@ -9,7 +9,7 @@ import com.example.fundapp.R
 import com.example.fundapp.databinding.UserItemBinding
 import com.example.fundapp.model.User
 
-class UserAdapter(private val context: Context, private var users: MutableList<User>) :
+class UserAdapter(private var users: MutableList<User>) :
     RecyclerView.Adapter<UserAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.MyViewHolder {
         val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

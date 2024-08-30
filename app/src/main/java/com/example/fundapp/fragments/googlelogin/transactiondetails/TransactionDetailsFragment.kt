@@ -37,7 +37,7 @@ class TransactionDetailsFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         val currentUserId = auth.currentUser?.uid
 
-        transactionAdapter = TransactionAdapter(requireContext(), mutableListOf())
+        transactionAdapter = TransactionAdapter(mutableListOf())
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
@@ -56,7 +56,11 @@ class TransactionDetailsFragment : Fragment() {
             recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
             recyclerViewTransactionDetails.adapter = transactionAdapter
         }
+
+
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
+
+
 
             val nonNullHistory = history.filterNotNull()
             transactionAdapter.updateList(nonNullHistory)
