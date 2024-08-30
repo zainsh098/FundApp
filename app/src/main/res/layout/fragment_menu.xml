@@ -223,7 +223,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardWithdrawFunds" />
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardDeposit"
             style="@style/card_menu_style"
@@ -278,7 +277,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider4"
             android:layout_width="match_parent"
@@ -290,7 +288,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardDeposit" />
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card5"
@@ -342,10 +339,7 @@
                     tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </com.google.android.material.card.MaterialCardView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

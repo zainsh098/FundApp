@@ -24,7 +24,6 @@
             android:layout_height="match_parent"
             android:paddingHorizontal="@dimen/_5sdp">
 
-
             <TextView
                 android:id="@+id/transcationType"
                 style="@style/home_text_style"
@@ -35,6 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.6"
                 tools:text="Deposit" />
+
             <TextView
                 android:id="@+id/transcationID"
                 style="@style/home_text_style"
@@ -58,14 +58,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <TextView
                 android:id="@+id/transcationAmount"
                 style="@style/home_text_style"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_semibold"
-
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
