@@ -4,7 +4,10 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="Violet_100">#7F3DFF</color>
+<!--    <color name="Violet_100">#7F3DFF</color>-->
+    <color name="Violet_100">#FFAB40</color>
+
+
     <color name="Violet_20">#F4EEFD</color>
 
     <color name="Light_100">#FFFFFF</color>
