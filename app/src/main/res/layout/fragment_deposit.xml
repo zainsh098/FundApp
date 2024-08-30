@@ -36,7 +36,13 @@
                 android:hint="@string/deposit"
                 android:inputType="number"
                 android:maxLines="0"
-
+                app:boxCornerRadiusBottomEnd="@dimen/_13sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_13sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_13sdp"
+                app:boxCornerRadiusTopStart="@dimen/_13sdp"
+                app:boxStrokeColor="@color/Light_60"
+                app:boxStrokeWidth="0.2dp"
+                app:boxStrokeWidthFocused="1dp"
                 android:textColorHint="@color/Light_20"
                 android:textSize="@dimen/_9ssp"
                 app:boxBackgroundMode="outline"
@@ -48,7 +54,6 @@
                     android:id="@+id/textFieldDeposit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/edit_field_round"
                     android:fontFamily="@font/inter"
                     android:inputType="number"
                     android:textColorHint="@color/Light_20"
@@ -94,27 +99,31 @@
             </androidx.cardview.widget.CardView>
 
 
-            <com.google.android.material.card.MaterialCardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardDateView"
                 style="@style/text_edit_style_material_new"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:foreground="@drawable/dashed_border"
                 app:cardBackgroundColor="@color/Light_100"
-                app:cardCornerRadius="@dimen/_13sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewAttachment"
-                app:strokeColor="@color/Light_60">
+                app:strokeColor="@color/Light_60"
+                app:strokeWidth="1dp"
+                >
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textViewSelectedDate"
                     style="@style/text_style_new"
-                    android:text="@string/_15_02_2020"
                     android:layout_gravity="center"
+                    android:text="@string/_15_02_2020"
                     app:layout_constraintBottom_toTopOf="@+id/buttonSelectDate"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-            </com.google.android.material.card.MaterialCardView>
+            </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_Login"

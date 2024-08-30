@@ -1,18 +1,18 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="@color/Light_100">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_120sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        app:cardBackgroundColor="@color/Light_60"
-        app:cardElevation="8dp"
-        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/Light_100"
+        app:cardCornerRadius="@dimen/_13sdp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,16 +22,15 @@
             android:layout_height="match_parent"
             android:padding="@dimen/_10sdp">
 
-            <!-- User Avatar -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:cardCornerRadius="25dp"
-                app:cardElevation="4dp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                app:cardCornerRadius="@dimen/_20sdp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/circularImageView"
@@ -49,11 +48,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:fontFamily="@font/inter_semibold"
-                android:textSize="@dimen/_14ssp"
                 android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cardImage"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Rs 1500" />
 
             <!-- Transaction ID -->
@@ -67,9 +66,9 @@
                 android:fontFamily="@font/inter_medium"
                 android:textColor="@color/Light_20"
                 android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cardImage"
                 app:layout_constraintTop_toBottomOf="@id/textViewWithdrawAmount"
-                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Request #: 07b07cca-7a9d-4785-bcec-c087d84fe069" />
 
             <!-- Transaction Date -->
@@ -83,9 +82,9 @@
                 android:fontFamily="@font/inter_medium"
                 android:textColor="@color/Light_20"
                 android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cardImage"
                 app:layout_constraintTop_toBottomOf="@id/textViewTransactionID"
-                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Date: 15-2-2023" />
 
             <!-- Withdraw Reason -->
@@ -99,9 +98,9 @@
                 android:fontFamily="@font/inter_medium"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cardImage"
                 app:layout_constraintTop_toBottomOf="@id/textViewTransactionDate"
-                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Reason: Personal Expenses" />
 
             <!-- Withdrawal Status -->
@@ -113,11 +112,11 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:fontFamily="@font/inter_medium"
+                android:textColor="@color/Light_20"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
-                android:textColor="@color/Light_20"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Pending" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
