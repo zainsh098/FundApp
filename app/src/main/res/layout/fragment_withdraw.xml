@@ -12,9 +12,9 @@
         layout="@layout/component_toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="@dimen/_140sdp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_140sdp"
         android:background="@drawable/round_shape">
 
         <com.google.android.material.textfield.TextInputLayout
