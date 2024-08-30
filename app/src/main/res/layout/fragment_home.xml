@@ -7,15 +7,16 @@
     android:background="@color/Light_100"
     tools:context=".fragments.googlelogin.home.HomeFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView3"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/homeDashboard"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_260sdp"
-        android:background="@drawable/card_round_home"
-        app:cardBackgroundColor="@color/Violet_100"
+        android:background="@color/Violet_100"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <include
             android:id="@+id/component_toolbar"
@@ -28,8 +29,8 @@
             <TextView
                 android:id="@+id/textHomeGreetings"
                 style="@style/text_style_toolbar"
-                android:layout_marginTop="@dimen/_65sdp"
                 android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_65sdp"
                 android:fontFamily="@font/inter_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.081"
@@ -73,7 +74,6 @@
                         style="@style/text_style_toolbar"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/inter"
-                        android:layout_marginStart="@dimen/_5sdp"
                         android:text="@string/current_balance"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +106,7 @@
                         android:id="@+id/imageViewuparrow"
                         android:layout_width="@dimen/_16sdp"
                         android:layout_height="@dimen/_16sdp"
-                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginBottom="48dp"
                         android:src="@drawable/uparrow_green"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,23 +126,23 @@
                     <TextView
                         android:id="@+id/textHomeDepositedValue"
                         style="@style/text_style_toolbar"
-                        android:layout_marginStart="@dimen/_35sdp"
+                        android:layout_marginStart="@dimen/_40sdp"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/inter"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited"
-                        tools:text="Rs 80381" />
+                        tools:text="Rs" />
 
                     <TextView
                         android:id="@+id/textHomeWithdrawValue"
                         style="@style/text_style_toolbar"
-                        android:layout_marginEnd="@dimen/_29sdp"
+                        android:layout_marginEnd="@dimen/_40sdp"
                         android:fontFamily="@font/inter"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited1"
-                        tools:text="Rs 25000" />
+                        tools:text="Rs" />
 
                     <ImageView
                         android:id="@+id/imageView2"
@@ -156,7 +156,9 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <LinearLayout
@@ -165,7 +167,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView3">
+        app:layout_constraintTop_toBottomOf="@+id/homeDashboard">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewUsers"
