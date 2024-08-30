@@ -104,7 +104,6 @@ class LoginFragment : Fragment() {
                         val dataSource = FirebaseDataSource(firestore)
                         val existingUser = dataSource.getUser(userId)
                         if (existingUser != null) {
-                            // User already exists  update  ui with the existing user data
                             val updatedUser = existingUser.copy(
                                 name = name,
                                 email = email,

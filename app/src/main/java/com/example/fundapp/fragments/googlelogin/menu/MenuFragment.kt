@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentMenuBinding
-import com.example.fundapp.fragments.googlelogin.home.UserSession
+import com.example.fundapp.userrole.SessionManager
 import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -34,12 +34,10 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        val role = UserSession.role
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
 
-        Log.d("MenuFragment", "Role: $role")
-        if (role == "admin") {
+        if (SessionManager.getRole() == "admin") {
             binding.cardApproveRequest.visibility = View.VISIBLE
         } else {
             binding.cardApproveRequest.visibility = View.GONE
