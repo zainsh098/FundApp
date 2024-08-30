@@ -9,7 +9,7 @@ import com.example.fundapp.repository.TransactionRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
-class TransactionViewModel : ViewModel() {
+open class TransactionViewModel : ViewModel() {
 
     private val firestore = FirebaseFirestore.getInstance()
     private val transactionRepository = TransactionRepository(TransactionDataSource(firestore))

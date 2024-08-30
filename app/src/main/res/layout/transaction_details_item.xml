@@ -61,12 +61,12 @@
 
 
             <ImageView
-                app:layout_constraintStart_toStartOf="@id/guideline"
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewDownArrow"
                 android:layout_width="@dimen/_12sdp"
                 android:layout_height="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:src="@drawable/arrowdown"
+                app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="260dp" />
 
@@ -75,8 +75,8 @@
                 style="@style/transaction_text_style"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
-                android:textAlignment="center"
                 android:fontFamily="@font/inter_semibold"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Rs:290000" />

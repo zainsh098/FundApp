@@ -1,9 +1,11 @@
 package com.example.fundapp.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fundapp.R
 import com.example.fundapp.databinding.TransactionDetailsItemBinding
 import com.example.fundapp.model.TransactionUser
 
@@ -23,6 +25,7 @@ class TransactionAdapter(
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val transaction = transactions[position]
 
@@ -31,6 +34,8 @@ class TransactionAdapter(
 
         } else {
             holder.binding.transcationAmount.setTextColor(Color.GREEN)
+            holder.binding.imageViewDownArrow.setImageResource(R.drawable.uparrow_green)
+
 
         }
 
@@ -44,6 +49,5 @@ class TransactionAdapter(
     fun updateList(newTransactions: List<TransactionUser>) {
         transactions.clear()
         transactions.addAll(newTransactions)
-        notifyDataSetChanged()
     }
 }
