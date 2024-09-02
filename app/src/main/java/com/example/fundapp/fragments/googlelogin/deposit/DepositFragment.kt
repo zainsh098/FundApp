@@ -1,9 +1,7 @@
 package com.example.fundapp.fragments.googlelogin.deposit
 
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,26 +10,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentDepositBinding
-import com.example.fundapp.model.TransactionUser
-import com.example.fundapp.viewmodel.TransactionViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
-import java.util.Calendar
-import java.util.UUID
 
 class DepositFragment : Fragment() {
 
     private lateinit var binding: FragmentDepositBinding
-    private lateinit var transactionViewModel: TransactionViewModel
-    private val storage = FirebaseStorage.getInstance()
-    private lateinit var auth: FirebaseAuth
-    private var selectedFileUri: Uri? = null
-    private var date: String = ""
+    private val depositViewModel: DepositViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,22 +31,18 @@ class DepositFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = FirebaseAuth.getInstance()
-        transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
-        binding.componentToolbar.textToolbar.text = getString(R.string.deposit)
-        binding.componentToolbar.backArrow.setImageResource(R.drawable.back)
 
         binding.componentToolbar.apply {
+            textToolbar.text = getString(R.string.deposit)
             backArrow.setImageResource(R.drawable.back)
             context?.let {
                 Glide.with(it)
-                    .load(auth.currentUser?.photoUrl)
+                    .load(depositViewModel.auth.currentUser?.photoUrl)
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_depositFragment_to_menuFragment)
-
             }
         }
         binding.apply {
@@ -66,14 +50,42 @@ class DepositFragment : Fragment() {
                 pickFile()
             }
             textViewSelectedDate.setOnClickListener {
-                selectDate()
+                depositViewModel.selectDate(requireContext())
             }
-            buttonLogin.setOnClickListener {
-                submitDeposit()
+
+            binding.buttonDeposit.setOnClickListener {
+                binding.progressBar.visibility = View.VISIBLE
+
+                val depositAmountText = textFieldDeposit.text.toString()
+                val dateDepositAmount = textViewSelectedDate.text.toString()
+                val selectedFileUri = depositViewModel.fileUriLiveData.value
+                if (depositAmountText.isEmpty() ||
+                    dateDepositAmount.isEmpty() || selectedFileUri == null
+                ) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Please Fill the missing Fields",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    binding.progressBar.visibility = View.GONE
+
+                } else {
+                    depositViewModel.submitDeposit(
+                        depositAmountText.toString().toInt(),
+                        dateDepositAmount,
+                        selectedFileUri,
+                        requireContext()
+                    )
+                    binding.progressBar.visibility = View.GONE
+                }
             }
         }
 
+        depositViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
+            binding.textViewSelectedDate.text = date
+        }
     }
+
 
     private fun pickFile() {
         val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
@@ -86,7 +98,8 @@ class DepositFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             val selectedFileUri = data?.data
-            selectedFileUri?.let { uri ->
+            depositViewModel.fileUriLiveData.value = selectedFileUri
+            selectedFileUri?.let {
                 binding.cardViewAttachment.findViewById<TextView>(R.id.textViewAttachment).text =
                     "File Attached"
                 binding.cardViewAttachment.findViewById<ImageView>(R.id.imageViewAttachment)
@@ -95,60 +108,5 @@ class DepositFragment : Fragment() {
         }
     }
 
-
-    private fun submitDeposit() {
-        val depositAmount = binding.textFieldDeposit.text.toString().toInt()
-        val dateDepositAmount = binding.textViewSelectedDate.text.toString()
-        if (selectedFileUri != null && binding.textFieldDeposit.text != null) {
-            uploadFileToFirestore(selectedFileUri!!) { fileUrl ->
-                val transaction = TransactionUser(
-                    name = auth.currentUser!!.displayName!!,
-                    transactionId = UUID.randomUUID().toString(),
-                    userId = auth.currentUser!!.uid,
-                    type = "deposit",
-                    amount = depositAmount,
-                    dateDeposit = dateDepositAmount,
-                    proofOfDeposit = fileUrl,
-                    photoUrl = auth.currentUser!!.photoUrl.toString(),
-                )
-                transactionViewModel.submitDeposit(transaction)
-            }
-        } else {
-            Toast.makeText(requireContext(), "Please select a file", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun uploadFileToFirestore(fileUri: Uri, onComplete: (String) -> Unit) {
-        val storageRef = storage.reference.child("deposits/${UUID.randomUUID()}")
-        val uploadTask = storageRef.putFile(fileUri)
-
-        uploadTask.addOnSuccessListener {
-            storageRef.downloadUrl.addOnSuccessListener { uri ->
-                onComplete(uri.toString())
-            }
-        }.addOnFailureListener {
-            Toast.makeText(
-                requireContext(),
-                "Some Exception Caused.File Not Uploaded",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
-    private fun selectDate() {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            { _, selectedYear, selectedMonth, selectedDay ->
-                date = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                binding.textViewSelectedDate.text = date
-            }, year, month, day
-        )
-        datePickerDialog.show()
-    }
 
 }
