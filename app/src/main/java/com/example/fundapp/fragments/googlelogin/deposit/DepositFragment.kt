@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentDepositBinding
+import com.example.fundapp.fragments.googlelogin.bottomsheet.BottomSheetDFragment
 
 class DepositFragment : Fragment() {
 
@@ -54,7 +55,6 @@ class DepositFragment : Fragment() {
             }
 
             binding.buttonDeposit.setOnClickListener {
-                binding.progressBar.visibility = View.VISIBLE
 
                 val depositAmountText = textFieldDeposit.text.toString()
                 val dateDepositAmount = textViewSelectedDate.text.toString()
@@ -67,7 +67,6 @@ class DepositFragment : Fragment() {
                         "Please Fill the missing Fields",
                         Toast.LENGTH_SHORT
                     ).show()
-                    binding.progressBar.visibility = View.GONE
 
                 } else {
                     depositViewModel.submitDeposit(
@@ -76,17 +75,29 @@ class DepositFragment : Fragment() {
                         selectedFileUri,
                         requireContext()
                     )
-                    binding.progressBar.visibility = View.GONE
                 }
+
             }
         }
 
         depositViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
             binding.textViewSelectedDate.text = date
         }
+
+        depositViewModel.isLoading.observe(viewLifecycleOwner) { view ->
+            binding.progressBar.visibility = if (view) View.VISIBLE else View.GONE
+
+        }
+        depositViewModel.depositSuccess.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                showBottomSheet()
+            }
+        }
     }
-
-
+    private fun showBottomSheet() {
+        val bottomSheet = BottomSheetDFragment()
+        bottomSheet.show(parentFragmentManager, BottomSheetDFragment::class.java.name)
+    }
     private fun pickFile() {
         val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
             type = "image/*"
@@ -101,7 +112,7 @@ class DepositFragment : Fragment() {
             depositViewModel.fileUriLiveData.value = selectedFileUri
             selectedFileUri?.let {
                 binding.cardViewAttachment.findViewById<TextView>(R.id.textViewAttachment).text =
-                    "File Attached"
+                    getString(R.string.file_attached)
                 binding.cardViewAttachment.findViewById<ImageView>(R.id.imageViewAttachment)
                     .setImageResource(R.drawable.attachfile)
             }

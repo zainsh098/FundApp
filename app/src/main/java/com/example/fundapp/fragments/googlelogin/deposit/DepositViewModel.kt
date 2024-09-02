@@ -1,15 +1,12 @@
 package com.example.fundapp.fragments.googlelogin.deposit
 
-import android.app.AlertDialog
 import android.app.Application
 import android.app.DatePickerDialog
 import android.content.Context
 import android.net.Uri
-import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.fundapp.databinding.AlertDialogBinding
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -25,7 +22,9 @@ class DepositViewModel(application: Application) : AndroidViewModel(application)
     var dateLiveData: MutableLiveData<String> = MutableLiveData()
     val fileUriLiveData: MutableLiveData<Uri?> = MutableLiveData()
     private var transactionViewModel = TransactionViewModel()
-    private lateinit var binding: AlertDialogBinding
+    val isLoading = MutableLiveData<Boolean>()
+
+    val depositSuccess = MutableLiveData<Boolean>()
 
 
     fun selectDate(context: Context) {
@@ -69,6 +68,8 @@ class DepositViewModel(application: Application) : AndroidViewModel(application)
         context: Context
     ) {
         if (selectedFileUri != null) {
+
+            isLoading.value = true
             uploadFileToFirestore(selectedFileUri) { fileUrl ->
                 val transaction = TransactionUser(
                     name = auth.currentUser!!.displayName!!,
@@ -82,14 +83,18 @@ class DepositViewModel(application: Application) : AndroidViewModel(application)
                 )
                 try {
                     transactionViewModel.submitDeposit(transaction)
-                    showDepositSuccessDialog(context)
+                    depositSuccess.value = true
                 } catch (e: Exception) {
                     Toast.makeText(
                         context,
                         "Deposit failed. Please try again.",
                         Toast.LENGTH_SHORT
                     ).show()
+
+
                 }
+                isLoading.value = false
+
             }
         } else {
             Toast.makeText(
@@ -97,18 +102,20 @@ class DepositViewModel(application: Application) : AndroidViewModel(application)
                 "Please Select a File !",
                 Toast.LENGTH_SHORT
             ).show()
-        }
-    }
-
-    fun showDepositSuccessDialog(context: Context) {
-        binding = AlertDialogBinding.inflate(LayoutInflater.from(context))
-        val dialogBuilder = AlertDialog.Builder(context)
-            .setView(binding.root)
-        val dialog = dialogBuilder.create()
-        dialog.show()
-        binding.txtCloseButton.setOnClickListener {
-            dialog.dismiss()
+            isLoading.value = false
 
         }
     }
+
+//    fun showDepositSuccessDialog(context: Context) {
+//
+//        val dialogBuilder = AlertDialog.Builder(context)
+//            .setView(binding.root)
+//        val dialog = dialogBuilder.create()
+//        dialog.show()
+//        binding.txtCloseButton.setOnClickListener {
+//            dialog.dismiss()
+//
+//        }
+//    }
 }
