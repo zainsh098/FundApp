@@ -1,26 +1,24 @@
 package com.example.fundapp.fragments.googlelogin.menu
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentMenuBinding
 import com.example.fundapp.userrole.SessionManager
-import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class MenuFragment : Fragment() {
 
     private lateinit var binding: FragmentMenuBinding
-    private lateinit var userViewModel: UserViewModel
+    private val menuViewModel: MenuViewModel by viewModels()
 
-    private lateinit var auth: FirebaseAuth
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,12 +28,8 @@ class MenuFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = FirebaseAuth.getInstance()
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
 
         if (SessionManager.getRole() == "admin") {
             binding.cardApproveRequest.visibility = View.VISIBLE
@@ -46,7 +40,7 @@ class MenuFragment : Fragment() {
             textToolbar.text = getString(R.string.menu)
             context?.let {
                 Glide.with(it)
-                    .load(auth.currentUser?.photoUrl)
+                    .load(menuViewModel.photolUrl.value)
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }
@@ -57,27 +51,19 @@ class MenuFragment : Fragment() {
             }
         }
         binding.apply {
-
-
             cardDeposit.setOnClickListener {
                 findNavController().navigate(R.id.action_menuFragment_to_depositFragment)
 
             }
             cardWithdrawFunds.setOnClickListener {
-
                 findNavController().navigate(R.id.action_menuFragment_to_withdrawFragment)
             }
-
             cardMyRequest.setOnClickListener {
-
                 findNavController().navigate(R.id.action_menuFragment_to_myRequestFragment)
-
             }
             cardApproveRequest.setOnClickListener {
                 findNavController().navigate(R.id.action_menuFragment_to_approveRequestFragment)
-
             }
-
         }
     }
 }
