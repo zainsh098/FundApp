@@ -23,7 +23,6 @@ class DepositViewModel(application: Application) : AndroidViewModel(application)
     val fileUriLiveData: MutableLiveData<Uri?> = MutableLiveData()
     private var transactionViewModel = TransactionViewModel()
     val isLoading = MutableLiveData<Boolean>()
-
     val depositSuccess = MutableLiveData<Boolean>()
 
 
@@ -68,7 +67,6 @@ class DepositViewModel(application: Application) : AndroidViewModel(application)
         context: Context
     ) {
         if (selectedFileUri != null) {
-
             isLoading.value = true
             uploadFileToFirestore(selectedFileUri) { fileUrl ->
                 val transaction = TransactionUser(
@@ -106,16 +104,4 @@ class DepositViewModel(application: Application) : AndroidViewModel(application)
 
         }
     }
-
-//    fun showDepositSuccessDialog(context: Context) {
-//
-//        val dialogBuilder = AlertDialog.Builder(context)
-//            .setView(binding.root)
-//        val dialog = dialogBuilder.create()
-//        dialog.show()
-//        binding.txtCloseButton.setOnClickListener {
-//            dialog.dismiss()
-//
-//        }
-//    }
 }

@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentDepositBinding
 import com.example.fundapp.fragments.googlelogin.bottomsheet.BottomSheetDFragment
@@ -36,15 +35,12 @@ class DepositFragment : Fragment() {
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.deposit)
             backArrow.setImageResource(R.drawable.back)
-            context?.let {
-                Glide.with(it)
-                    .load(depositViewModel.auth.currentUser?.photoUrl)
-                    .placeholder(R.drawable.baseline_person_24)
-                    .into(binding.componentToolbar.circularImageView)
-            }
+
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_depositFragment_to_menuFragment)
             }
+            cardImage.visibility = View.GONE
+
         }
         binding.apply {
             cardViewAttachment.setOnClickListener {
@@ -79,11 +75,9 @@ class DepositFragment : Fragment() {
 
             }
         }
-
         depositViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
             binding.textViewSelectedDate.text = date
         }
-
         depositViewModel.isLoading.observe(viewLifecycleOwner) { view ->
             binding.progressBar.visibility = if (view) View.VISIBLE else View.GONE
 
@@ -94,10 +88,12 @@ class DepositFragment : Fragment() {
             }
         }
     }
+
     private fun showBottomSheet() {
         val bottomSheet = BottomSheetDFragment()
         bottomSheet.show(parentFragmentManager, BottomSheetDFragment::class.java.name)
     }
+
     private fun pickFile() {
         val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
             type = "image/*"
