@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Violet_100"
-    tools:context=".withdraw.WithdrawFragment">
+    tools:context=".fragments.googlelogin.withdraw.WithdrawFragment">
 
     <include
         android:id="@+id/component_toolbar"
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
-                android:inputType="number"
+                android:inputType="text"
                 android:textColorHint="@color/Light_20"
                 android:textSize="@dimen/_9ssp" />
 
