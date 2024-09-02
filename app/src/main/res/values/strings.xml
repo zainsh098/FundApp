@@ -30,5 +30,10 @@
     <string name="add_attachment">Add attachment</string>
     <string name="reject">Reject</string>
     <string name="accept">Accept</string>
+    <string name="withdraw_request">Request Submitted</string>
+    <string name="deposit_successful">Deposit Successful</string>
+    <string name="close">Close</string>
+    <string name="file_attached">File Attached</string>
+    <string name="my_requests">My Requests</string>
 
 </resources>

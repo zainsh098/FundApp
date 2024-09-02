@@ -1,124 +1,124 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myRequestCardItem"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/Light_100">
+    android:layout_height="@dimen/_90sdp"
+    android:layout_marginHorizontal="@dimen/_15sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:background="@color/Light_100"
+    app:cardBackgroundColor="@color/Light_100"
+    app:cardCornerRadius="@dimen/_13sdp"
+    app:cardElevation="0dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:strokeColor="@color/Light_60">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/myRequestCardItem"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp"
-        android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:cardBackgroundColor="@color/Light_100"
-        app:cardCornerRadius="@dimen/_13sdp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/Light_60">
+        android:layout_height="wrap_content"
+        android:background="@color/Light_100"
+        android:paddingHorizontal="@dimen/_8sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/_8sdp">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardImage"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:cardCornerRadius="@dimen/_20sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardImage"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
-                app:cardCornerRadius="@dimen/_20sdp"
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:id="@+id/circularImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_person_24"
+                tools:ignore="ContentDescription" />
+        </com.google.android.material.card.MaterialCardView>
 
-                <ImageView
-                    android:id="@+id/circularImageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/baseline_person_24"
-                    tools:ignore="ContentDescription" />
-            </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/textViewWithdrawAmount"
+            style="@style/home_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/inter_semibold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Rs 1500" />
 
-            <TextView
-                android:id="@+id/textViewWithdrawAmount"
-                style="@style/home_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+        <TextView
 
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/inter_semibold"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cardImage"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Rs 1500" />
+            android:id="@+id/textViewTransactionID"
+            style="@style/home_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/Light_20"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toBottomOf="@id/textViewWithdrawAmount"
+            tools:text="Request #: 07b07cca-7a9d-4785-bcec-c087d84fe069" />
 
-            <TextView
-                android:id="@+id/textViewTransactionID"
-                style="@style/home_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/Light_20"
-                android:textSize="@dimen/_9ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cardImage"
-                app:layout_constraintTop_toBottomOf="@id/textViewWithdrawAmount"
-                tools:text="Request #: 07b07cca-7a9d-4785-bcec-c087d84fe069" />
+        <TextView
+            android:id="@+id/textViewTransactionDate"
+            style="@style/home_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/Light_20"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toBottomOf="@id/textViewTransactionID"
+            tools:text="Date: 15-2-2023" />
 
-            <TextView
-                android:id="@+id/textViewTransactionDate"
-                style="@style/home_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/Light_20"
-                android:textSize="@dimen/_9ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cardImage"
-                app:layout_constraintTop_toBottomOf="@id/textViewTransactionID"
-                tools:text="Date: 15-2-2023" />
+        <TextView
+            android:id="@+id/textViewWithdrawReason"
+            style="@style/home_text_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintTop_toBottomOf="@id/textViewTransactionDate"
+            tools:text="Reason: Personal Expenses" />
 
-            <TextView
-                android:id="@+id/textViewWithdrawReason"
-                style="@style/home_text_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_3sdp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_9ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cardImage"
-                app:layout_constraintTop_toBottomOf="@id/textViewTransactionDate"
-                tools:text="Reason: Personal Expenses" />
+        <TextView
+            android:id="@+id/textViewWithdrawlStatus"
+            style="@style/home_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/Light_20"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Pending" />
 
-            <TextView
-                android:id="@+id/textViewWithdrawlStatus"
-                style="@style/home_text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_6sdp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/Light_20"
-                android:textSize="@dimen/_10ssp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Pending" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

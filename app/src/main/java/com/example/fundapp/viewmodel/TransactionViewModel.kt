@@ -16,14 +16,12 @@ open class TransactionViewModel : ViewModel() {
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
     val withdrawalRequests: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
 
-    // Function to submit a deposit transaction
     fun submitDeposit(transaction: TransactionUser) {
         viewModelScope.launch {
             transactionRepository.depositAmount(transaction)
         }
     }
 
-    // Function to submit a withdrawal transaction
     fun withdrawAmount(transaction: TransactionUser) {
         viewModelScope.launch {
             transactionRepository.withdrawAmount(transaction)

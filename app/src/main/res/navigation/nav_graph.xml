@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/withdrawFragment"
-        android:name="com.example.fundapp.withdraw.WithdrawFragment"
+        android:name="com.example.fundapp.fragments.googlelogin.withdraw.WithdrawFragment"
         android:label="fragment_withdraw"
         tools:layout="@layout/fragment_withdraw">
         <action

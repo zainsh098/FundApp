@@ -8,7 +8,6 @@ import com.example.fundapp.databinding.MyRequestItemBinding
 import com.example.fundapp.model.TransactionUser
 
 class MyRequestAdapter(
-    private val context: Context,
 
     private var withdrawlRequest: MutableList<TransactionUser>
 ) : RecyclerView.Adapter<MyRequestAdapter.ViewHolder>() {
@@ -26,7 +25,7 @@ class MyRequestAdapter(
         val withdrawlRequest = withdrawlRequest[position]
 
         holder.binding.textViewWithdrawAmount.text = "Rs: " + withdrawlRequest.amount.toString()
-        holder.binding.textViewTransactionID.text = "ID#:" + withdrawlRequest.transactionId
+        holder.binding.textViewTransactionID.text = "ID:" + withdrawlRequest.transactionId
         holder.binding.textViewTransactionDate.text = withdrawlRequest.dateWithdraw
         holder.binding.textViewWithdrawlStatus.text = withdrawlRequest.status
 
