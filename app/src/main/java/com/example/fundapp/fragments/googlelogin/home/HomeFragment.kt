@@ -3,6 +3,7 @@ package com.example.fundapp.fragments.googlelogin.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,12 +15,17 @@ import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.adapter.UserAdapter
 import com.example.fundapp.databinding.FragmentHomeBinding
+import com.example.fundapp.extensions.visibility
+import com.example.fundapp.userrole.SessionManager
+import com.example.fundapp.viewmodel.UserViewModel
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var userAdapter: UserAdapter
     private val homeViewModel: HomeViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +42,13 @@ class HomeFragment : Fragment() {
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewUsers.adapter = userAdapter
 
+        val userRole = userViewModel.currentUser.value?.role
+
+        Log.d("HomeFragment", "User Role   Home Fragment : $userRole")
+
+
+
+
 
         homeViewModel.message.observe(viewLifecycleOwner) { message ->
             binding.textHomeGreetings.text = message
@@ -43,23 +56,27 @@ class HomeFragment : Fragment() {
 
         homeViewModel.allUsers.observe(viewLifecycleOwner) { users ->
             userAdapter.updateUsers(users)
+
         }
 
+
+
         homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
-            user?.let {
+
                 binding.apply {
-                    textHomeUserName.text = "Hello, " + user.name
-                    textHomeCurrentBalanceValue.text = "Rs: ${user.currentBalance}"
-                    textHomeDepositedValue.text = "Rs: ${user.totalDeposited}"
-                    textHomeWithdrawValue.text = "Rs: ${user.totalWithdrawAmount}"
+                    textHomeUserName.text = "Hello, " + user?.name
+                    textHomeCurrentBalanceValue.text = "Rs: ${user?.currentBalance}"
+                    textHomeDepositedValue.text = "Rs: ${user?.totalDeposited}"
+                    textHomeWithdrawValue.text = "Rs: ${user?.totalWithdrawAmount}"
                 }
                 context?.let {
                     Glide.with(it)
-                        .load(user.photoUrl)
+                        .load(user?.photoUrl)
                         .placeholder(R.drawable.baseline_person_24)
                         .into(binding.componentToolbar.circularImageView)
                 }
-            }
+
+
         }
 
         binding.componentToolbar.apply {

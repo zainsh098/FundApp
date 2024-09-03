@@ -20,6 +20,7 @@ class HomeViewModel : UserViewModel() {
     init {
         getUser(currentUserId)
         getAllUsers()
+        getUserCurrentBalance(currentUserId)
         SessionManager.setRole(user.role)
         setMessage()
 

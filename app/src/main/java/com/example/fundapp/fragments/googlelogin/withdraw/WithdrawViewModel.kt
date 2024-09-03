@@ -14,10 +14,9 @@ import java.util.UUID
 
 class WithdrawViewModel(application: Application) : AndroidViewModel(application) {
     var dateLiveData: MutableLiveData<String> = MutableLiveData()
-    private var transactionViewModel = TransactionViewModel()
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val transactionViewModel = TransactionViewModel()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     val withdrawSuccess = MutableLiveData<Boolean>()
-
 
     fun requestWithdrawal(
         withdrawAmount: Int,
@@ -37,10 +36,9 @@ class WithdrawViewModel(application: Application) : AndroidViewModel(application
             status = "pending"
         )
         transactionViewModel.withdrawAmount(transaction)
-        Toast.makeText(context, "Withdrawal successful", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Withdrawal request submitted", Toast.LENGTH_SHORT).show()
         withdrawSuccess.value = true
     }
-
 
     fun selectDate(context: Context) {
         val calendar = Calendar.getInstance()
@@ -57,5 +55,4 @@ class WithdrawViewModel(application: Application) : AndroidViewModel(application
         )
         datePickerDialog.show()
     }
-
 }

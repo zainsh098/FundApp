@@ -3,6 +3,7 @@ package com.example.fundapp.fragments.googlelogin.login
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,7 @@ class LoginFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
+
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.client_id))
@@ -121,7 +123,12 @@ class LoginFragment : Fragment() {
                             userViewModel.saveUser(newUser)
                         }
                     }
-
+                    val currentUser = FirebaseAuth.getInstance().currentUser
+                    if (currentUser != null) {
+                        Log.d("TransactionDetailsFragment", "User ID: ${currentUser.uid}")
+                    } else {
+                        Log.d("TransactionDetailsFragment", "User not signed in")
+                    }
 
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
 

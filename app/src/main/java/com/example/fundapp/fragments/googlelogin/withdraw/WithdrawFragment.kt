@@ -21,13 +21,14 @@ class WithdrawFragment : Fragment() {
     private lateinit var binding: FragmentWithdrawBinding
     private val userViewModel: UserViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
-    private var currentUserBalance: Int = 0 // it will store the current balance of the user
+    private var currentUserBalance: Int = 0 // Will store the current balance of the user
 
     private val withdrawViewModel: WithdrawViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = FragmentWithdrawBinding.inflate(layoutInflater, container, false)
+        binding = FragmentWithdrawBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -41,24 +42,22 @@ class WithdrawFragment : Fragment() {
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_withdrawFragment_to_menuFragment)
             }
-
             cardImage.visibility = View.GONE
-
         }
 
+        // Observe the user's current balance
         userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
-
-            if (balance != null) {
-                currentUserBalance = balance.toInt()
+            balance?.let {
+                currentUserBalance = it.toInt()
             }
         }
 
-
+        // Observe the selected date
         withdrawViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
             binding.textViewSelectedDate.text = date
-
         }
 
+        // Fetch the user's current balance
         userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
 
         binding.apply {
@@ -75,43 +74,37 @@ class WithdrawFragment : Fragment() {
                     Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 } else {
                     val withdrawAmount = withdrawAmountText.toInt()
-                    Log.d("WithdrawFragment", "Withdraw Amount: $withdrawAmount")
-
-                    if(withdrawAmount>currentUserBalance)
-
+                    if (withdrawAmount > currentUserBalance) {
                         Toast.makeText(
                             context,
                             "Withdrawal amount is greater than your current balance",
                             Toast.LENGTH_SHORT
                         ).show()
-
-                    withdrawViewModel.requestWithdrawal(
-                        withdrawAmount,
-                        withdrawReason,
-                        date,
-                        requireContext()
-                    )
-                    textFieldWithdraw.text?.clear()
-                    textFieldWithdrawReason.text?.clear()
-                    textViewSelectedDate.text = R.string._15_02_2020.toString()
-
+                    } else {
+                        withdrawViewModel.requestWithdrawal(
+                            withdrawAmount,
+                            withdrawReason,
+                            date,
+                            requireContext()
+                        )
+                        textFieldWithdraw.text?.clear()
+                        textFieldWithdrawReason.text?.clear()
+                        textViewSelectedDate.text = getString(R.string.select_date)
+                    }
                 }
-
-
             }
         }
+
+        // Observe withdrawal success
         withdrawViewModel.withdrawSuccess.observe(viewLifecycleOwner) { success ->
-
-
             if (success) {
                 showBottomSheet()
             }
         }
     }
 
-
     private fun showBottomSheet() {
-        val bottomSheet =WithdrawalBottomSheetFragment()
+        val bottomSheet = WithdrawalBottomSheetFragment()
         bottomSheet.show(parentFragmentManager, WithdrawalBottomSheetFragment::class.java.name)
     }
 }

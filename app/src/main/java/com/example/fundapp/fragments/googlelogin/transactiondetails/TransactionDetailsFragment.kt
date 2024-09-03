@@ -35,22 +35,26 @@ class TransactionDetailsFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         val currentUserId = auth.currentUser?.uid
 
-        binding.recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
+        transactionAdapter = TransactionAdapter()
 
+        // Observe user IDs
+        userViewModel.userIds.observe(viewLifecycleOwner) { ids ->
+            ids.forEach { id ->
+                Log.d("TransactionDetailsFragment", "User ID: $id")
+            }
+        }
+        userViewModel.getAllUserIds()
+
+        binding.apply {
+            recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
+            recyclerViewTransactionDetails.adapter = transactionAdapter
+        }
 
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
             Log.d("TransactionDetailsFragment", "Transaction History: $history")
-
             val nonNullHistory = history.filterNotNull()
-            if (::transactionAdapter.isInitialized) {
-                transactionAdapter.updateList(nonNullHistory)
-            } else {
-                transactionAdapter = TransactionAdapter(nonNullHistory.toMutableList())
-                binding.recyclerViewTransactionDetails.adapter = transactionAdapter
-            }
+            transactionAdapter.updateList(nonNullHistory)
         }
-        if (currentUserId != null) {
-            transactionViewModel.getTransactionHistory(currentUserId)
-        }
+        transactionViewModel.getTransactionHistory(currentUserId!!)
     }
 }

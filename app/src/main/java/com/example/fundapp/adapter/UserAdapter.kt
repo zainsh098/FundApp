@@ -49,4 +49,18 @@ class UserAdapter(private var users: MutableList<User>) :
         notifyDataSetChanged()
 
     }
+    fun updateUser(user: User)
+    {
+        user.let {
+            it.currentBalance
+            it.email
+            it.name
+            it.photoUrl
+            it.role
+            it.totalDeposited
+        }
+
+
+    }
+
 }

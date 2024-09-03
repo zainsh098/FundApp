@@ -1,5 +1,6 @@
 package com.example.fundapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -43,6 +44,7 @@ open class UserViewModel : ViewModel() {
             user?.let {
 
                 SessionManager.setRole(it.role)
+                Log.d("UserViewModel User View Model", "User Role: User View Model ${it.role}")
 
             }
 
