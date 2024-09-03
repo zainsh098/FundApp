@@ -10,13 +10,15 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentMenuBinding
+import com.example.fundapp.extensions.visibility
 import com.example.fundapp.userrole.SessionManager
-import com.google.firebase.auth.FirebaseAuth
+import com.example.fundapp.viewmodel.UserViewModel
 
 class MenuFragment : Fragment() {
 
     private lateinit var binding: FragmentMenuBinding
     private val menuViewModel: MenuViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -31,16 +33,19 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (SessionManager.getRole() == "admin") {
-            binding.cardApproveRequest.visibility = View.VISIBLE
-        } else {
-            binding.cardApproveRequest.visibility = View.GONE
+        userViewModel.currentUser.observe(viewLifecycleOwner) { user ->
+
+            val isAdmin = SessionManager.getRole() == "admin"
+            binding.cardApproveRequest.visibility(isAdmin)
+
         }
+
+
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.menu)
             context?.let {
                 Glide.with(it)
-                    .load(menuViewModel.photolUrl.value)
+                    .load(menuViewModel.photoUrl.value)
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }

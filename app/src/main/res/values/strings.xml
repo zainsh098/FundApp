@@ -35,5 +35,6 @@
     <string name="close">Close</string>
     <string name="file_attached">File Attached</string>
     <string name="my_requests">My Requests</string>
+    <string name="transaction_details">Transaction Details</string>
 
 </resources>

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.adapter.TransactionAdapter
 import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
@@ -14,15 +14,13 @@ import com.example.fundapp.viewmodel.TransactionViewModel
 import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-
 class TransactionDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentTransactionDetailsBinding
     private lateinit var transactionAdapter: TransactionAdapter
-    private lateinit var transactionViewModel: TransactionViewModel
-    private lateinit var userViewModel: UserViewModel
+    private val transactionViewModel: TransactionViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,35 +35,22 @@ class TransactionDetailsFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         val currentUserId = auth.currentUser?.uid
 
-        transactionAdapter = TransactionAdapter(mutableListOf())
-        transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-
-
-        // Observe user IDs
-        userViewModel.userIds.observe(viewLifecycleOwner) { ids ->
-            ids.forEach { id ->
-                // Log each user ID
-                Log.d("TransactionDetailsFragment", "User ID: $id")
-            }
-
-
-        }
-        userViewModel.getAllUserIds()
-        binding.apply {
-            recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
-            recyclerViewTransactionDetails.adapter = transactionAdapter
-        }
+        binding.recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
 
 
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
-
-
+            Log.d("TransactionDetailsFragment", "Transaction History: $history")
 
             val nonNullHistory = history.filterNotNull()
-            transactionAdapter.updateList(nonNullHistory)
+            if (::transactionAdapter.isInitialized) {
+                transactionAdapter.updateList(nonNullHistory)
+            } else {
+                transactionAdapter = TransactionAdapter(nonNullHistory.toMutableList())
+                binding.recyclerViewTransactionDetails.adapter = transactionAdapter
+            }
         }
-        transactionViewModel.getTransactionHistory(currentUserId!!)
-
+        if (currentUserId != null) {
+            transactionViewModel.getTransactionHistory(currentUserId)
+        }
     }
 }

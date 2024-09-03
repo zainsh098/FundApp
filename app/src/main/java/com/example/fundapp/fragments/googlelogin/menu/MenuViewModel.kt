@@ -9,12 +9,12 @@ class MenuViewModel : ViewModel() {
 
     private val auth = FirebaseAuth.getInstance()
 
-    private var _photolUrl: MutableLiveData<String> = MutableLiveData()
-    val photolUrl: LiveData<String> = _photolUrl
+    private var _photoUrl: MutableLiveData<String> = MutableLiveData()
+    val photoUrl: LiveData<String> = _photoUrl
 
     init {
         auth.currentUser?.photoUrl.let {
-            _photolUrl.value = it.toString()
+            _photoUrl.value = it.toString()
 
 
         }

@@ -35,8 +35,6 @@ class TransactionAdapter(
         } else {
             holder.binding.transcationAmount.setTextColor(Color.GREEN)
             holder.binding.imageViewDownArrow.setImageResource(R.drawable.uparrow_green)
-
-
         }
 
         holder.binding.transcationAmount.text = "Rs: " + transaction.amount.toString()

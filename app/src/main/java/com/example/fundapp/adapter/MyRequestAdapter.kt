@@ -1,9 +1,10 @@
 package com.example.fundapp.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.fundapp.R
 import com.example.fundapp.databinding.MyRequestItemBinding
 import com.example.fundapp.model.TransactionUser
 
@@ -29,12 +30,18 @@ class MyRequestAdapter(
         holder.binding.textViewTransactionDate.text = withdrawlRequest.dateWithdraw
         holder.binding.textViewWithdrawlStatus.text = withdrawlRequest.status
 
+        holder.binding.circularImageView.let {
+            Glide.with(holder.itemView.context).load(withdrawlRequest.photoUrl)
+                .placeholder(R.drawable.baseline_person_24).into(it)
+        }
 
 
     }
+
     override fun getItemCount(): Int {
         return withdrawlRequest.size
     }
+
     fun updateList(newWithdrawlRequest: List<TransactionUser>) {
         withdrawlRequest.addAll(newWithdrawlRequest)
         notifyDataSetChanged()

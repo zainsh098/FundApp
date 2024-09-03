@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.fundapp.model.User
 import com.example.fundapp.remote.FirebaseDataSource
 import com.example.fundapp.repository.UserRepository
+import com.example.fundapp.userrole.SessionManager
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
@@ -19,7 +20,6 @@ open class UserViewModel : ViewModel() {
     val allUsers: MutableLiveData<List<User>> = MutableLiveData()
     val userIds: MutableLiveData<List<String>> = MutableLiveData()
     val userBalance: MutableLiveData<Double?> = MutableLiveData()
-
 
 
     fun saveUser(user: User) {
@@ -36,7 +36,17 @@ open class UserViewModel : ViewModel() {
 
     fun getUser(userId: String) {
         viewModelScope.launch {
+            val user = userRepository.getUser(userId)
             currentUser.value = userRepository.getUser(userId)
+
+
+            user?.let {
+
+                SessionManager.setRole(it.role)
+
+            }
+
+
         }
     }
 
@@ -57,7 +67,7 @@ open class UserViewModel : ViewModel() {
     fun getUserCurrentBalance(userId: String) {
         viewModelScope.launch {
             val balance = userRepository.getUserBalance(userId)
-            userBalance.value=balance
+            userBalance.value = balance
 
         }
     }
