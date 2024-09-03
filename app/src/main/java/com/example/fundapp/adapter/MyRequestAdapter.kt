@@ -29,6 +29,7 @@ class MyRequestAdapter(
         holder.binding.textViewTransactionID.text = "ID:" + withdrawlRequest.transactionId
         holder.binding.textViewTransactionDate.text = withdrawlRequest.dateWithdraw
         holder.binding.textViewWithdrawlStatus.text = withdrawlRequest.status
+        holder.binding.textViewWithdrawReason.text = withdrawlRequest.reason
 
         holder.binding.circularImageView.let {
             Glide.with(holder.itemView.context).load(withdrawlRequest.photoUrl)

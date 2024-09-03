@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fundapp.R
 import com.example.fundapp.adapter.MyRequestAdapter
 import com.example.fundapp.databinding.FragmentMyRequestBinding
 import com.example.fundapp.viewmodel.TransactionViewModel
@@ -37,6 +38,13 @@ class MyRequestFragment : Fragment() {
         binding.apply {
             myRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             myRequestRecyclerView.adapter = myRequestAdapter
+        }
+
+        binding.componentToolbar.apply {
+
+            textToolbar.text = getString(R.string.my_request)
+            backArrow.setImageResource(R.drawable.back)
+
         }
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
             val myRequestHistory = history.filterNotNull().filter { it.status == "pending" }

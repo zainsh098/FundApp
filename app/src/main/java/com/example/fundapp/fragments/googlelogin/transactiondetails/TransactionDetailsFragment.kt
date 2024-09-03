@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fundapp.R
 import com.example.fundapp.adapter.TransactionAdapter
 import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
 import com.example.fundapp.viewmodel.TransactionViewModel
@@ -36,6 +37,13 @@ class TransactionDetailsFragment : Fragment() {
         val currentUserId = auth.currentUser?.uid
 
         transactionAdapter = TransactionAdapter()
+
+        binding.componentToolbar.apply {
+
+            textToolbar.text = getString(R.string.transaction_details)
+            backArrow.setImageResource(R.drawable.back)
+
+        }
 
         // Observe user IDs
         userViewModel.userIds.observe(viewLifecycleOwner) { ids ->

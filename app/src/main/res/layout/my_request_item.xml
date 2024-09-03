@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myRequestCardItem"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_90sdp"
+    android:layout_height="@dimen/_95sdp"
     android:layout_marginHorizontal="@dimen/_15sdp"
     android:layout_marginTop="@dimen/_10sdp"
     android:background="@color/Light_100"
@@ -17,7 +17,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/Light_100"
         android:paddingHorizontal="@dimen/_8sdp">
 
@@ -49,7 +49,7 @@
             android:layout_marginTop="@dimen/_7sdp"
             android:fontFamily="@font/inter_semibold"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_13ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cardImage"
             app:layout_constraintTop_toTopOf="parent"
@@ -61,7 +61,7 @@
             style="@style/home_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_7sdp"
             android:layout_marginTop="@dimen/_3sdp"
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/Light_20"
@@ -74,31 +74,29 @@
         <TextView
             android:id="@+id/textViewTransactionDate"
             style="@style/home_text_style"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_25sdp"
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/Light_20"
             android:textSize="@dimen/_9ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cardImage"
-            app:layout_constraintTop_toBottomOf="@id/textViewTransactionID"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="Date: 15-2-2023" />
 
         <TextView
             android:id="@+id/textViewWithdrawReason"
             style="@style/home_text_style"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:fontFamily="@font/inter_medium"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:fontFamily="@font/inter_semibold"
             android:textColor="@color/black"
-            android:textSize="@dimen/_9ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cardImage"
-            app:layout_constraintTop_toBottomOf="@id/textViewTransactionDate"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="Reason: Personal Expenses" />
 
         <TextView
@@ -107,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/Light_20"
             android:textSize="@dimen/_10ssp"
