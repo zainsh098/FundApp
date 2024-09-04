@@ -130,4 +130,20 @@
             android:id="@+id/action_approveRequestFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/withdrawalBottomSheetFragment"
+        android:name="com.example.fundapp.fragments.googlelogin.bottomsheet.WithdrawalBottomSheetFragment"
+        android:label="WithdrawalBottomSheetFragment" >
+        <action
+            android:id="@+id/action_withdrawalBottomSheetFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/bottomSheetDFragment"
+        android:name="com.example.fundapp.fragments.googlelogin.bottomsheet.BottomSheetDFragment"
+        android:label="BottomSheetDFragment" >
+        <action
+            android:id="@+id/action_bottomSheetDFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </dialog>
 </navigation>

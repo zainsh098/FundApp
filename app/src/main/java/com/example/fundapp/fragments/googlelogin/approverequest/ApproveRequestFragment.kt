@@ -12,13 +12,11 @@ import com.example.fundapp.adapter.ApproveRequestAdapter
 import com.example.fundapp.databinding.FragmentApproveRequestBinding
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
-
 class ApproveRequestFragment : Fragment() {
 
     private lateinit var binding: FragmentApproveRequestBinding
     private lateinit var adapter: ApproveRequestAdapter
     private lateinit var transactionViewModel: TransactionViewModel
-    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,14 +33,13 @@ class ApproveRequestFragment : Fragment() {
         binding.approveRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.approveRequestRecyclerView.adapter = adapter
 
-        transactionViewModel = ViewModelProvider(this)[TransactionViewModel::class.java]
+        transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
 
         transactionViewModel.withdrawalRequests.observe(viewLifecycleOwner) { withdrawalRequests ->
             Log.d("ApproveRequestFragment", "Withdrawal Requests: $withdrawalRequests")
-            val nonNullHistory = withdrawalRequests.filterNotNull()
-            adapter.updateList(nonNullHistory)
+            adapter.updateList(withdrawalRequests)
         }
 
-        transactionViewModel.getApprovalWithdrawalRequests(auth.currentUser!!.uid)
+        transactionViewModel.getAllWithdrawRequests() // Fetch data
     }
 }

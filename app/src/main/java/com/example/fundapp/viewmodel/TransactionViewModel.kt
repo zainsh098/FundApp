@@ -1,5 +1,7 @@
 package com.example.fundapp.viewmodel
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +16,11 @@ open class TransactionViewModel : ViewModel() {
     private val firestore = FirebaseFirestore.getInstance()
     private val transactionRepository = TransactionRepository(TransactionDataSource(firestore))
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
-    val withdrawalRequests: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
+
+
+    private val _withdrawalRequests = MutableLiveData<List<TransactionUser>>()
+    val withdrawalRequests: LiveData<List<TransactionUser>> get() = _withdrawalRequests
+
 
     fun submitDeposit(transaction: TransactionUser) {
         viewModelScope.launch {
@@ -28,7 +34,6 @@ open class TransactionViewModel : ViewModel() {
         }
     }
 
-    // Function to retrieve the transaction history for a specific user
     fun getTransactionHistory(userId: String) {
         viewModelScope.launch {
             val history = transactionRepository.getTransactionHistory(userId)
@@ -36,23 +41,16 @@ open class TransactionViewModel : ViewModel() {
         }
     }
 
-    // Function to listen for realtime updates to the users transaction history
-    fun startTransactionListener(userId: String) {
-        transactionRepository.addTransactionListener(userId) { transactions ->
-            transactionHistory.postValue(transactions)
-        }
-    }
-
-    // Function to remove the transaction listener when no longer needed
-    fun stopTransactionListener() {
-        transactionRepository.removeTransactionListener()
-    }
-
-    fun getApprovalWithdrawalRequests(userId: String) {
+    fun getAllWithdrawRequests() {
         viewModelScope.launch {
-            val requests = transactionRepository.getAllWithdrawRequests(userId)
-            withdrawalRequests.value = requests
+            try {
+                val requests = transactionRepository.getAllWithdrawRequests()
+                _withdrawalRequests.postValue(requests)
+            } catch (e: Exception) {
+                Log.e("TransactionViewModel", "Error fetching all withdrawal requests", e)
+            }
         }
     }
+
 
 }

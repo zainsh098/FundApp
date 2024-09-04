@@ -1,6 +1,7 @@
 package com.example.fundapp.repository
 
 import com.example.fundapp.model.TransactionUser
+import com.example.fundapp.remote.FirebaseDataSource
 import com.example.fundapp.remote.TransactionDataSource
 
 class TransactionRepository(private val dataSource: TransactionDataSource) {
@@ -44,14 +45,23 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         return dataSource.getTransactionHistory(userId).filterNotNull()
     }
 
-    fun addTransactionListener(
-        userId: String,
-        onTransactionChanged: (List<TransactionUser?>) -> Unit
-    ) {
-        dataSource.addTransactionListener(userId, onTransactionChanged)
+    suspend fun acceptWithdrawalRequest(transactionId: String) {
+        dataSource.updateRequestStatus(transactionId, "accepted")
     }
 
-    fun removeTransactionListener() {
-        dataSource.removeTransactionListener()
+    suspend fun rejectWithdrawalRequest(transactionId: String) {
+        dataSource.updateRequestStatus(transactionId, "rejected")
     }
+    suspend fun getAllWithdrawRequests(): List<TransactionUser> {
+        val users = dataSource.getAllUsers()
+        val withdrawRequests = mutableListOf<TransactionUser>()
+
+        for (user in users) {
+            val userWithdrawRequests = dataSource.getAllWithdrawRequests(user.userId)
+            withdrawRequests.addAll(userWithdrawRequests)
+        }
+
+        return withdrawRequests
+    }
+
 }

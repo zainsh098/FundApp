@@ -22,4 +22,5 @@
     <!--    <color name="menu_card_color">#F4F4F8</color>-->
     <color name="menu_card_color">@color/Light_60</color>
     <color name="ffffff">#FFFFFF</color>
+    <color name="_5cf1f1fa">#5CF1F1FA</color>
 </resources>

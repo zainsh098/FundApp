@@ -27,12 +27,10 @@
             <TextView
                 android:id="@+id/textHomeGreetings"
                 style="@style/text_style_toolbar"
-                android:layout_marginStart="@dimen/_3sdp"
                 android:layout_marginTop="@dimen/_65sdp"
                 android:fontFamily="@font/inter_medium"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.081"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.288"
                 tools:text="GoodAfter Noon" />
@@ -40,11 +38,10 @@
             <TextView
                 android:id="@+id/textHomeUserName"
                 style="@style/text_style_toolbar"
-                android:layout_marginStart="@dimen/_18sdp"
                 android:fontFamily="@font/inter_medium"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintHorizontal_bias="0.088"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/textHomeGreetings"
                 app:layout_constraintVertical_bias="0.105"
                 tools:text="Hello, Zain Shakoor" />
@@ -53,17 +50,18 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_110sdp"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_15sdp"
-                app:cardBackgroundColor="#5CF1F1FA"
+                app:cardBackgroundColor="@color/_5cf1f1fa"
+                android:layout_marginStart="@dimen/_13sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline2"
                 app:strokeWidth="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    app:layout_constraintStart_toEndOf="@id/guideline2"
+
                     android:layout_height="match_parent">
 
                     <TextView
@@ -152,6 +150,13 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.03892944" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

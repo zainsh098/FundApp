@@ -87,9 +87,6 @@ class WithdrawFragment : Fragment() {
                             date,
                             requireContext()
                         )
-                        textFieldWithdraw.text?.clear()
-                        textFieldWithdrawReason.text?.clear()
-                        textViewSelectedDate.text = getString(R.string.select_date)
                     }
                 }
             }

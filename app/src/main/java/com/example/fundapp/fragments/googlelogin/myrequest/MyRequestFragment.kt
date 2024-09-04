@@ -17,11 +17,8 @@ import java.util.Locale
 
 class MyRequestFragment : Fragment() {
     private lateinit var binding: FragmentMyRequestBinding
-    private val transactionViewModel: TransactionViewModel by viewModels()
     private val myRequestViewModel: MyRequestViewModel by viewModels()
-
     private lateinit var myRequestAdapter: MyRequestAdapter
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

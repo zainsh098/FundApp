@@ -8,36 +8,29 @@ import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.RequestApproveItemBinding
 import com.example.fundapp.model.TransactionUser
-
 class ApproveRequestAdapter(
-    private val context: Context, private var requestList: MutableList<TransactionUser>
+    private val context: Context,
+    private var requestList: MutableList<TransactionUser>
 ) : RecyclerView.Adapter<ApproveRequestAdapter.ViewHolder>() {
+
     class ViewHolder(val binding: RequestApproveItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): ApproveRequestAdapter.ViewHolder {
-        val binding =
-            RequestApproveItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
+        val binding = RequestApproveItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
-
-
     }
 
-    override fun onBindViewHolder(holder: ApproveRequestAdapter.ViewHolder, position: Int) {
-
-        val approveRequestList = requestList[position]
-
-        holder.binding.textViewTransactionID.text = "Request #: " + approveRequestList.transactionId
-        holder.binding.textViewTransactionDate.text = "Date :" + approveRequestList.dateWithdraw
-        holder.binding.textViewWithdrawAmount.text = "Rs: " + approveRequestList.amount.toString()
-        holder.binding.textViewUserName.text = approveRequestList.name
-        holder.binding.textViewWithdrawReason.text = approveRequestList.reason
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val approveRequest = requestList[position]
+        holder.binding.textViewTransactionDate.text = "Date :" + approveRequest.dateWithdraw
+        holder.binding.textViewWithdrawAmount.text = "Rs: " + approveRequest.amount.toString()
+        holder.binding.textViewUserName.text = approveRequest.name
+        holder.binding.textViewWithdrawReason.text = approveRequest.reason
 
         holder.binding.circularImageView.let {
-            Glide.with(holder.itemView.context).load(approveRequestList.photoUrl)
+            Glide.with(holder.itemView.context).load(approveRequest.photoUrl)
                 .placeholder(R.drawable.baseline_person_24).into(it)
         }
     }

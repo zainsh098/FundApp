@@ -5,53 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_10sdp"
-    android:background="@color/Light_100"
-    android:paddingStart="@dimen/_5sdp">
-
-
-    <TextView
-        android:id="@+id/userName"
-        style="@style/home_text_style"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:fontFamily="@font/inter_medium"
-        android:textSize="@dimen/_13ssp"
-        app:layout_constraintStart_toEndOf="@+id/cardImage"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.6"
-        tools:text="Name" />
-
-    <TextView
-        android:id="@+id/emailID"
-        style="@style/home_text_style"
-        android:layout_marginStart="@dimen/_9sdp"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:fontFamily="@font/inter_medium"
-
-        android:textColor="@color/Light_20"
-        android:textSize="@dimen/_10ssp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardImage"
-        app:layout_constraintWidth_percent="0.6"
-        tools:text="Email" />
+    android:background="@color/Light_100">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardImage"
         style="@style/avatar_card_menu"
-        android:padding="10dp"
-        app:cardCornerRadius="50dp"
-        app:cardElevation="4dp"
+        android:padding="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_40sdp"
+        app:cardElevation="@dimen/_3sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline5"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/circularImageView"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
             android:src="@drawable/baseline_person_24"
             tools:ignore="ContentDescription" />
+
     </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/userName"
+        style="@style/home_text_style"
+        android:layout_marginStart="@dimen/_45sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintStart_toEndOf="@id/guideline5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.6"
+        tools:layout_editor_absoluteX="119dp"
+        tools:text="Name" />
+
+    <TextView
+        android:id="@+id/emailID"
+        style="@style/home_text_style"
+        android:layout_marginStart="@dimen/_45sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/Light_20"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline5"
+        app:layout_constraintWidth_percent="0.6"
+        tools:text="Email" />
 
     <ImageView
         android:id="@+id/imageViewuparrow"
@@ -60,43 +60,42 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_3sdp"
         android:src="@drawable/uparrow_green"
-        app:layout_constraintEnd_toStartOf="@+id/totalDepositedValue"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2downarrow"
         android:layout_width="@dimen/_15sdp"
         android:layout_height="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_3sdp"
         android:src="@drawable/arrowdown"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/totalWithdrawValue"
+        app:layout_constraintStart_toEndOf="@id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/imageViewuparrow"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/totalDepositedValue"
-        style="@style/home_text_style"
+        style="@style/home_text_style_users"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:fontFamily="@font/inter_medium"
         android:gravity="center"
         android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewuparrow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewuparrow"
         tools:text="Deposited" />
 
     <TextView
         android:id="@+id/totalWithdrawValue"
         style="@style/home_text_style"
         android:layout_width="@dimen/_50sdp"
-        android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:fontFamily="@font/inter_medium"
         android:gravity="center"
         android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2downarrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/totalDepositedValue"
         tools:text="Withdraw" />
@@ -112,4 +111,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="114dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="11dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
