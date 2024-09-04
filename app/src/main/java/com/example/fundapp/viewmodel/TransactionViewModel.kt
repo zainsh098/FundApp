@@ -18,8 +18,8 @@ open class TransactionViewModel : ViewModel() {
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
 
 
-    private val _withdrawalRequests = MutableLiveData<List<TransactionUser>>()
-    val withdrawalRequests: LiveData<List<TransactionUser>> get() = _withdrawalRequests
+
+
 
 
     fun submitDeposit(transaction: TransactionUser) {
@@ -41,36 +41,20 @@ open class TransactionViewModel : ViewModel() {
         }
     }
 
-    fun getAllWithdrawRequests() {
-        viewModelScope.launch {
-            try {
-                val requests = transactionRepository.getAllWithdrawRequests()
-                _withdrawalRequests.value = requests
-            } catch (e: Exception) {
-                Log.e("TransactionViewModel", "Error fetching all withdrawal requests", e)
-            }
-        }
-    }
+
+
 
     fun acceptRequest(transactionId: String) {
 
         viewModelScope.launch {
-
             transactionRepository.acceptWithdrawalRequest(transactionId)
-
-
         }
-
     }
 
     fun rejectRequest(transactionId: String) {
-
-
         viewModelScope.launch {
             transactionRepository.rejectWithdrawalRequest(transactionId)
-
         }
-
     }
 
 }

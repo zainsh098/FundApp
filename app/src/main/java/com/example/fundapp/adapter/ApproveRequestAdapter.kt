@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.RequestApproveItemBinding
-import com.example.fundapp.fragments.googlelogin.approverequest.ApproveRequestFragment
 import com.example.fundapp.model.TransactionUser
 
 class ApproveRequestAdapter(
@@ -30,7 +29,7 @@ class ApproveRequestAdapter(
         val approveRequest = requestList[position]
         holder.binding.textViewTransactionDate.text = "Date :" + approveRequest.dateWithdraw
         holder.binding.textViewWithdrawAmount.text = "Rs: " + approveRequest.amount.toString()
-        holder.binding.textViewUserName.text = approveRequest.name
+        holder.binding.textViewUserName.text = approveRequest.name.split(" ")[0]
         holder.binding.textViewWithdrawReason.text = approveRequest.reason
 
         holder.binding.circularImageView.let {
@@ -42,10 +41,16 @@ class ApproveRequestAdapter(
 
         holder.binding.buttonApproveRequest.setOnClickListener {
             listener.onAcceptClick(approveRequest.transactionId)
+            requestList.removeAt(holder.adapterPosition)
+            notifyItemRemoved(holder.adapterPosition)
+
 
         }
         holder.binding.buttonRejectRequest.setOnClickListener {
             listener.onRejectClick(approveRequest.transactionId)
+            requestList.removeAt(position)
+            notifyItemRemoved(position)
+
         }
 
 

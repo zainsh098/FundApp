@@ -3,8 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:background="@color/Violet_100"
+    android:layout_height="match_parent"
     tools:context=".fragments.googlelogin.approverequest.ApproveRequestFragment">
+
+
+
+    <include
+        android:id="@+id/component_toolbar"
+        layout="@layout/component_toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:background="@color/Light_100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/approveRequestRecyclerView"
@@ -14,4 +29,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/request_approve_item" />
+
+    <ProgressBar
+
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:elevation="@dimen/_80sdp"
+        android:indeterminateDrawable="@drawable/custom_progress_bar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
