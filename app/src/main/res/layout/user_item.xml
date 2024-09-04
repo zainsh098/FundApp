@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_5sdp"
     android:background="@color/Light_100">
 
     <com.google.android.material.card.MaterialCardView
@@ -30,36 +30,41 @@
     <TextView
         android:id="@+id/userName"
         style="@style/home_text_style"
-        android:layout_marginStart="@dimen/_45sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:fontFamily="@font/inter_medium"
         android:textSize="@dimen/_13ssp"
-        app:layout_constraintStart_toEndOf="@id/guideline5"
+        app:layout_constraintStart_toEndOf="@id/guideline4"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.6"
-        tools:layout_editor_absoluteX="119dp"
         tools:text="Name" />
 
     <TextView
         android:id="@+id/emailID"
         style="@style/home_text_style"
-        android:layout_marginStart="@dimen/_45sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:fontFamily="@font/inter_medium"
         android:textColor="@color/Light_20"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline5"
+        app:layout_constraintStart_toEndOf="@id/guideline4"
         app:layout_constraintWidth_percent="0.6"
         tools:text="Email" />
+
+    <View
+        android:id="@+id/dummyView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewuparrow"
         android:layout_width="@dimen/_15sdp"
         android:layout_height="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_3sdp"
         android:src="@drawable/uparrow_green"
+        app:layout_constraintBottom_toTopOf="@+id/dummyView"
         app:layout_constraintStart_toEndOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,7 +75,7 @@
         android:src="@drawable/arrowdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewuparrow"
+        app:layout_constraintTop_toBottomOf="@+id/dummyView"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -80,7 +85,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_20sdp"
         android:fontFamily="@font/inter_medium"
-        android:gravity="center"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewuparrow"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,28 +93,30 @@
 
     <TextView
         android:id="@+id/totalWithdrawValue"
-        style="@style/home_text_style"
+        style="@style/home_text_style_users"
         android:layout_width="@dimen/_50sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/inter_medium"
-        android:gravity="center"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2downarrow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/totalDepositedValue"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewuparrow"
+        app:layout_constraintVertical_bias="1.0"
         tools:text="Withdraw" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divider4"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         app:dividerColor="@color/Light_60"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/guideline6"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -125,4 +131,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="11dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="342dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="46dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

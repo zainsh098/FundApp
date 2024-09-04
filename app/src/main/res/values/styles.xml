@@ -231,5 +231,19 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="myrequest_card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_75sdp</item>
+        <item name="android:layout_marginHorizontal">@dimen/_15sdp</item>
+        <item name="android:layout_marginTop">@dimen/_10sdp</item>
+        <item name="android:background">@color/Light_100</item>
+    </style>
+
+    <style name="dp_card">
+        <item name="android:layout_width">@dimen/_35sdp</item>
+        <item name="android:layout_height">@dimen/_35sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_15sdp</item>
+    </style>
+
 
 </resources>

@@ -2,11 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myRequestCardItem"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/_95sdp"
-    android:layout_marginHorizontal="@dimen/_15sdp"
-    android:layout_marginTop="@dimen/_10sdp"
-    android:background="@color/Light_100"
+    style="@style/myrequest_card"
     app:cardBackgroundColor="@color/Light_100"
     app:cardCornerRadius="@dimen/_13sdp"
     app:cardElevation="0dp"
@@ -23,9 +19,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardImage"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
+            style="@style/dp_card"
             app:cardCornerRadius="@dimen/_20sdp"
             app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,58 +39,42 @@
             style="@style/home_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_7sdp"
             android:fontFamily="@font/inter_semibold"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cardImage"
+            app:layout_constraintStart_toEndOf="@id/guideline7"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Rs 1500" />
 
         <TextView
-
-            android:id="@+id/textViewTransactionID"
+            android:id="@+id/textViewTransactionDate"
             style="@style/home_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_7sdp"
-            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/Light_20"
             android:textSize="@dimen/_9ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/cardImage"
-            app:layout_constraintTop_toBottomOf="@id/textViewWithdrawAmount"
-            tools:text="Request #: 07b07cca-7a9d-4785-bcec-c087d84fe069" />
-
-        <TextView
-            android:id="@+id/textViewTransactionDate"
-            style="@style/home_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_25sdp"
-            android:fontFamily="@font/inter_medium"
-            android:textColor="@color/Light_20"
-            android:textSize="@dimen/_9ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline7"
+            app:layout_constraintTop_toBottomOf="@id/guideline8"
             tools:text="Date: 15-2-2023" />
 
         <TextView
             android:id="@+id/textViewWithdrawReason"
             style="@style/home_text_style"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:fontFamily="@font/inter_semibold"
             android:textColor="@color/black"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline7"
+            app:layout_constraintTop_toTopOf="@+id/guideline8"
             tools:text="Reason: Personal Expenses" />
 
         <TextView
@@ -105,14 +83,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/Light_20"
             android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline8"
             tools:text="Pending" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="53dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="29dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -26,7 +26,6 @@ class MyRequestAdapter(
         val withdrawlRequest = withdrawlRequest[position]
 
         holder.binding.textViewWithdrawAmount.text = "Rs: " + withdrawlRequest.amount.toString()
-        holder.binding.textViewTransactionID.text = "ID:" + withdrawlRequest.transactionId
         holder.binding.textViewTransactionDate.text = withdrawlRequest.dateWithdraw
         holder.binding.textViewWithdrawlStatus.text = withdrawlRequest.status
         holder.binding.textViewWithdrawReason.text = withdrawlRequest.reason

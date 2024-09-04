@@ -23,133 +23,132 @@
             layout="@layout/component_toolbar" />
 
 
+        <TextView
+            android:id="@+id/textHomeGreetings"
+            style="@style/text_style_toolbar"
+            android:layout_marginTop="@dimen/_65sdp"
+            android:fontFamily="@font/inter_medium"
+            app:layout_constraintHorizontal_bias="0.081"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.288"
+            tools:text="GoodAfter Noon" />
 
-            <TextView
-                android:id="@+id/textHomeGreetings"
-                style="@style/text_style_toolbar"
-                android:layout_marginTop="@dimen/_65sdp"
-                android:fontFamily="@font/inter_medium"
-                app:layout_constraintHorizontal_bias="0.081"
-                app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.288"
-                tools:text="GoodAfter Noon" />
-
-            <TextView
-                android:id="@+id/textHomeUserName"
-                style="@style/text_style_toolbar"
-                android:fontFamily="@font/inter_medium"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintHorizontal_bias="0.088"
-                app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textHomeGreetings"
-                app:layout_constraintVertical_bias="0.105"
-                tools:text="Hello, Zain Shakoor" />
+        <TextView
+            android:id="@+id/textHomeUserName"
+            style="@style/text_style_toolbar"
+            android:fontFamily="@font/inter"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintHorizontal_bias="0.088"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/textHomeGreetings"
+            app:layout_constraintVertical_bias="0.105"
+            tools:text="Hello, Zain Shakoor" />
 
 
-            <com.google.android.material.card.MaterialCardView
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_110sdp"
+            android:layout_marginStart="@dimen/_13sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:cardBackgroundColor="@color/_5cf1f1fa"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline2"
+            app:strokeWidth="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_110sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
-                app:cardBackgroundColor="@color/_5cf1f1fa"
-                android:layout_marginStart="@dimen/_13sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/guideline2"
-                app:strokeWidth="0dp">
+                android:layout_height="match_parent"
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    app:layout_constraintStart_toEndOf="@id/guideline2"
+                app:layout_constraintStart_toEndOf="@id/guideline2">
 
-                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/textHomeCurrentBalanceName"
+                    style="@style/text_style_toolbar"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/current_balance"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.079"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textHomeCurrentBalanceName"
-                        style="@style/text_style_toolbar"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/inter"
-                        android:text="@string/current_balance"
-                        android:textSize="@dimen/_11ssp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.079"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/textHomeCurrentBalanceValue"
+                    style="@style/text_style_toolbar"
+                    android:fontFamily="@font/inter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.079"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textHomeCurrentBalanceName"
+                    tools:text="Rs: 11900" />
 
-                    <TextView
-                        android:id="@+id/textHomeCurrentBalanceValue"
-                        style="@style/text_style_toolbar"
-                        android:fontFamily="@font/inter"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.079"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textHomeCurrentBalanceName"
-                        tools:text="Rs: 11900" />
+                <TextView
+                    android:id="@+id/textHomeDeposited1"
+                    style="@style/text_style_toolbar"
+                    android:layout_marginTop="@dimen/_60sdp"
+                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:fontFamily="@font/inter"
+                    android:text="Withdraw"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textHomeDeposited1"
-                        style="@style/text_style_toolbar"
-                        android:layout_marginTop="@dimen/_60sdp"
-                        android:layout_marginEnd="@dimen/_25sdp"
-                        android:fontFamily="@font/inter"
-                        android:text="Withdraw"
-                        android:textSize="@dimen/_9ssp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/imageViewuparrow"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginBottom="48dp"
+                    android:src="@drawable/uparrow_green"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/imageViewuparrow"
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginBottom="48dp"
-                        android:src="@drawable/uparrow_green"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                <TextView
+                    android:id="@+id/textHomeDeposited"
+                    style="@style/text_style_toolbar"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_38sdp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/deposited"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewuparrow" />
 
-                    <TextView
-                        android:id="@+id/textHomeDeposited"
-                        style="@style/text_style_toolbar"
-                        android:layout_marginStart="@dimen/_3sdp"
-                        android:layout_marginBottom="@dimen/_38sdp"
-                        android:fontFamily="@font/inter"
-                        android:text="@string/deposited"
-                        android:textSize="@dimen/_9ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageViewuparrow" />
+                <TextView
+                    android:id="@+id/textHomeDepositedValue"
+                    style="@style/text_style_toolbar"
+                    android:layout_marginStart="@dimen/_40sdp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/inter"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited"
+                    tools:text="Rs" />
 
-                    <TextView
-                        android:id="@+id/textHomeDepositedValue"
-                        style="@style/text_style_toolbar"
-                        android:layout_marginStart="@dimen/_40sdp"
-                        android:layout_marginTop="2dp"
-                        android:fontFamily="@font/inter"
-                        android:textSize="@dimen/_11ssp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited"
-                        tools:text="Rs" />
+                <TextView
+                    android:id="@+id/textHomeWithdrawValue"
+                    style="@style/text_style_toolbar"
+                    android:layout_marginEnd="@dimen/_30sdp"
+                    android:fontFamily="@font/inter"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited1"
+                    tools:text="Rs" />
 
-                    <TextView
-                        android:id="@+id/textHomeWithdrawValue"
-                        style="@style/text_style_toolbar"
-                        android:layout_marginEnd="@dimen/_30sdp"
-                        android:fontFamily="@font/inter"
-                        android:textSize="@dimen/_11ssp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited1"
-                        tools:text="Rs" />
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="@dimen/_16sdp"
-                        android:layout_height="@dimen/_16sdp"
-                        android:layout_marginTop="@dimen/_58sdp"
-                        android:layout_marginEnd="@dimen/_3sdp"
-                        android:src="@drawable/arrowdown"
-                        app:layout_constraintEnd_toStartOf="@+id/textHomeDeposited1"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_58sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:src="@drawable/arrowdown"
+                    app:layout_constraintEnd_toStartOf="@+id/textHomeDeposited1"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -184,7 +183,6 @@
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
