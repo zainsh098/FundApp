@@ -1,16 +1,19 @@
 package com.example.fundapp.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.RequestApproveItemBinding
+import com.example.fundapp.fragments.googlelogin.approverequest.ApproveRequestFragment
 import com.example.fundapp.model.TransactionUser
+
 class ApproveRequestAdapter(
-    private val context: Context,
-    private var requestList: MutableList<TransactionUser>
+    private var requestList: MutableList<TransactionUser>,
+    private val listener: ApproveRequestAdapterListener
+
+
 ) : RecyclerView.Adapter<ApproveRequestAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: RequestApproveItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -18,7 +21,8 @@ class ApproveRequestAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): ApproveRequestAdapter.ViewHolder {
-        val binding = RequestApproveItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            RequestApproveItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -33,6 +37,18 @@ class ApproveRequestAdapter(
             Glide.with(holder.itemView.context).load(approveRequest.photoUrl)
                 .placeholder(R.drawable.baseline_person_24).into(it)
         }
+
+
+
+        holder.binding.buttonApproveRequest.setOnClickListener {
+            listener.onAcceptClick(approveRequest.transactionId)
+
+        }
+        holder.binding.buttonRejectRequest.setOnClickListener {
+            listener.onRejectClick(approveRequest.transactionId)
+        }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -44,4 +60,11 @@ class ApproveRequestAdapter(
         requestList.addAll(newWithdrawalRequest)
         notifyDataSetChanged()
     }
+}
+
+interface ApproveRequestAdapterListener {
+
+    fun onAcceptClick(transactionId: String)
+    fun onRejectClick(transactionId: String)
+
 }

@@ -45,12 +45,32 @@ open class TransactionViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val requests = transactionRepository.getAllWithdrawRequests()
-                _withdrawalRequests.postValue(requests)
+                _withdrawalRequests.value = requests
             } catch (e: Exception) {
                 Log.e("TransactionViewModel", "Error fetching all withdrawal requests", e)
             }
         }
     }
 
+    fun acceptRequest(transactionId: String) {
+
+        viewModelScope.launch {
+
+            transactionRepository.acceptWithdrawalRequest(transactionId)
+
+
+        }
+
+    }
+
+    fun rejectRequest(transactionId: String) {
+
+
+        viewModelScope.launch {
+            transactionRepository.rejectWithdrawalRequest(transactionId)
+
+        }
+
+    }
 
 }

@@ -6,17 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.adapter.ApproveRequestAdapter
+import com.example.fundapp.adapter.ApproveRequestAdapterListener
 import com.example.fundapp.databinding.FragmentApproveRequestBinding
 import com.example.fundapp.viewmodel.TransactionViewModel
-import com.google.firebase.auth.FirebaseAuth
-class ApproveRequestFragment : Fragment() {
+
+class ApproveRequestFragment : Fragment(), ApproveRequestAdapterListener {
 
     private lateinit var binding: FragmentApproveRequestBinding
     private lateinit var adapter: ApproveRequestAdapter
-    private lateinit var transactionViewModel: TransactionViewModel
+    private val transactionViewModel: TransactionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,18 +29,24 @@ class ApproveRequestFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        adapter = ApproveRequestAdapter(requireContext(), mutableListOf())
+        adapter = ApproveRequestAdapter(mutableListOf(), this)
         binding.approveRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.approveRequestRecyclerView.adapter = adapter
-
-        transactionViewModel = ViewModelProvider(this).get(TransactionViewModel::class.java)
 
         transactionViewModel.withdrawalRequests.observe(viewLifecycleOwner) { withdrawalRequests ->
             Log.d("ApproveRequestFragment", "Withdrawal Requests: $withdrawalRequests")
             adapter.updateList(withdrawalRequests)
         }
 
-        transactionViewModel.getAllWithdrawRequests() // Fetch data
+        transactionViewModel.getAllWithdrawRequests()
     }
+
+    override fun onAcceptClick(transactionId: String) {
+        transactionViewModel.acceptRequest(transactionId)
+
+    }
+    override fun onRejectClick(transactionId: String) {
+        transactionViewModel.rejectRequest(transactionId)
+    }
+
 }

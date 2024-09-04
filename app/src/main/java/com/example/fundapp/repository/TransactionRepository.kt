@@ -60,7 +60,6 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
             val userWithdrawRequests = dataSource.getAllWithdrawRequests(user.userId)
             withdrawRequests.addAll(userWithdrawRequests)
         }
-
         return withdrawRequests
     }
 
