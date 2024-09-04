@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,8 +16,6 @@ import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.adapter.UserAdapter
 import com.example.fundapp.databinding.FragmentHomeBinding
-import com.example.fundapp.extensions.visibility
-import com.example.fundapp.userrole.SessionManager
 import com.example.fundapp.viewmodel.UserViewModel
 
 class HomeFragment : Fragment() {
@@ -63,18 +62,18 @@ class HomeFragment : Fragment() {
 
         homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
 
-                binding.apply {
-                    textHomeUserName.text = "Hello, " + user?.name
-                    textHomeCurrentBalanceValue.text = "Rs: ${user?.currentBalance}"
-                    textHomeDepositedValue.text = "Rs: ${user?.totalDeposited}"
-                    textHomeWithdrawValue.text = "Rs: ${user?.totalWithdrawAmount}"
-                }
-                context?.let {
-                    Glide.with(it)
-                        .load(user?.photoUrl)
-                        .placeholder(R.drawable.baseline_person_24)
-                        .into(binding.componentToolbar.circularImageView)
-                }
+            binding.apply {
+                textHomeUserName.text = "Hello, " + user?.name
+                textHomeCurrentBalanceValue.text = "Rs: ${user?.currentBalance}"
+                textHomeDepositedValue.text = "Rs: ${user?.totalDeposited}"
+                textHomeWithdrawValue.text = "Rs: ${user?.totalWithdrawAmount}"
+            }
+            context?.let {
+                Glide.with(it)
+                    .load(user?.photoUrl)
+                    .placeholder(R.drawable.baseline_person_24)
+                    .into(binding.componentToolbar.circularImageView)
+            }
 
 
         }
@@ -89,6 +88,15 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_transactionDetailsFragment)
             }
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    // Minimize the app
+                    requireActivity().moveTaskToBack(true)
+                }
+            })
 
 
     }

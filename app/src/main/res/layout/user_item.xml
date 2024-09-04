@@ -41,9 +41,8 @@
     <TextView
         android:id="@+id/emailID"
         style="@style/home_text_style"
-        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_15sdp"
         android:fontFamily="@font/inter_medium"
-        android:paddingBottom="@dimen/_5sdp"
         android:textColor="@color/Light_20"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="parent"

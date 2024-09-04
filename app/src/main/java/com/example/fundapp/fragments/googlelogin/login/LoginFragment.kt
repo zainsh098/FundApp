@@ -122,6 +122,8 @@ class LoginFragment : Fragment() {
                             )
                             userViewModel.saveUser(newUser)
                         }
+
+                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                     val currentUser = FirebaseAuth.getInstance().currentUser
                     if (currentUser != null) {
@@ -130,7 +132,6 @@ class LoginFragment : Fragment() {
                         Log.d("TransactionDetailsFragment", "User not signed in")
                     }
 
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
 
                 } else {
                     Toast.makeText(
@@ -140,5 +141,7 @@ class LoginFragment : Fragment() {
                     ).show()
                 }
             }
+
+
     }
 }

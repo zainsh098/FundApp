@@ -20,7 +20,7 @@ class UserAdapter(private var users: MutableList<User>) :
 
         fun bind(user: User) {
             binding.apply {
-                userName.text = user.name
+                userName.text = user.name.split(" ")[1]
                 emailID.text = user.email.getEmailMasked()
                 totalDepositedValue.text = user.totalDeposited.toString()
                 totalWithdrawValue.text = user.totalWithdrawAmount.toString()
@@ -49,18 +49,4 @@ class UserAdapter(private var users: MutableList<User>) :
         notifyDataSetChanged()
 
     }
-    fun updateUser(user: User)
-    {
-        user.let {
-            it.currentBalance
-            it.email
-            it.name
-            it.photoUrl
-            it.role
-            it.totalDeposited
-        }
-
-
-    }
-
 }
