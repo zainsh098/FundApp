@@ -22,7 +22,6 @@
             android:id="@+id/component_toolbar"
             layout="@layout/component_toolbar" />
 
-
         <TextView
             android:id="@+id/textHomeGreetings"
             style="@style/text_style_toolbar"
@@ -38,7 +37,7 @@
             android:id="@+id/textHomeUserName"
             style="@style/text_style_toolbar"
             android:fontFamily="@font/inter"
-            android:textSize="@dimen/_13ssp"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintHorizontal_bias="0.088"
             app:layout_constraintStart_toEndOf="@id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/textHomeGreetings"

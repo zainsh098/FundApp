@@ -43,6 +43,7 @@
         style="@style/home_text_style"
         android:layout_marginBottom="@dimen/_10sdp"
         android:fontFamily="@font/inter_medium"
+        android:paddingBottom="@dimen/_5sdp"
         android:textColor="@color/Light_20"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -130,19 +131,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="11dp" />
+        app:layout_constraintGuide_begin="@dimen/_9sdp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="342dp" />
+        app:layout_constraintGuide_end="@dimen/_270sdp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="46dp" />
+        app:layout_constraintGuide_begin="@dimen/_39sdp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
