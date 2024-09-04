@@ -19,6 +19,7 @@ class MyRequestViewModel : TransactionViewModel() {
     private val _gettransactionHistory1: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
     val getTransactionHistory1: MutableLiveData<List<TransactionUser?>> = _gettransactionHistory1
 
+    val isLoading= MutableLiveData<Boolean>()
     init {
         getTransactionHistoryUser(auth.currentUser!!.uid)
     }
@@ -26,8 +27,11 @@ class MyRequestViewModel : TransactionViewModel() {
     fun getTransactionHistoryUser(userId: String) {
 
         viewModelScope.launch {
+            isLoading.value = true
             val history = transactionRepository.getTransactionHistory(userId)
             getTransactionHistory1.value = history
+            isLoading.value = false
+
         }
 
     }

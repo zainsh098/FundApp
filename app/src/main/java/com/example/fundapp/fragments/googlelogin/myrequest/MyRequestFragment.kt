@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.R
 import com.example.fundapp.adapter.MyRequestAdapter
 import com.example.fundapp.databinding.FragmentMyRequestBinding
+import com.example.fundapp.extensions.visibility
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -20,8 +21,7 @@ class MyRequestFragment : Fragment() {
     private lateinit var myRequestAdapter: MyRequestAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentMyRequestBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -40,12 +40,19 @@ class MyRequestFragment : Fragment() {
 
             textToolbar.text = getString(R.string.my_request)
             backArrow.setImageResource(R.drawable.back)
+            cardImage.visibility(false)
+
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_myRequestFragment_to_menuFragment)
 
             }
 
         }
+        myRequestViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility(isLoading)
+
+        }
+
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
             val myRequestHistory =
                 history.filterNotNull().filter { it.status == "pending" || it.status == "accepted" }
