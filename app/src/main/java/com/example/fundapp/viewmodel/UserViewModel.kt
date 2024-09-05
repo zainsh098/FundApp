@@ -29,26 +29,14 @@ open class UserViewModel : ViewModel() {
         }
     }
 
-//    fun getUserDetails(user: User) {
-//        viewModelScope.launch {
-//            usersDetails.value = listOf(userRepository.getUserData(user.userId.toString()))
-//        }
-//    }
-
     fun getUser(userId: String) {
         viewModelScope.launch {
             val user = userRepository.getUser(userId)
             currentUser.value = userRepository.getUser(userId)
-
-
             user?.let {
-
                 SessionManager.setRole(it.role)
                 Log.d("UserViewModel User View Model", "User Role: User View Model ${it.role}")
-
             }
-
-
         }
     }
 

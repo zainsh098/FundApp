@@ -18,6 +18,7 @@ open class TransactionViewModel : ViewModel() {
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
 
 
+val allTransactionHistoryUsers: MutableLiveData<List<TransactionUser>> = MutableLiveData()
 
 
 
@@ -39,6 +40,20 @@ open class TransactionViewModel : ViewModel() {
             val history = transactionRepository.getTransactionHistory(userId)
             transactionHistory.value = history
         }
+    }
+
+
+    fun getAllUsersTransactionHistory(userId: String) {
+
+
+        viewModelScope.launch {
+
+            val history=transactionRepository.getAllUsersTransactions()
+            allTransactionHistoryUsers.value=history
+
+        }
+
+
     }
 
 

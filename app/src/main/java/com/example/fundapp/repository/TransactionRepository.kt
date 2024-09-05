@@ -1,7 +1,6 @@
 package com.example.fundapp.repository
 
 import com.example.fundapp.model.TransactionUser
-import com.example.fundapp.remote.FirebaseDataSource
 import com.example.fundapp.remote.TransactionDataSource
 
 class TransactionRepository(private val dataSource: TransactionDataSource) {
@@ -17,8 +16,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
     }
 
 
-
-    suspend fun  getAllWithdrawRequests(userId: String) : List<TransactionUser?> {
+    suspend fun getAllWithdrawRequests(userId: String): List<TransactionUser?> {
         return dataSource.getAllWithdrawRequests(userId)
 
     }
@@ -52,6 +50,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
     suspend fun rejectWithdrawalRequest(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "rejected")
     }
+
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()
         val withdrawRequests = mutableListOf<TransactionUser>()
@@ -63,4 +62,18 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         return withdrawRequests
     }
 
+
+    suspend fun getAllUsersTransactions(): List<TransactionUser> {
+        val users = dataSource.getAllUsers()
+        val usersTransactionsList = mutableListOf<TransactionUser>()
+
+        for (user in users) {
+
+            val userTransactions = dataSource.getTransactionHistory(user.userId)
+            usersTransactionsList.addAll(userTransactions)
+
+        }
+        return usersTransactionsList
+
+    }
 }

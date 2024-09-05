@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.R
 import com.example.fundapp.adapter.TransactionAdapter
 import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
+import com.example.fundapp.extensions.visibility
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -42,10 +43,10 @@ class TransactionDetailsFragment : Fragment() {
 
             textToolbar.text = getString(R.string.transaction_details)
             backArrow.setImageResource(R.drawable.back)
+            cardImage.visibility(false)
 
         }
 
-        // Observe user IDs
         userViewModel.userIds.observe(viewLifecycleOwner) { ids ->
             ids.forEach { id ->
                 Log.d("TransactionDetailsFragment", "User ID: $id")
@@ -58,11 +59,19 @@ class TransactionDetailsFragment : Fragment() {
             recyclerViewTransactionDetails.adapter = transactionAdapter
         }
 
-        transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
-            Log.d("TransactionDetailsFragment", "Transaction History: $history")
-            val nonNullHistory = history.filterNotNull()
-            transactionAdapter.updateList(nonNullHistory)
+//        transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
+//            Log.d("TransactionDetailsFragment", "Transaction History: $history")
+//            val nonNullHistory = history.filterNotNull()
+//            transactionAdapter.updateList(nonNullHistory)
+//        }
+//        transactionViewModel.getTransactionHistory(currentUserId!!)
+
+
+        transactionViewModel.allTransactionHistoryUsers.observe(viewLifecycleOwner) { history ->
+
+            transactionAdapter.updateList(history)
         }
-        transactionViewModel.getTransactionHistory(currentUserId!!)
+        transactionViewModel.getAllUsersTransactionHistory(currentUserId!!)
+
     }
 }

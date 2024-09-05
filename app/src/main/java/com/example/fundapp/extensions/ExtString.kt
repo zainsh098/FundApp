@@ -10,3 +10,8 @@ fun String.getEmailMasked(): String {
 
     return "$maskedLocalPart@$domain"
 }
+
+fun String.lastChar() : Char{
+    return last()
+
+}

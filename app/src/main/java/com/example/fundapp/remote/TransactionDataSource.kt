@@ -30,13 +30,13 @@ class TransactionDataSource(private val firestore: FirebaseFirestore) {
         firestore.collection("users").document(user.userId).set(user).await()
     }
 
-    suspend fun getTransactionHistory(userId: String): List<TransactionUser?> {
+    suspend fun getTransactionHistory(userId: String): List<TransactionUser> {
         return firestore.collection("transactions")
             .whereEqualTo("userId", userId)
             .get()
             .await()
             .documents
-            .map { it.toObject(TransactionUser::class.java) }
+            .map { it.toObject(TransactionUser::class.java)!! }
     }
 
     suspend fun getAllWithdrawRequests(userId: String): List<TransactionUser> {
