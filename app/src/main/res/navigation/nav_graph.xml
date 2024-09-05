@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_homeFragment_to_transactionDetailsFragment"
             app:destination="@id/transactionDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transactionDetailsFragment2"
+            app:destination="@id/transactionDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -111,7 +114,11 @@
         android:id="@+id/transactionDetailsFragment"
         android:name="com.example.fundapp.fragments.googlelogin.transactiondetails.TransactionDetailsFragment"
         android:label="fragment_transaction_details"
-        tools:layout="@layout/fragment_transaction_details" />
+        tools:layout="@layout/fragment_transaction_details" >
+        <action
+            android:id="@+id/action_transactionDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myRequestFragment"
         android:name="com.example.fundapp.fragments.googlelogin.myrequest.MyRequestFragment"

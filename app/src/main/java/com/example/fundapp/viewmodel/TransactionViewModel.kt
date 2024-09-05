@@ -1,7 +1,5 @@
 package com.example.fundapp.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,11 +14,8 @@ open class TransactionViewModel : ViewModel() {
     private val firestore = FirebaseFirestore.getInstance()
     private val transactionRepository = TransactionRepository(TransactionDataSource(firestore))
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
-
-
-val allTransactionHistoryUsers: MutableLiveData<List<TransactionUser>> = MutableLiveData()
-
-
+    val allTransactionHistoryUsers: MutableLiveData<List<TransactionUser>> = MutableLiveData()
+    val isLoading = MutableLiveData<Boolean>()
 
 
     fun submitDeposit(transaction: TransactionUser) {
@@ -37,30 +32,23 @@ val allTransactionHistoryUsers: MutableLiveData<List<TransactionUser>> = Mutable
 
     fun getTransactionHistory(userId: String) {
         viewModelScope.launch {
+            isLoading.value=true
+
             val history = transactionRepository.getTransactionHistory(userId)
             transactionHistory.value = history
+            isLoading.value=false
         }
     }
 
 
     fun getAllUsersTransactionHistory(userId: String) {
-
-
         viewModelScope.launch {
-
-            val history=transactionRepository.getAllUsersTransactions()
-            allTransactionHistoryUsers.value=history
-
+            val history = transactionRepository.getAllUsersTransactions()
+            allTransactionHistoryUsers.value = history
         }
-
-
     }
 
-
-
-
     fun acceptRequest(transactionId: String) {
-
         viewModelScope.launch {
             transactionRepository.acceptWithdrawalRequest(transactionId)
         }

@@ -40,7 +40,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
     }
 
     suspend fun getTransactionHistory(userId: String): List<TransactionUser> {
-        return dataSource.getTransactionHistory(userId).filterNotNull()
+        return dataSource.getTransactionHistoryData(userId)
     }
 
     suspend fun acceptWithdrawalRequest(transactionId: String) {
@@ -69,7 +69,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
 
         for (user in users) {
 
-            val userTransactions = dataSource.getTransactionHistory(user.userId)
+            val userTransactions = dataSource.getTransactionHistoryData(user.userId)
             usersTransactionsList.addAll(userTransactions)
 
         }

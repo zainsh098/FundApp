@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_60sdp"
     android:layout_marginTop="@dimen/_5sdp"
     android:background="@color/Light_100">
 
@@ -41,20 +41,31 @@
     <TextView
         android:id="@+id/emailID"
         style="@style/home_text_style"
-        android:layout_marginBottom="@dimen/_15sdp"
         android:fontFamily="@font/inter_medium"
         android:textColor="@color/Light_20"
         android:textSize="@dimen/_10ssp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintStart_toEndOf="@id/guideline4"
         app:layout_constraintWidth_percent="0.6"
         tools:text="Email" />
 
+    <TextView
+        android:id="@+id/userCurrentBalance"
+        style="@style/home_text_style"
+        android:fontFamily="@font/inter_medium"
+        android:textColor="@color/Light_20"
+        android:textSize="@dimen/_10ssp"
+        android:layout_marginBottom="@dimen/_6sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline4"
+        tools:text="Current Balance" />
+
     <View
         android:id="@+id/dummyView"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_100sdp"
         android:layout_height="1dp"
         android:background="@color/white"
+        app:layout_constraintStart_toEndOf="@id/guideline10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,7 +121,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_4sdp"
         app:dividerColor="@color/Light_60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline6"
@@ -137,12 +149,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_270sdp" />
+        app:layout_constraintGuide_end="351dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/_39sdp" />
+        app:layout_constraintGuide_end="28dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="217dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

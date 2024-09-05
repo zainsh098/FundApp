@@ -8,13 +8,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.fundapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
- private  val binding by  lazy {
-     ActivityMainBinding.inflate(layoutInflater)
- }
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
         setContentView(binding.root)
         window.statusBarColor = getResources().getColor(R.color.Violet_100)

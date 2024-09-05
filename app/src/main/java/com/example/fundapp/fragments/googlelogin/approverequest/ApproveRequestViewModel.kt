@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 
 class ApproveRequestViewModel : TransactionViewModel() {
 
-    var isLoading: MutableLiveData<Boolean> = MutableLiveData()
     private val firestore = FirebaseFirestore.getInstance()
     private val _withdrawalRequests = MutableLiveData<List<TransactionUser>>()
     val withdrawalRequests: LiveData<List<TransactionUser>> get() = _withdrawalRequests

@@ -23,10 +23,7 @@ class HomeViewModel : UserViewModel() {
         getUserCurrentBalance(currentUserId)
         SessionManager.setRole(user.role)
         setMessage()
-
-
     }
-
 
     private fun setMessage() {
         _message.value = when (dateNow) {

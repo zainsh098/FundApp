@@ -9,7 +9,10 @@ import com.example.fundapp.databinding.UserItemBinding
 import com.example.fundapp.extensions.getEmailMasked
 import com.example.fundapp.model.User
 
-class UserAdapter(private var users: MutableList<User>) :
+class UserAdapter(
+    private var users: MutableList<User>,
+    private val listener: OnItemClickListenerUser
+) :
     RecyclerView.Adapter<UserAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.MyViewHolder {
         val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,13 +20,13 @@ class UserAdapter(private var users: MutableList<User>) :
     }
 
     class MyViewHolder(val binding: UserItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(user: User) {
             binding.apply {
                 userName.text = user.name.split(" ")[0]
                 emailID.text = user.email.getEmailMasked()
                 totalDepositedValue.text = user.totalDeposited.toString()
                 totalWithdrawValue.text = user.totalWithdrawAmount.toString()
+                userCurrentBalance.text = "Balance: "+user.currentBalance.toString()
 
                 user.photoUrl?.let { url ->
                     Glide.with(root)
@@ -37,6 +40,10 @@ class UserAdapter(private var users: MutableList<User>) :
 
     override fun onBindViewHolder(holder: UserAdapter.MyViewHolder, position: Int) {
         holder.bind(users.get(position))
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(users[position])
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -49,4 +56,12 @@ class UserAdapter(private var users: MutableList<User>) :
         notifyDataSetChanged()
 
     }
+
+
+}
+
+interface OnItemClickListenerUser {
+
+    fun onItemClick(user: User)
+
 }

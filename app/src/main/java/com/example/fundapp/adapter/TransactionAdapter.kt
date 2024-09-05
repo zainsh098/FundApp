@@ -36,9 +36,9 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.ViewHolder>()
             holder.binding.imageViewDownArrow.setImageResource(R.drawable.uparrow_green)
         }
 
-        holder.binding.transcationAmount.text = "Rs: ${transaction.amount}"
+        holder.binding.transcationAmount.text = "Rs:${transaction.amount}"
         holder.binding.transcationType.text = transaction.type
-        holder.binding.transcationID.text = "ID # ${transaction.transactionId}"
+        holder.binding.transcationID.text = "ID:${transaction.transactionId}"
     }
 
     override fun getItemCount(): Int = transactions.size

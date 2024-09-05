@@ -26,6 +26,7 @@
     <string name="see_all">see all</string>
     <string name="_15_02_2020">15/02/2020</string>
     <string name="current_balance">Current Balance</string>
+    <string name="organization_balance">Organization Balance</string>
     <string name="deposited">Deposited</string>
     <string name="add_attachment">Add attachment</string>
     <string name="reject">Reject</string>

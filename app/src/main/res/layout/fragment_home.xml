@@ -67,7 +67,7 @@
                     style="@style/text_style_toolbar"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/inter"
-                    android:text="@string/current_balance"
+                    android:text="@string/organization_balance"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.079"
@@ -87,13 +87,13 @@
                 <TextView
                     android:id="@+id/textHomeDeposited1"
                     style="@style/text_style_toolbar"
-                    android:layout_marginTop="@dimen/_60sdp"
-                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_38sdp"
                     android:fontFamily="@font/inter"
-                    android:text="Withdraw"
+                    android:text="@string/deposited"
                     android:textSize="@dimen/_9ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2" />
 
                 <ImageView
                     android:id="@+id/imageViewuparrow"
@@ -119,21 +119,21 @@
                 <TextView
                     android:id="@+id/textHomeDepositedValue"
                     style="@style/text_style_toolbar"
-                    android:layout_marginStart="@dimen/_40sdp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/inter"
                     android:textSize="@dimen/_11ssp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textHomeDeposited"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewuparrow"
                     app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited"
                     tools:text="Rs" />
 
                 <TextView
                     android:id="@+id/textHomeWithdrawValue"
                     style="@style/text_style_toolbar"
-                    android:layout_marginEnd="@dimen/_30sdp"
                     android:fontFamily="@font/inter"
                     android:textSize="@dimen/_11ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textHomeDeposited1"
+                    app:layout_constraintStart_toStartOf="@+id/textHomeDeposited1"
                     app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited1"
                     tools:text="Rs" />
 
@@ -141,11 +141,17 @@
                     android:id="@+id/imageView2"
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="@dimen/_16sdp"
-                    android:layout_marginTop="@dimen/_58sdp"
-                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginTop="76dp"
                     android:src="@drawable/arrowdown"
-                    app:layout_constraintEnd_toStartOf="@+id/textHomeDeposited1"
+                    app:layout_constraintStart_toStartOf="@+id/guideline11"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="260dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 

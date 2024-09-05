@@ -14,16 +14,20 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
+import com.example.fundapp.adapter.OnItemClickListenerUser
 import com.example.fundapp.adapter.UserAdapter
 import com.example.fundapp.databinding.FragmentHomeBinding
+import com.example.fundapp.model.User
+import com.example.fundapp.viewmodel.TransactionViewModel
 import com.example.fundapp.viewmodel.UserViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnItemClickListenerUser {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var userAdapter: UserAdapter
     private val homeViewModel: HomeViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
+    private  val transactionViewModel: TransactionViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -37,17 +41,13 @@ class HomeFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userAdapter = UserAdapter(mutableListOf())
+        userAdapter = UserAdapter(mutableListOf(),this)
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewUsers.adapter = userAdapter
 
         val userRole = userViewModel.currentUser.value?.role
 
         Log.d("HomeFragment", "User Role   Home Fragment : $userRole")
-
-
-
-
 
         homeViewModel.message.observe(viewLifecycleOwner) { message ->
             binding.textHomeGreetings.text = message
@@ -57,8 +57,6 @@ class HomeFragment : Fragment() {
             userAdapter.updateUsers(users)
 
         }
-
-
 
         homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
 
@@ -74,7 +72,6 @@ class HomeFragment : Fragment() {
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }
-
 
         }
 
@@ -93,13 +90,18 @@ class HomeFragment : Fragment() {
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    // Minimize the app
                     requireActivity().moveTaskToBack(true)
                 }
             })
-
-
+    }
+    override fun onItemClick(user: User) {
+        val bundle = Bundle().apply {
+            putString("userId", user.userId)
+        }
+        findNavController().navigate(R.id.action_homeFragment_to_transactionDetailsFragment, bundle)
     }
 
+
 }
+
 
