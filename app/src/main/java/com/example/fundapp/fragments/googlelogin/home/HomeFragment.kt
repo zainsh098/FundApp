@@ -60,11 +60,15 @@ class HomeFragment : Fragment(), OnItemClickListenerUser {
 
         }
 
+        homeViewModel.orgBalance.observe(viewLifecycleOwner) {
+            binding.textHomeOrganizationBalanceValue.text = "Rs: $it"
+        }
+
         homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
 
             binding.apply {
                 textHomeUserName.text = "Hello, " + user?.name
-                textHomeOrganizationBalanceValue.text = "Rs: ${user?.organizationBalance}"
+//                textHomeOrganizationBalanceValue.text = "Rs: ${user?.organizationBalance}"
                 textHomeDepositedValue.text = "Rs: ${user?.totalDeposited}"
                 textHomeWithdrawValue.text = "Rs: ${user?.totalWithdrawAmount}"
             }

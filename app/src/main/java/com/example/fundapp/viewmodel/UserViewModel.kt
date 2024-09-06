@@ -18,6 +18,7 @@ open class UserViewModel : ViewModel() {
     private val userRepository = UserRepository(FirebaseDataSource(firestore))
 
     val currentUser: MutableLiveData<User?> = MutableLiveData()
+    var orgBalance: MutableLiveData<Int> = MutableLiveData(0)
     val allUsers: MutableLiveData<List<User>> = MutableLiveData()
     val userIds: MutableLiveData<List<String>> = MutableLiveData()
     val userBalance: MutableLiveData<Double?> = MutableLiveData()
@@ -43,6 +44,9 @@ open class UserViewModel : ViewModel() {
     fun getAllUsers() {
         viewModelScope.launch {
             allUsers.value = userRepository.getAllUsers()
+            allUsers.value!!.forEach {
+                orgBalance.value = orgBalance.value?.plus(it.currentBalance!!)
+            }
         }
     }
 
