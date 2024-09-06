@@ -45,17 +45,16 @@
         android:textColor="@color/Light_20"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintStart_toEndOf="@id/guideline4"
-        app:layout_constraintWidth_percent="0.6"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
         tools:text="Email" />
 
     <TextView
         android:id="@+id/userCurrentBalance"
         style="@style/home_text_style"
+        android:layout_marginBottom="@dimen/_8sdp"
         android:fontFamily="@font/inter_medium"
         android:textColor="@color/Light_20"
         android:textSize="@dimen/_10ssp"
-        android:layout_marginBottom="@dimen/_6sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline4"
         tools:text="Current Balance" />
@@ -65,8 +64,9 @@
         android:layout_width="@dimen/_100sdp"
         android:layout_height="1dp"
         android:background="@color/white"
-        app:layout_constraintStart_toEndOf="@id/guideline10"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline10"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -94,11 +94,12 @@
         style="@style/home_text_style_users"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:fontFamily="@font/inter_medium"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewuparrow"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewuparrow"
         app:layout_constraintTop_toTopOf="@+id/imageViewuparrow"
         tools:text="Deposited" />
 
@@ -107,11 +108,12 @@
         style="@style/home_text_style_users"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="@dimen/_16sdp"
         android:fontFamily="@font/inter_medium"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2downarrow"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView2downarrow"
         app:layout_constraintTop_toBottomOf="@+id/imageViewuparrow"
         app:layout_constraintVertical_bias="1.0"
         tools:text="Withdraw" />
@@ -125,17 +127,16 @@
         android:paddingBottom="@dimen/_4sdp"
         app:dividerColor="@color/Light_60"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline6"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/guideline6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="114dp" />
+        app:layout_constraintGuide_end="@dimen/_90sdp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -149,19 +150,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="351dp" />
+        app:layout_constraintGuide_begin="@dimen/_50sdp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="28dp" />
+        app:layout_constraintGuide_percent="0.64" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="217dp" />
+        app:layout_constraintGuide_end="@dimen/_90sdp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
         android:id="@+id/card1"
         style="@style/user_card_style_home"
         android:layout_height="@dimen/_50sdp"
-        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
         app:cardBackgroundColor="@color/Light_100"
         app:cardCornerRadius="@dimen/_13sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,14 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.68" />
+                app:layout_constraintGuide_percent="0.71" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_begin="45dp" />
+                app:layout_constraintGuide_begin="@dimen/_35sdp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
