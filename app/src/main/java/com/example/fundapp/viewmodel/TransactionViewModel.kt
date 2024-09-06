@@ -55,7 +55,7 @@ open class TransactionViewModel : ViewModel() {
                 "TransactionViewModel",
                 "Withdrawal accepted for user: $userId, amount: $withdrawAmount"
             )
-            transactionRepository.updateOrganizationBalance(withdrawAmount)
+            transactionRepository.updateOrganizationBalance(withdrawAmount,false)
             Log.d(
                 "TransactionViewModel",
                 "Updated organization balance with deduction: $withdrawAmount"

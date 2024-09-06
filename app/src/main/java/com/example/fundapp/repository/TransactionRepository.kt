@@ -1,26 +1,62 @@
 package com.example.fundapp.repository
 
-import android.util.Log
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.remote.TransactionDataSource
 
 class TransactionRepository(private val dataSource: TransactionDataSource) {
 
-    suspend fun depositAmount(transaction: TransactionUser) {
+    suspend fun updateOrganizationBalance(amount: Int, isDeposit: Boolean) {
+        val allUsers = dataSource.getAllUsers()
+        var totalDeposited = 0
+        var totalWithdrawn = 0
+
+        for (user in allUsers) {
+            totalDeposited += user.totalDeposited ?: 0
+            totalWithdrawn += user.totalWithdrawAmount ?: 0
+        }
+
+        println("Total deposited: $totalDeposited")
+        println("Total withdrawn: $totalWithdrawn")
+
+        var organizationBalance = totalDeposited - totalWithdrawn
+
+        println("Initial organization balance: $organizationBalance")
+
+        if (isDeposit) {
+            organizationBalance = totalDeposited - totalWithdrawn + amount
+        } else {
+            organizationBalance = totalDeposited - totalWithdrawn - amount
+        }
+
+        println("Updated organization balance: $organizationBalance")
+
+        for (user in allUsers) {
+            user.organizationBalance = organizationBalance
+            dataSource.updateUserBalance(user)
+        }
+    }    suspend fun depositAmount(transaction: TransactionUser) {
         dataSource.depositAmount(transaction)
         updateDepositBalance(transaction.userId, transaction.amount)
-        updateOrganizationBalance(transaction.amount)
-    }
-
-    suspend fun withdrawAmount(transaction: TransactionUser) {
-        dataSource.withdrawAmount(transaction)
+        updateOrganizationBalance(transaction.amount, true) // Update organization balance for deposit
     }
 
     suspend fun acceptWithdrawalRequest(transactionId: String, userId: String, withdrawAmount: Int) {
         dataSource.updateRequestStatus(transactionId, "accepted")
         updateWithdrawBalance(userId, withdrawAmount)
-        updateOrganizationBalance(-withdrawAmount)
-        Log.d("TransactionRepository", "Withdraw amount: $withdrawAmount")
+
+        // After accepting withdrawal, update user's withdraw amount
+        val user = dataSource.getUser(userId)
+        user?.apply {
+            totalWithdrawAmount = (totalWithdrawAmount ?: 0) + withdrawAmount
+            dataSource.updateUserBalance(this)
+        }
+
+        // Update organization balance after withdrawal
+        updateOrganizationBalance(withdrawAmount, false)
+    }
+
+    suspend fun withdrawAmount(transaction: TransactionUser) {
+        dataSource.withdrawAmount(transaction)
     }
 
     suspend fun rejectWithdrawalRequest(transactionId: String) {
@@ -45,25 +81,6 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         }
     }
 
-    suspend fun updateOrganizationBalance(amount:Int) {
-        val allUsers = dataSource.getAllUsers()
-        var totalDeposited = 0
-        var totalWithdrawn = 0
-
-        for (user in allUsers) {
-            totalDeposited += user.totalDeposited ?: 0
-            totalWithdrawn += user.totalWithdrawAmount ?: 0
-        }
-
-        val organizationBalance = totalDeposited - totalWithdrawn
-
-        for (user in allUsers) {
-            user.organizationBalance = organizationBalance
-            updateWithdrawBalance(user.userId,amount)
-            organizationBalance-amount
-            dataSource.updateUserBalance(user)
-        }
-    }
 
     suspend fun getTransactionHistory(userId: String): List<TransactionUser> {
         return dataSource.getTransactionHistoryData(userId)
