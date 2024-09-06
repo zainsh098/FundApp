@@ -75,7 +75,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textHomeCurrentBalanceValue"
+                    android:id="@+id/textHomeOrganizationBalanceValue"
                     style="@style/text_style_toolbar"
                     android:fontFamily="@font/inter"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,7 @@
                     android:layout_marginStart="@dimen/_3sdp"
                     android:layout_marginBottom="@dimen/_38sdp"
                     android:fontFamily="@font/inter"
-                    android:text="@string/deposited"
+                    android:text="Withdraw"
                     android:textSize="@dimen/_9ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView2" />

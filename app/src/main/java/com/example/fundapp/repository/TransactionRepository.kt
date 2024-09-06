@@ -1,5 +1,6 @@
 package com.example.fundapp.repository
 
+import android.util.Log
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.remote.TransactionDataSource
 
@@ -8,24 +9,29 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
     suspend fun depositAmount(transaction: TransactionUser) {
         dataSource.depositAmount(transaction)
         updateDepositBalance(transaction.userId, transaction.amount)
+        updateOrganizationBalance(transaction.amount)
     }
 
     suspend fun withdrawAmount(transaction: TransactionUser) {
         dataSource.withdrawAmount(transaction)
-        updateWithdrawBalance(transaction.userId, transaction.amount)
     }
 
+    suspend fun acceptWithdrawalRequest(transactionId: String, userId: String, withdrawAmount: Int) {
+        dataSource.updateRequestStatus(transactionId, "accepted")
+        updateWithdrawBalance(userId, withdrawAmount)
+        updateOrganizationBalance(-withdrawAmount)
+        Log.d("TransactionRepository", "Withdraw amount: $withdrawAmount")
+    }
 
-    suspend fun getAllWithdrawRequests(userId: String): List<TransactionUser?> {
-        return dataSource.getAllWithdrawRequests(userId)
-
+    suspend fun rejectWithdrawalRequest(transactionId: String) {
+        dataSource.updateRequestStatus(transactionId, "rejected")
     }
 
     private suspend fun updateDepositBalance(userId: String, depositAmount: Int) {
         val user = dataSource.getUser(userId)
         user?.apply {
-            currentBalance = (currentBalance ?: 0) + depositAmount
             totalDeposited = (totalDeposited ?: 0) + depositAmount
+            currentBalance = (currentBalance ?: 0) + depositAmount
             dataSource.updateUserBalance(this)
         }
     }
@@ -39,16 +45,39 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         }
     }
 
+    suspend fun updateOrganizationBalance(amount:Int) {
+        val allUsers = dataSource.getAllUsers()
+        var totalDeposited = 0
+        var totalWithdrawn = 0
+
+        for (user in allUsers) {
+            totalDeposited += user.totalDeposited ?: 0
+            totalWithdrawn += user.totalWithdrawAmount ?: 0
+        }
+
+        val organizationBalance = totalDeposited - totalWithdrawn
+
+        for (user in allUsers) {
+            user.organizationBalance = organizationBalance
+            updateWithdrawBalance(user.userId,amount)
+            organizationBalance-amount
+            dataSource.updateUserBalance(user)
+        }
+    }
+
     suspend fun getTransactionHistory(userId: String): List<TransactionUser> {
         return dataSource.getTransactionHistoryData(userId)
     }
 
-    suspend fun acceptWithdrawalRequest(transactionId: String) {
-        dataSource.updateRequestStatus(transactionId, "accepted")
-    }
+    suspend fun getAllUsersTransactions(): List<TransactionUser> {
+        val users = dataSource.getAllUsers()
+        val usersTransactionsList = mutableListOf<TransactionUser>()
 
-    suspend fun rejectWithdrawalRequest(transactionId: String) {
-        dataSource.updateRequestStatus(transactionId, "rejected")
+        for (user in users) {
+            val userTransactions = dataSource.getTransactionHistoryData(user.userId)
+            usersTransactionsList.addAll(userTransactions)
+        }
+        return usersTransactionsList
     }
 
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {
@@ -60,20 +89,5 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
             withdrawRequests.addAll(userWithdrawRequests)
         }
         return withdrawRequests
-    }
-
-
-    suspend fun getAllUsersTransactions(): List<TransactionUser> {
-        val users = dataSource.getAllUsers()
-        val usersTransactionsList = mutableListOf<TransactionUser>()
-
-        for (user in users) {
-
-            val userTransactions = dataSource.getTransactionHistoryData(user.userId)
-            usersTransactionsList.addAll(userTransactions)
-
-        }
-        return usersTransactionsList
-
     }
 }

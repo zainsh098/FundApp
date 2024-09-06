@@ -40,7 +40,11 @@ class ApproveRequestAdapter(
 
 
         holder.binding.buttonApproveRequest.setOnClickListener {
-            listener.onAcceptClick(approveRequest.transactionId)
+            listener.onAcceptClick(
+                approveRequest.transactionId,
+                approveRequest.userId,
+                approveRequest.amount
+            )
             requestList.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
 
@@ -70,7 +74,7 @@ class ApproveRequestAdapter(
 
 interface ApproveRequestAdapterListener {
 
-    fun onAcceptClick(transactionId: String)
+    fun onAcceptClick(transactionId: String, userId: String, withdrawAmount: Int)
     fun onRejectClick(transactionId: String)
 
 }

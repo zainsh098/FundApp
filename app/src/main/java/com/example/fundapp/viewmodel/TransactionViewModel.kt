@@ -1,5 +1,6 @@
 package com.example.fundapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,11 +13,10 @@ import kotlinx.coroutines.launch
 open class TransactionViewModel : ViewModel() {
 
     private val firestore = FirebaseFirestore.getInstance()
-    private val transactionRepository = TransactionRepository(TransactionDataSource(firestore))
+    private val transactionRepository = TransactionRepository(TransactionDataSource())
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
     val allTransactionHistoryUsers: MutableLiveData<List<TransactionUser>> = MutableLiveData()
     val isLoading = MutableLiveData<Boolean>()
-
 
     fun submitDeposit(transaction: TransactionUser) {
         viewModelScope.launch {
@@ -32,11 +32,11 @@ open class TransactionViewModel : ViewModel() {
 
     fun getTransactionHistory(userId: String) {
         viewModelScope.launch {
-            isLoading.value=true
+            isLoading.value = true
 
             val history = transactionRepository.getTransactionHistory(userId)
             transactionHistory.value = history
-            isLoading.value=false
+            isLoading.value = false
         }
     }
 
@@ -48,9 +48,18 @@ open class TransactionViewModel : ViewModel() {
         }
     }
 
-    fun acceptRequest(transactionId: String) {
+    fun acceptRequest(transactionId: String, userId: String, withdrawAmount: Int) {
         viewModelScope.launch {
-            transactionRepository.acceptWithdrawalRequest(transactionId)
+            transactionRepository.acceptWithdrawalRequest(transactionId, userId, withdrawAmount)
+            Log.d(
+                "TransactionViewModel",
+                "Withdrawal accepted for user: $userId, amount: $withdrawAmount"
+            )
+            transactionRepository.updateOrganizationBalance(withdrawAmount)
+            Log.d(
+                "TransactionViewModel",
+                "Updated organization balance with deduction: $withdrawAmount"
+            )
         }
     }
 

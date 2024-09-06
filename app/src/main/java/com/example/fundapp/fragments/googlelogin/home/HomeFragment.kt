@@ -27,7 +27,7 @@ class HomeFragment : Fragment(), OnItemClickListenerUser {
     private lateinit var userAdapter: UserAdapter
     private val homeViewModel: HomeViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
-    private  val transactionViewModel: TransactionViewModel by viewModels()
+    private val transactionViewModel: TransactionViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -41,7 +41,9 @@ class HomeFragment : Fragment(), OnItemClickListenerUser {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userAdapter = UserAdapter(mutableListOf(),this)
+
+
+        userAdapter = UserAdapter(mutableListOf(), this)
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewUsers.adapter = userAdapter
 
@@ -62,7 +64,7 @@ class HomeFragment : Fragment(), OnItemClickListenerUser {
 
             binding.apply {
                 textHomeUserName.text = "Hello, " + user?.name
-                textHomeCurrentBalanceValue.text = "Rs: ${user?.currentBalance}"
+                textHomeOrganizationBalanceValue.text = "Rs: ${user?.organizationBalance}"
                 textHomeDepositedValue.text = "Rs: ${user?.totalDeposited}"
                 textHomeWithdrawValue.text = "Rs: ${user?.totalWithdrawAmount}"
             }
@@ -94,6 +96,7 @@ class HomeFragment : Fragment(), OnItemClickListenerUser {
                 }
             })
     }
+
     override fun onItemClick(user: User) {
         val bundle = Bundle().apply {
             putString("userId", user.userId)

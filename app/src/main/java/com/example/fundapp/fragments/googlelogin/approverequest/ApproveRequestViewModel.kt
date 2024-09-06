@@ -16,13 +16,12 @@ class ApproveRequestViewModel : TransactionViewModel() {
     private val firestore = FirebaseFirestore.getInstance()
     private val _withdrawalRequests = MutableLiveData<List<TransactionUser>>()
     val withdrawalRequests: LiveData<List<TransactionUser>> get() = _withdrawalRequests
-    private val transactionRepository = TransactionRepository(TransactionDataSource(firestore))
+    private val transactionRepository = TransactionRepository(TransactionDataSource())
 
 
     init {
         getAllWithdrawRequests()
     }
-
 
     fun getAllWithdrawRequests() {
         viewModelScope.launch {

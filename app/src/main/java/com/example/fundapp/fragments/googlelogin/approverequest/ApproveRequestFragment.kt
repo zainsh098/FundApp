@@ -35,22 +35,16 @@ class ApproveRequestFragment : Fragment(), ApproveRequestAdapterListener {
         binding.approveRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.approveRequestRecyclerView.adapter = adapter
 
-
         binding.componentToolbar.apply {
-
             textToolbar.text = getString(R.string.approvals)
             backArrow.setImageResource(R.drawable.back)
             cardImage.visibility(false)
-
             backArrow.setOnClickListener {
 
                 findNavController().navigate(R.id.action_approveRequestFragment_to_menuFragment)
 
             }
-
         }
-
-
         approveRequestViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility(isLoading)
 
@@ -63,16 +57,13 @@ class ApproveRequestFragment : Fragment(), ApproveRequestAdapterListener {
         approveRequestViewModel.getAllWithdrawRequests()
     }
 
-    override fun onAcceptClick(transactionId: String) {
+    override fun onAcceptClick(transactionId: String,userId: String,withdrawAmount: Int) {
 
-
-        approveRequestViewModel.acceptRequest(transactionId)
-
+        approveRequestViewModel.acceptRequest(transactionId,userId,withdrawAmount)
 
     }
 
     override fun onRejectClick(transactionId: String) {
         approveRequestViewModel.rejectRequest(transactionId)
     }
-
 }
