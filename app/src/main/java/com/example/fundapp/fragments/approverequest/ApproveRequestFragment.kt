@@ -61,6 +61,7 @@ class ApproveRequestFragment : Fragment(), ApproveRequestAdapterListener {
         val bundle = Bundle().apply {
             putString("transactionId", transactionId)
             putString("withdrawAmount", withdrawAmount.toString())
+            putString("userID",userId)
             putString("date", date)
         }
         findNavController().navigate(R.id.action_approveRequestFragment_to_withdrawProofFragment, bundle)

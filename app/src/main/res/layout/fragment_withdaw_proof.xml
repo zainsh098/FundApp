@@ -61,7 +61,7 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:fontFamily="@font/inter"
-            android:hint="@string/reason_to_withdraw"
+            android:hint="@string/TransactionID"
             android:inputType="number"
             android:maxLines="0"
             android:textColorHint="@color/Light_20"
@@ -116,7 +116,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonWithdrawAmount"
+            android:id="@+id/buttonWithdrawApproved"
             style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_marginEnd="@dimen/_20sdp"
@@ -171,5 +171,17 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:elevation="@dimen/_80sdp"
+        android:indeterminateDrawable="@drawable/custom_progress_bar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

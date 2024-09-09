@@ -46,6 +46,14 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         return dataSource.getTransactionHistoryData(userId)
     }
 
+
+    suspend fun updateTransaction(transactionId: String, withdrawProof: String) {
+
+        return dataSource.updateTransaction(transactionId, withdrawProof)
+
+    }
+
+
     suspend fun rejectWithdrawalRequest(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "rejected")
     }
@@ -74,7 +82,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         return withdrawRequests
     }
 
-
+}
 //    suspend fun updateOrganizationBalance(amount: Int, isDeposit: Boolean) {
 //        val allUsers = dataSource.getAllUsers()
 //
@@ -96,4 +104,4 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
 //        }
 //    }
 
-}
+

@@ -1,6 +1,5 @@
 package com.example.fundapp.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -60,5 +59,14 @@ open class TransactionViewModel : ViewModel() {
             transactionRepository.rejectWithdrawalRequest(transactionId)
         }
     }
+
+    fun updateTransactionProof(transactionId: String, proofUrl: String) {
+        viewModelScope.launch {
+            transactionRepository.updateTransaction(transactionId, proofUrl)
+        }
+    }
+
+
+
 
 }

@@ -62,4 +62,12 @@ class TransactionDataSource {
         firestore.collection(KEY_TRANSACTIONS).document(transactionId)
             .update("status", status).await()
     }
+
+    suspend fun updateTransaction(transactionId: String, withdrawProof: String) {
+        firestore.collection(KEY_TRANSACTIONS).document(transactionId)
+            .update("proofOfWithdraw", withdrawProof)
+
+
+    }
+
 }

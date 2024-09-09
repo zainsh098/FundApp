@@ -42,5 +42,6 @@
     <string name="no_transaction_still">No Transactions Still</string>
     <string name="approved">Approved</string>
     <string name="withdraw_approval">Withdraw Approval</string>
+    <string name="TransactionID">Transaction ID</string>
 
 </resources>

@@ -16,6 +16,7 @@ data class TransactionUser(
     val status: String = "",
     val photoUrl: String? = null,
     val proofOfDeposit: String? = null,
+    val proofOfWithdraw: String? = null,
     val reason: String? = null,
 )
 //todo will look into this
