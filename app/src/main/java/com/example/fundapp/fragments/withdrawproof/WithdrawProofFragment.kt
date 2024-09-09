@@ -50,9 +50,10 @@ class WithdrawProofFragment :
 
         binding.buttonWithdrawApproved.setOnClickListener {
             if (selectedFileUri != null) {
+                binding.progressBar.visibility(true)
                 uploadFileToFirestore(selectedFileUri!!) { fileUrl ->
                     if (transactionID != null) {
-                        binding.progressBar.visibility(true)
+
                         transactionViewModel.updateTransactionProof(transactionID, fileUrl)
                         showToast("Transaction updated successfully.")
                         binding.progressBar.visibility(false)

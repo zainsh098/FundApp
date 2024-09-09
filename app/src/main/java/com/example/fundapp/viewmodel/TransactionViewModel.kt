@@ -67,6 +67,4 @@ open class TransactionViewModel : ViewModel() {
     }
 
 
-
-
 }
