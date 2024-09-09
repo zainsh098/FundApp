@@ -38,5 +38,6 @@
     <string name="my_requests">My Requests</string>
     <string name="transaction_details">Transaction Details</string>
     <string name="approvals">Approvals</string>
+    <string name="please_fill_the_missing_fields">Please Fill the missing Fields</string>
 
 </resources>

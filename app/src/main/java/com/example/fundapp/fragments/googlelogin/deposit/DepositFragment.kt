@@ -35,7 +35,6 @@ class DepositFragment : Fragment() {
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.deposit)
             backArrow.setImageResource(R.drawable.back)
-
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_depositFragment_to_menuFragment)
             }
@@ -60,7 +59,7 @@ class DepositFragment : Fragment() {
                 ) {
                     Toast.makeText(
                         requireContext(),
-                        "Please Fill the missing Fields",
+                        getString(R.string.please_fill_the_missing_fields),
                         Toast.LENGTH_SHORT
                     ).show()
 

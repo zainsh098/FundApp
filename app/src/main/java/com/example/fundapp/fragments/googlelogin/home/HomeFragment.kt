@@ -4,11 +4,8 @@ package com.example.fundapp.fragments.googlelogin.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,27 +13,18 @@ import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.adapter.OnItemClickListenerUser
 import com.example.fundapp.adapter.UserAdapter
+import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentHomeBinding
 import com.example.fundapp.model.User
-import com.example.fundapp.viewmodel.TransactionViewModel
 import com.example.fundapp.viewmodel.UserViewModel
 
-class HomeFragment : Fragment(), OnItemClickListenerUser {
+class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
+    OnItemClickListenerUser {
 
-    private lateinit var binding: FragmentHomeBinding
+
     private lateinit var userAdapter: UserAdapter
     private val homeViewModel: HomeViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
-    private val transactionViewModel: TransactionViewModel by viewModels()
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +36,6 @@ class HomeFragment : Fragment(), OnItemClickListenerUser {
         binding.recyclerViewUsers.adapter = userAdapter
 
         val userRole = userViewModel.currentUser.value?.role
-
         Log.d("HomeFragment", "User Role   Home Fragment : $userRole")
 
         homeViewModel.message.observe(viewLifecycleOwner) { message ->
@@ -57,13 +44,11 @@ class HomeFragment : Fragment(), OnItemClickListenerUser {
 
         homeViewModel.allUsers.observe(viewLifecycleOwner) { users ->
             userAdapter.updateUsers(users)
-
         }
 
         homeViewModel.orgBalance.observe(viewLifecycleOwner) {
             binding.textHomeOrganizationBalanceValue.text = "Rs: $it"
         }
-
         homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
 
             binding.apply {

@@ -5,34 +5,43 @@ import com.example.fundapp.model.User
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
+
 class TransactionDataSource {
+
+    companion object {
+        private const val KEY_USERS = "users"
+        private const val KEY_TRANSACTIONS = "transactions"
+    }
 
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     suspend fun getAllUsers(): List<User> {
-        return firestore.collection("users").get().await().documents.mapNotNull {
+        return firestore.collection(KEY_USERS).get().await().documents.mapNotNull {
             it.toObject(User::class.java)
         }
     }
 
     suspend fun getUser(userId: String): User? {
-        return firestore.collection("users").document(userId).get().await().toObject(User::class.java)
+        return firestore.collection(KEY_USERS).document(userId).get().await()
+            .toObject(User::class.java)
     }
 
     suspend fun updateUserBalance(user: User) {
-        firestore.collection("users").document(user.userId).set(user).await()
+        firestore.collection(KEY_USERS).document(user.userId).set(user).await()
     }
 
     suspend fun depositAmount(transaction: TransactionUser) {
-        firestore.collection("transactions").document(transaction.transactionId).set(transaction).await()
+        firestore.collection(KEY_TRANSACTIONS).document(transaction.transactionId).set(transaction)
+            .await()
     }
 
     suspend fun withdrawAmount(transaction: TransactionUser) {
-        firestore.collection("transactions").document(transaction.transactionId).set(transaction).await()
+        firestore.collection(KEY_TRANSACTIONS).document(transaction.transactionId).set(transaction)
+            .await()
     }
 
     suspend fun getTransactionHistoryData(userId: String): List<TransactionUser> {
-        return firestore.collection("transactions")
+        return firestore.collection(KEY_TRANSACTIONS)
             .whereEqualTo("userId", userId)
             .get()
             .await()
@@ -40,7 +49,7 @@ class TransactionDataSource {
     }
 
     suspend fun getAllWithdrawRequests(userId: String): List<TransactionUser> {
-        return firestore.collection("transactions")
+        return firestore.collection(KEY_TRANSACTIONS)
             .whereEqualTo("userId", userId)
             .whereEqualTo("type", "withdraw")
             .whereEqualTo("status", "pending")
@@ -50,7 +59,7 @@ class TransactionDataSource {
     }
 
     suspend fun updateRequestStatus(transactionId: String, status: String) {
-        firestore.collection("transactions").document(transactionId)
+        firestore.collection(KEY_TRANSACTIONS).document(transactionId)
             .update("status", status).await()
     }
 }
