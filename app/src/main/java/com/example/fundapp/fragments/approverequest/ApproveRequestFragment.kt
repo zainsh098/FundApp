@@ -22,8 +22,7 @@ class ApproveRequestFragment : Fragment(), ApproveRequestAdapterListener {
     private val approveRequestViewModel: ApproveRequestViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentApproveRequestBinding.inflate(inflater, container, false)
         return binding.root
@@ -50,21 +49,34 @@ class ApproveRequestFragment : Fragment(), ApproveRequestAdapterListener {
 
         }
         approveRequestViewModel.withdrawalRequests.observe(viewLifecycleOwner) { withdrawalRequests ->
+
+            if (withdrawalRequests.isNullOrEmpty()) {
+                binding.txtNoData.visibility = View.VISIBLE
+
+            } else {
+                binding.txtNoData.visibility = View.GONE
+                adapter.updateList(withdrawalRequests)
+
+
+            }
             Log.d("ApproveRequestFragment", "Withdrawal Requests: $withdrawalRequests")
-            adapter.updateList(withdrawalRequests)
         }
 
         approveRequestViewModel.getAllWithdrawRequests()
     }
 
-    override fun onAcceptClick(transactionId: String, userId: String, withdrawAmount: Int, date: String) {
+    override fun onAcceptClick(
+        transactionId: String, userId: String, withdrawAmount: Int, date: String
+    ) {
         val bundle = Bundle().apply {
             putString("transactionId", transactionId)
             putString("withdrawAmount", withdrawAmount.toString())
-            putString("userID",userId)
+            putString("userID", userId)
             putString("date", date)
         }
-        findNavController().navigate(R.id.action_approveRequestFragment_to_withdrawProofFragment, bundle)
+        findNavController().navigate(
+            R.id.action_approveRequestFragment_to_withdrawProofFragment, bundle
+        )
     }
 
     override fun onRejectClick(transactionId: String) {

@@ -33,7 +33,6 @@ class WithdrawProofFragment :
         val userID = arguments?.getString("userID")
         val date = arguments?.getString("date")
 
-        // Setting up the toolbar
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.withdraw_approval)
             backArrow.setOnClickListener {
@@ -66,7 +65,7 @@ class WithdrawProofFragment :
                             )
                         }
 
-                        findNavController().navigate(R.id.action_withdrawProofFragment_to_approveRequestFragment)
+                        findNavController().navigate(R.id.action_withdrawProofFragment_to_menuFragment)
                     }
                 }
             } else {
@@ -111,7 +110,6 @@ class WithdrawProofFragment :
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
-
 
 
 }

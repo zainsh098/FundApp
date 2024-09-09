@@ -164,5 +164,8 @@
         <action
             android:id="@+id/action_withdrawProofFragment_to_approveRequestFragment"
             app:destination="@id/approveRequestFragment" />
+        <action
+            android:id="@+id/action_withdrawProofFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 </navigation>
