@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.approverequest
+package com.example.fundapp.fragments.approverequest
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 
 class ApproveRequestViewModel : TransactionViewModel() {
 
-    private val firestore = FirebaseFirestore.getInstance()
     private val _withdrawalRequests = MutableLiveData<List<TransactionUser>>()
     val withdrawalRequests: LiveData<List<TransactionUser>> get() = _withdrawalRequests
     private val transactionRepository = TransactionRepository(TransactionDataSource())

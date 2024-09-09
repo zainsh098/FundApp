@@ -1,5 +1,6 @@
 package com.example.fundapp.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,11 +23,12 @@ class MyRequestAdapter(
 
     class ViewHolder(val binding: MyRequestItemBinding) : RecyclerView.ViewHolder(binding.root)
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyRequestAdapter.ViewHolder, position: Int) {
         val withdrawlRequest = withdrawlRequest[position]
 
         holder.binding.textViewWithdrawAmount.text = "Rs: " + withdrawlRequest.amount.toString()
-        holder.binding.textViewTransactionDate.text = withdrawlRequest.dateWithdraw
+        holder.binding.textViewTransactionDate.text = withdrawlRequest.date
         holder.binding.textViewWithdrawlStatus.text = withdrawlRequest.status
         holder.binding.textViewWithdrawReason.text = withdrawlRequest.reason
 

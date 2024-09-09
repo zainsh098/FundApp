@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.home
+package com.example.fundapp.fragments.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

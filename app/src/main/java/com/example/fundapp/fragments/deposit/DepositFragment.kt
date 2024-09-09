@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.deposit
+package com.example.fundapp.fragments.deposit
 
 import android.app.Activity
 import android.content.Intent
@@ -14,7 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentDepositBinding
-import com.example.fundapp.fragments.googlelogin.bottomsheet.BottomSheetDFragment
+import com.example.fundapp.fragments.bottomsheet.BottomSheetDFragment
 
 class DepositFragment : Fragment() {
 

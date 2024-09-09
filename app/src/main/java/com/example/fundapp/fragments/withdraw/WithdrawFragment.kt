@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.withdraw
+package com.example.fundapp.fragments.withdraw
 
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentWithdrawBinding
-import com.example.fundapp.fragments.googlelogin.bottomsheet.BottomSheetDFragment
-import com.example.fundapp.fragments.googlelogin.bottomsheet.WithdrawalBottomSheetFragment
+import com.example.fundapp.fragments.bottomsheet.BottomSheetDFragment
+import com.example.fundapp.fragments.bottomsheet.WithdrawalBottomSheetFragment
 import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 

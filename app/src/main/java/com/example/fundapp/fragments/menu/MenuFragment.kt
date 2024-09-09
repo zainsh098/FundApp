@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.menu
+package com.example.fundapp.fragments.menu
 
 import android.os.Bundle
 import android.util.Log

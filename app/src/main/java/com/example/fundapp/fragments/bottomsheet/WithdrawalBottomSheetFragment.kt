@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.bottomsheet
+package com.example.fundapp.fragments.bottomsheet
 
 import android.os.Bundle
 import android.view.LayoutInflater

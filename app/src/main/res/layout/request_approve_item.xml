@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/Light_100"
-    tools:context=".fragments.googlelogin.approverequest.ApproveRequestFragment">
+    tools:context=".fragments.approverequest.ApproveRequestFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

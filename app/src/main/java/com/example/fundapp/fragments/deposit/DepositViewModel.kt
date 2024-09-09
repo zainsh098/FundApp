@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.deposit
+package com.example.fundapp.fragments.deposit
 
 import android.app.DatePickerDialog
 import android.content.Context
@@ -69,7 +69,7 @@ class DepositViewModel : ViewModel() {
                     userId = auth.currentUser!!.uid,
                     type = "deposit",
                     amount = depositAmount,
-                    dateDeposit = dateDepositAmount,
+                    date = dateDepositAmount,
                     proofOfDeposit = fileUrl,
                     photoUrl = auth.currentUser!!.photoUrl.toString(),
                 )

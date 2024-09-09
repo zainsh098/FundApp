@@ -5,7 +5,6 @@ import com.example.fundapp.remote.TransactionDataSource
 
 class TransactionRepository(private val dataSource: TransactionDataSource) {
 
-
     suspend fun depositAmount(transaction: TransactionUser) {
         dataSource.depositAmount(transaction)
         updateDepositBalance(transaction.userId, transaction.amount)
@@ -35,6 +34,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
             totalWithdrawAmount = (totalWithdrawAmount ?: 0) + withdrawAmount
             currentBalance = (currentBalance ?: 0) - withdrawAmount
             dataSource.updateUserBalance(this)
+
         }
     }
 

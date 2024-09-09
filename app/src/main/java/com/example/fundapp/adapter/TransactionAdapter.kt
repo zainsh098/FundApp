@@ -29,9 +29,6 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.ViewHolder>()
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val transaction = transactions[position]
 
-
-
-
         if (transaction.type == "withdraw") {
             holder.binding.transcationAmount.setTextColor(Color.RED)
         } else {

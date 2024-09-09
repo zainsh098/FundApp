@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.myrequest
+package com.example.fundapp.fragments.myrequest
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -58,7 +58,7 @@ class MyRequestFragment : Fragment() {
                 history.filterNotNull().filter { it.status == "pending" || it.status == "accepted" }
             val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val sortedHistory = myRequestHistory.sortedByDescending {
-                dateFormat.parse(it.dateWithdraw)
+                dateFormat.parse(it.date)
             }
             myRequestAdapter.updateList(sortedHistory)
         }

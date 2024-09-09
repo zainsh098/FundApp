@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.splash.SplashFragment"
+        android:name="com.example.fundapp.fragments.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.login.LoginFragment"
+        android:name="com.example.fundapp.fragments.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.home.HomeFragment"
+        android:name="com.example.fundapp.fragments.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.menu.MenuFragment"
+        android:name="com.example.fundapp.fragments.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu">
         <action
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/depositFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.deposit.DepositFragment"
+        android:name="com.example.fundapp.fragments.deposit.DepositFragment"
         android:label="fragment_deposit"
         tools:layout="@layout/fragment_deposit">
         <action
@@ -99,7 +99,7 @@
     </fragment>
     <fragment
         android:id="@+id/withdrawFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.withdraw.WithdrawFragment"
+        android:name="com.example.fundapp.fragments.withdraw.WithdrawFragment"
         android:label="fragment_withdraw"
         tools:layout="@layout/fragment_withdraw">
         <action
@@ -112,7 +112,7 @@
     </fragment>
     <fragment
         android:id="@+id/transactionDetailsFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.transactiondetails.TransactionDetailsFragment"
+        android:name="com.example.fundapp.fragments.transactiondetails.TransactionDetailsFragment"
         android:label="fragment_transaction_details"
         tools:layout="@layout/fragment_transaction_details" >
         <action
@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/myRequestFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.myrequest.MyRequestFragment"
+        android:name="com.example.fundapp.fragments.myrequest.MyRequestFragment"
         android:label="fragment_my_request"
         tools:layout="@layout/fragment_my_request" >
         <action
@@ -130,16 +130,19 @@
     </fragment>
     <fragment
         android:id="@+id/approveRequestFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.approverequest.ApproveRequestFragment"
+        android:name="com.example.fundapp.fragments.approverequest.ApproveRequestFragment"
         android:label="fragment_approve_request"
         tools:layout="@layout/fragment_approve_request" >
         <action
             android:id="@+id/action_approveRequestFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_approveRequestFragment_to_withdrawProofFragment"
+            app:destination="@id/withdrawProofFragment" />
     </fragment>
     <dialog
         android:id="@+id/withdrawalBottomSheetFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.bottomsheet.WithdrawalBottomSheetFragment"
+        android:name="com.example.fundapp.fragments.bottomsheet.WithdrawalBottomSheetFragment"
         android:label="WithdrawalBottomSheetFragment" >
         <action
             android:id="@+id/action_withdrawalBottomSheetFragment_to_menuFragment"
@@ -147,10 +150,19 @@
     </dialog>
     <dialog
         android:id="@+id/bottomSheetDFragment"
-        android:name="com.example.fundapp.fragments.googlelogin.bottomsheet.BottomSheetDFragment"
+        android:name="com.example.fundapp.fragments.bottomsheet.BottomSheetDFragment"
         android:label="BottomSheetDFragment" >
         <action
             android:id="@+id/action_bottomSheetDFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </dialog>
+    <fragment
+        tools:layout="@layout/fragment_withdaw_proof"
+        android:id="@+id/withdrawProofFragment"
+        android:name="com.example.fundapp.fragments.withdrawproof.WithdrawProofFragment"
+        android:label="WithdrawProofFragment" >
+        <action
+            android:id="@+id/action_withdrawProofFragment_to_approveRequestFragment"
+            app:destination="@id/approveRequestFragment" />
+    </fragment>
 </navigation>

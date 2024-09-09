@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.withdraw
+package com.example.fundapp.fragments.withdraw
 
 import android.app.Application
 import android.app.DatePickerDialog
@@ -29,7 +29,7 @@ class WithdrawViewModel(application: Application) : AndroidViewModel(application
             name = auth.currentUser!!.displayName!!,
             amount = withdrawAmount,
             reason = withdrawReason,
-            dateWithdraw = dateWithdraw,
+            date = dateWithdraw,
             type = "withdraw",
             transactionId = UUID.randomUUID().toString(),
             userId = auth.currentUser!!.uid,

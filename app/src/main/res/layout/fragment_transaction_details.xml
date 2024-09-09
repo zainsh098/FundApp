@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Violet_100"
-    tools:context=".fragments.googlelogin.transactiondetails.TransactionDetailsFragment">
+    tools:context=".fragments.transactiondetails.TransactionDetailsFragment">
 
     <include
         android:id="@+id/component_toolbar"
@@ -55,18 +55,21 @@
 
     <TextView
         android:id="@+id/txtNoData"
-        android:textAlignment="center"
-        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/inter_medium"
-        android:textSize="@dimen/_12ssp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:gravity="center"
         android:text="@string/no_transaction_still"
-        android:visibility="gone">
+        android:textAlignment="center"
+        android:textSize="@dimen/_12ssp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
     </TextView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,7 @@ data class TransactionUser(
     val transactionId: String = "",
     val userId: String = "",
     val amount: Int = 0,
-    val dateDeposit: String = "", // correct this todo
-    val dateWithdraw: String = "",
+    val date: String = "",
     val type: String = "",
     val status: String = "",
     val photoUrl: String? = null,

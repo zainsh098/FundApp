@@ -124,12 +124,51 @@
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="@string/request"
+            android:text="@string/approved"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewAttachment"
+            style="@style/text_edit_attachment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:foreground="@drawable/dashed_border"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardDateView">
+
+            <ImageView
+                android:id="@+id/imageViewAttachment"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/attachmenticon" />
+
+            <TextView
+                android:id="@+id/textViewAttachment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/inter"
+                android:text="@string/add_attachment"
+                android:textColor="@color/Light_20"
+                android:textSize="@dimen/_12ssp" />
+
+        </androidx.cardview.widget.CardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

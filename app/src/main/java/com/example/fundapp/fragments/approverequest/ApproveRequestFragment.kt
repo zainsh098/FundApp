@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.approverequest
+package com.example.fundapp.fragments.approverequest
 
 import android.os.Bundle
 import android.util.Log
@@ -57,10 +57,13 @@ class ApproveRequestFragment : Fragment(), ApproveRequestAdapterListener {
         approveRequestViewModel.getAllWithdrawRequests()
     }
 
-    override fun onAcceptClick(transactionId: String,userId: String,withdrawAmount: Int) {
-
-        approveRequestViewModel.acceptRequest(transactionId,userId,withdrawAmount)
-
+    override fun onAcceptClick(transactionId: String, userId: String, withdrawAmount: Int, date: String) {
+        val bundle = Bundle().apply {
+            putString("transactionId", transactionId)
+            putString("withdrawAmount", withdrawAmount.toString())
+            putString("date", date)
+        }
+        findNavController().navigate(R.id.action_approveRequestFragment_to_withdrawProofFragment, bundle)
     }
 
     override fun onRejectClick(transactionId: String) {

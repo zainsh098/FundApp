@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.transactiondetails
+package com.example.fundapp.fragments.transactiondetails
 
 import android.os.Bundle
 import android.util.Log
@@ -64,24 +64,21 @@ class TransactionDetailsFragment : Fragment() {
             recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
             recyclerViewTransactionDetails.adapter = transactionAdapter
         }
-
         transactionViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            binding.progressBar.visibility(isLoading)
-
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
-
 
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
-            Log.d("TransactionDetailsFragment", "Transaction History: $history")
-            if (history.isEmpty()) {
-
-                binding.txtNoData.visibility(true)
-
+            if (history.isNullOrEmpty()) {
+                binding.txtNoData.visibility = View.VISIBLE
+                binding.recyclerViewTransactionDetails.visibility = View.GONE
+            } else {
+                binding.txtNoData.visibility = View.GONE
+                binding.recyclerViewTransactionDetails.visibility = View.VISIBLE
+                transactionAdapter.updateList(history.filterNotNull())
             }
-
-            val nonNullHistory = history.filterNotNull()
-            transactionAdapter.updateList(nonNullHistory)
         }
+
         if (userId != null) {
             transactionViewModel.getTransactionHistory(userId)
         }

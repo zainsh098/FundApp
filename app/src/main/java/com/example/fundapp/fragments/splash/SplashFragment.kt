@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.splash
+package com.example.fundapp.fragments.splash
 
 import android.os.Bundle
 import android.view.LayoutInflater

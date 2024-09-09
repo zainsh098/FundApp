@@ -27,7 +27,7 @@ class ApproveRequestAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val approveRequest = requestList[position]
-        holder.binding.textViewTransactionDate.text = "Date :" + approveRequest.dateWithdraw
+        holder.binding.textViewTransactionDate.text = "Date :" + approveRequest.date
         holder.binding.textViewWithdrawAmount.text = "Rs: " + approveRequest.amount.toString()
         holder.binding.textViewUserName.text = approveRequest.name.split(" ")[0]
         holder.binding.textViewWithdrawReason.text = approveRequest.reason
@@ -43,7 +43,9 @@ class ApproveRequestAdapter(
             listener.onAcceptClick(
                 approveRequest.transactionId,
                 approveRequest.userId,
-                approveRequest.amount
+                approveRequest.amount,
+                approveRequest.date
+
             )
             requestList.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
@@ -74,7 +76,7 @@ class ApproveRequestAdapter(
 
 interface ApproveRequestAdapterListener {
 
-    fun onAcceptClick(transactionId: String, userId: String, withdrawAmount: Int)
+    fun onAcceptClick(transactionId: String, userId: String, withdrawAmount: Int, date: String)
     fun onRejectClick(transactionId: String)
 
 }

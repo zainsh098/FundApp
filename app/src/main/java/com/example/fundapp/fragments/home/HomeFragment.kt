@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.googlelogin.home
+package com.example.fundapp.fragments.home
 
 
 import android.annotation.SuppressLint
