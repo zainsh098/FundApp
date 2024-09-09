@@ -53,5 +53,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <TextView
+        android:id="@+id/txtNoData"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="@dimen/_12ssp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_transaction_still"
+        android:visibility="gone">
+
+
+    </TextView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

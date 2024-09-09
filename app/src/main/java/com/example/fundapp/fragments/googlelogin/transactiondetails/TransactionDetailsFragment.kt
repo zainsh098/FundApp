@@ -14,7 +14,6 @@ import com.example.fundapp.adapter.TransactionAdapter
 import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
 import com.example.fundapp.extensions.visibility
 import com.example.fundapp.viewmodel.TransactionViewModel
-import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class TransactionDetailsFragment : Fragment() {
@@ -35,7 +34,6 @@ class TransactionDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         auth = FirebaseAuth.getInstance()
-        val currentUserId = auth.currentUser?.uid
         val userId = arguments?.getString("userId")
 
         Log.d("USER ID  : ", "User ID ${userId}")
@@ -47,7 +45,6 @@ class TransactionDetailsFragment : Fragment() {
             backArrow.setImageResource(R.drawable.back)
             cardImage.visibility(false)
             backArrow.setOnClickListener {
-
 
 
                 findNavController().navigate(R.id.action_transactionDetailsFragment_to_homeFragment)
@@ -68,8 +65,7 @@ class TransactionDetailsFragment : Fragment() {
             recyclerViewTransactionDetails.adapter = transactionAdapter
         }
 
-        transactionViewModel.isLoading.observe(viewLifecycleOwner){
-            isLoading->
+        transactionViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility(isLoading)
 
         }
@@ -77,6 +73,12 @@ class TransactionDetailsFragment : Fragment() {
 
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
             Log.d("TransactionDetailsFragment", "Transaction History: $history")
+            if (history.isEmpty()) {
+
+                binding.txtNoData.visibility(true)
+
+            }
+
             val nonNullHistory = history.filterNotNull()
             transactionAdapter.updateList(nonNullHistory)
         }

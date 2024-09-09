@@ -51,15 +51,7 @@ open class TransactionViewModel : ViewModel() {
     fun acceptRequest(transactionId: String, userId: String, withdrawAmount: Int) {
         viewModelScope.launch {
             transactionRepository.acceptWithdrawalRequest(transactionId, userId, withdrawAmount)
-            Log.d(
-                "TransactionViewModel",
-                "Withdrawal accepted for user: $userId, amount: $withdrawAmount"
-            )
-            transactionRepository.updateOrganizationBalance(withdrawAmount,false)
-            Log.d(
-                "TransactionViewModel",
-                "Updated organization balance with deduction: $withdrawAmount"
-            )
+
         }
     }
 

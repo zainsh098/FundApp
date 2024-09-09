@@ -9,7 +9,6 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
     suspend fun depositAmount(transaction: TransactionUser) {
         dataSource.depositAmount(transaction)
         updateDepositBalance(transaction.userId, transaction.amount)
-        updateOrganizationBalance(transaction.amount, true) // true for deposit
     }
 
     suspend fun acceptWithdrawalRequest(
@@ -18,10 +17,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         withdrawAmount: Int
     ) {
         dataSource.updateRequestStatus(transactionId, "accepted")
-
         updateWithdrawBalance(userId, withdrawAmount)
-
-        updateOrganizationBalance(withdrawAmount, false) // false for withdrawal
     }
 
     private suspend fun updateDepositBalance(userId: String, depositAmount: Int) {
@@ -79,25 +75,25 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
     }
 
 
-    suspend fun updateOrganizationBalance(amount: Int, isDeposit: Boolean) {
-        val allUsers = dataSource.getAllUsers()
-
-        var organizationBalance = allUsers.firstOrNull()?.organizationBalance ?: 0
-
-        println("Initial organization balance: $organizationBalance")
-
-        if (isDeposit) {
-            organizationBalance += amount // Increase balance on deposit
-        } else {
-            organizationBalance -= amount // Decrease balance on withdrawal
-        }
-
-        println("Updated organization balance: $organizationBalance")
-
-        for (user in allUsers) {
-            user.organizationBalance = organizationBalance
-            dataSource.updateUserBalance(user)
-        }
-    }
+//    suspend fun updateOrganizationBalance(amount: Int, isDeposit: Boolean) {
+//        val allUsers = dataSource.getAllUsers()
+//
+//        var organizationBalance = allUsers.firstOrNull()?.organizationBalance ?: 0
+//
+//        println("Initial organization balance: $organizationBalance")
+//
+//        if (isDeposit) {
+//            organizationBalance += amount // Increase balance on deposit
+//        } else {
+//            organizationBalance -= amount // Decrease balance on withdrawal
+//        }
+//
+//        println("Updated organization balance: $organizationBalance")
+//
+//        for (user in allUsers) {
+//            user.organizationBalance = organizationBalance
+//            dataSource.updateUserBalance(user)
+//        }
+//    }
 
 }

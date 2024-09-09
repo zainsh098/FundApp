@@ -72,11 +72,13 @@
             <TextView
                 android:id="@+id/transcationAmount"
                 style="@style/transaction_text_style"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:fontFamily="@font/inter_semibold"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewDownArrow"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageViewDownArrow"
+                app:layout_constraintStart_toStartOf="@id/guideline"
                 app:layout_constraintTop_toTopOf="@+id/imageViewDownArrow"
                 tools:text="Rs:290000" />
 
@@ -85,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.71" />
+                app:layout_constraintGuide_percent="0.68428573" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline9"

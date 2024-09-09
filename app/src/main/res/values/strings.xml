@@ -39,5 +39,6 @@
     <string name="transaction_details">Transaction Details</string>
     <string name="approvals">Approvals</string>
     <string name="please_fill_the_missing_fields">Please Fill the missing Fields</string>
+    <string name="no_transaction_still">No Transactions Still</string>
 
 </resources>
