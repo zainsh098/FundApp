@@ -14,15 +14,12 @@ import com.example.fundapp.R
 import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentWithdawProofBinding
 import com.example.fundapp.extensions.visibility
-import com.example.fundapp.viewmodel.TransactionViewModel
-import com.google.firebase.storage.FirebaseStorage
-import java.util.UUID
+import com.example.fundapp.viewmodel.WithdrawProofViewModel
 
 class WithdrawProofFragment :
     BindingFragment<FragmentWithdawProofBinding>(FragmentWithdawProofBinding::inflate) {
 
-    private val transactionViewModel: TransactionViewModel by viewModels()
-    private val storage = FirebaseStorage.getInstance()
+    private val withdrawProofViewModel: WithdrawProofViewModel by viewModels()
     private var selectedFileUri: Uri? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,8 +33,9 @@ class WithdrawProofFragment :
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.withdraw_approval)
             backArrow.setOnClickListener {
-                findNavController().navigate(R.id.action_withdrawProofFragment_to_approveRequestFragment)
+                findNavController().navigate(R.id.action_withdrawProofFragment_to_menuFragment)
             }
+            cardImage.visibility(false)
         }
 
         binding.textFieldWithdraw.setText(withdrawAmount)
@@ -49,43 +47,19 @@ class WithdrawProofFragment :
         }
 
         binding.buttonWithdrawApproved.setOnClickListener {
-            if (selectedFileUri != null) {
-                binding.progressBar.visibility(true)
-                uploadFileToFirestore(selectedFileUri!!) { fileUrl ->
-                    if (transactionID != null) {
-
-                        transactionViewModel.updateTransactionProof(transactionID, fileUrl)
-                        showToast("Transaction updated successfully.")
-                        binding.progressBar.visibility(false)
-
-                        if (userID != null) {
-                            transactionViewModel.acceptRequest(
-                                transactionID,
-                                userID,
-                                withdrawAmount.toString().toInt()
-                            )
-                        }
-
-                        findNavController().navigate(R.id.action_withdrawProofFragment_to_menuFragment)
-                    }
-                }
+            if (transactionID != null && withdrawAmount != null && userID != null) {
+                withdrawProofViewModel.submitWithdraw(
+                    selectedFileUri,
+                    transactionID,
+                    userID,
+                    withdrawAmount.toInt()
+                )
             } else {
-                showToast("Please attach a proof file.")
+                showToast("Missing information")
             }
         }
-    }
 
-    private fun uploadFileToFirestore(fileUri: Uri, onComplete: (String) -> Unit) {
-        val storageRef = storage.reference.child("withdraw/${UUID.randomUUID()}")
-        val uploadTask = storageRef.putFile(fileUri)
-
-        uploadTask.addOnSuccessListener {
-            storageRef.downloadUrl.addOnSuccessListener { uri ->
-                onComplete(uri.toString())
-            }
-        }.addOnFailureListener {
-            showToast("Failed to upload file")
-        }
+        observeViewModel()
     }
 
     private fun pickFile() {
@@ -108,9 +82,22 @@ class WithdrawProofFragment :
         }
     }
 
+    private fun observeViewModel() {
+        withdrawProofViewModel.loading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility(isLoading)
+        }
+
+        withdrawProofViewModel.successMessage.observe(viewLifecycleOwner) { message ->
+            showToast(message)
+            findNavController().navigate(R.id.action_withdrawProofFragment_to_menuFragment)
+        }
+
+        withdrawProofViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            showToast(message)
+        }
+    }
+
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
-
-
 }

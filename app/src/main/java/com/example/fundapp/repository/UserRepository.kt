@@ -8,7 +8,6 @@ class UserRepository(private val dataSource: FirebaseDataSource) {
     suspend fun saveUser(user: User) {
         dataSource.saveUser(user)
     }
-
     suspend fun getUser(userId: String): User? {
         return dataSource.getUser(userId)
     }
@@ -19,8 +18,8 @@ class UserRepository(private val dataSource: FirebaseDataSource) {
 
     suspend fun getUserBalance(userId: String): Double? {
         return dataSource.getUserCurrentBalance(userId)
-
     }
+
     suspend fun getAllUsers(): List<User> {
         return dataSource.getAllUsers()
     }

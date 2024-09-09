@@ -34,7 +34,6 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
             totalWithdrawAmount = (totalWithdrawAmount ?: 0) + withdrawAmount
             currentBalance = (currentBalance ?: 0) - withdrawAmount
             dataSource.updateUserBalance(this)
-
         }
     }
 
@@ -46,13 +45,9 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         return dataSource.getTransactionHistoryData(userId)
     }
 
-
     suspend fun updateTransaction(transactionId: String, withdrawProof: String) {
-
         return dataSource.updateTransaction(transactionId, withdrawProof)
-
     }
-
 
     suspend fun rejectWithdrawalRequest(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "rejected")
@@ -67,41 +62,18 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
             usersTransactionsList.addAll(userTransactions)
             val orgBalance = +user.currentBalance!!
         }
-
         return usersTransactionsList
     }
 
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()
         val withdrawRequests = mutableListOf<TransactionUser>()
-
         for (user in users) {
             val userWithdrawRequests = dataSource.getAllWithdrawRequests(user.userId)
             withdrawRequests.addAll(userWithdrawRequests)
         }
         return withdrawRequests
     }
-
 }
-//    suspend fun updateOrganizationBalance(amount: Int, isDeposit: Boolean) {
-//        val allUsers = dataSource.getAllUsers()
-//
-//        var organizationBalance = allUsers.firstOrNull()?.organizationBalance ?: 0
-//
-//        println("Initial organization balance: $organizationBalance")
-//
-//        if (isDeposit) {
-//            organizationBalance += amount // Increase balance on deposit
-//        } else {
-//            organizationBalance -= amount // Decrease balance on withdrawal
-//        }
-//
-//        println("Updated organization balance: $organizationBalance")
-//
-//        for (user in allUsers) {
-//            user.organizationBalance = organizationBalance
-//            dataSource.updateUserBalance(user)
-//        }
-//    }
 
 

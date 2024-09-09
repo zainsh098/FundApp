@@ -9,6 +9,12 @@ import kotlinx.coroutines.tasks.await
 class TransactionDataSource {
 
     companion object {
+        private const val KEY_PROOF_WITHDRAW = "proofOfWithdraw"
+        private const val USER_ID = "userId"
+        private const val KEY_WITHDRAW = "withdraw"
+        private const val KEY_PENDING = "pending"
+        private const val KEY_TYPE = "type"
+        private const val KEY_STATUS = "status"
         private const val KEY_USERS = "users"
         private const val KEY_TRANSACTIONS = "transactions"
     }
@@ -42,7 +48,7 @@ class TransactionDataSource {
 
     suspend fun getTransactionHistoryData(userId: String): List<TransactionUser> {
         return firestore.collection(KEY_TRANSACTIONS)
-            .whereEqualTo("userId", userId)
+            .whereEqualTo(USER_ID, userId)
             .get()
             .await()
             .documents.mapNotNull { it.toObject(TransactionUser::class.java) }
@@ -50,9 +56,9 @@ class TransactionDataSource {
 
     suspend fun getAllWithdrawRequests(userId: String): List<TransactionUser> {
         return firestore.collection(KEY_TRANSACTIONS)
-            .whereEqualTo("userId", userId)
-            .whereEqualTo("type", "withdraw")
-            .whereEqualTo("status", "pending")
+            .whereEqualTo(USER_ID, userId)
+            .whereEqualTo(KEY_TYPE, KEY_WITHDRAW)
+            .whereEqualTo(KEY_STATUS, KEY_PENDING)
             .get()
             .await()
             .documents.mapNotNull { it.toObject(TransactionUser::class.java) }
@@ -60,12 +66,12 @@ class TransactionDataSource {
 
     suspend fun updateRequestStatus(transactionId: String, status: String) {
         firestore.collection(KEY_TRANSACTIONS).document(transactionId)
-            .update("status", status).await()
+            .update(KEY_STATUS, status).await()
     }
 
     suspend fun updateTransaction(transactionId: String, withdrawProof: String) {
         firestore.collection(KEY_TRANSACTIONS).document(transactionId)
-            .update("proofOfWithdraw", withdrawProof)
+            .update(KEY_PROOF_WITHDRAW, withdrawProof).await()
 
 
     }

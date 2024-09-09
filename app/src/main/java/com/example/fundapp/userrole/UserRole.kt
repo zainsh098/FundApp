@@ -1,7 +1,6 @@
 package com.example.fundapp.userrole
 
 import android.util.Log
-import com.example.fundapp.viewmodel.UserViewModel
 
 object SessionManager {
     private var currentUserRole: String? = null

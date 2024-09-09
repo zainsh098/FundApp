@@ -13,7 +13,7 @@ class MyRequestAdapter(
 
     private var withdrawlRequest: MutableList<TransactionUser>
 ) : RecyclerView.Adapter<MyRequestAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyRequestAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             MyRequestItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
@@ -24,7 +24,7 @@ class MyRequestAdapter(
     class ViewHolder(val binding: MyRequestItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: MyRequestAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val withdrawlRequest = withdrawlRequest[position]
 
         holder.binding.textViewWithdrawAmount.text = "Rs: " + withdrawlRequest.amount.toString()
@@ -36,8 +36,6 @@ class MyRequestAdapter(
             Glide.with(holder.itemView.context).load(withdrawlRequest.photoUrl)
                 .placeholder(R.drawable.baseline_person_24).into(it)
         }
-
-
     }
 
     override fun getItemCount(): Int {

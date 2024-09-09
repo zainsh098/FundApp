@@ -14,7 +14,23 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.ViewHolder>()
     private var transactions: List<TransactionUser> = emptyList()
 
     class ViewHolder(val binding: TransactionDetailsItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
+        fun bind(transactionUser: TransactionUser) {
+            binding.apply {
+
+                if (transactionUser.type == "withdraw") {
+                    transcationAmount.setTextColor(Color.RED)
+                } else {
+                    transcationAmount.setTextColor(Color.GREEN)
+                    binding.imageViewDownArrow.setImageResource(R.drawable.uparrow_green)
+                }
+                transcationAmount.text = "Rs:${transactionUser.amount}"
+                transcationType.text = transactionUser.type
+                transcationID.text = "ID:${transactionUser.transactionId}"
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = TransactionDetailsItemBinding.inflate(
@@ -27,18 +43,8 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.ViewHolder>()
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val transaction = transactions[position]
 
-        if (transaction.type == "withdraw") {
-            holder.binding.transcationAmount.setTextColor(Color.RED)
-        } else {
-            holder.binding.transcationAmount.setTextColor(Color.GREEN)
-            holder.binding.imageViewDownArrow.setImageResource(R.drawable.uparrow_green)
-        }
-
-        holder.binding.transcationAmount.text = "Rs:${transaction.amount}"
-        holder.binding.transcationType.text = transaction.type
-        holder.binding.transcationID.text = "ID:${transaction.transactionId}"
+        holder.bind(transactions[position])
     }
 
     override fun getItemCount(): Int = transactions.size

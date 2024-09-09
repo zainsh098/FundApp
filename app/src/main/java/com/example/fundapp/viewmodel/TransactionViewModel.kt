@@ -6,12 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.remote.TransactionDataSource
 import com.example.fundapp.repository.TransactionRepository
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
 open class TransactionViewModel : ViewModel() {
 
-    private val firestore = FirebaseFirestore.getInstance()
     private val transactionRepository = TransactionRepository(TransactionDataSource())
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
     val allTransactionHistoryUsers: MutableLiveData<List<TransactionUser>> = MutableLiveData()
@@ -65,6 +63,5 @@ open class TransactionViewModel : ViewModel() {
             transactionRepository.updateTransaction(transactionId, proofUrl)
         }
     }
-
 
 }

@@ -1,24 +1,22 @@
 package com.example.fundapp.fragments.withdraw
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fundapp.R
+import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentWithdrawBinding
-import com.example.fundapp.fragments.bottomsheet.BottomSheetDFragment
 import com.example.fundapp.fragments.bottomsheet.WithdrawalBottomSheetFragment
 import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class WithdrawFragment : Fragment() {
+class WithdrawFragment :
+    BindingFragment<FragmentWithdrawBinding>(FragmentWithdrawBinding::inflate) {
 
-    private lateinit var binding: FragmentWithdrawBinding
     private val userViewModel: UserViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
     private var currentUserBalance: Int = 0 // Will store the current balance of the user
@@ -92,7 +90,6 @@ class WithdrawFragment : Fragment() {
             }
         }
 
-        // Observe withdrawal success
         withdrawViewModel.withdrawSuccess.observe(viewLifecycleOwner) { success ->
             if (success) {
                 showBottomSheet()

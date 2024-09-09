@@ -5,20 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.R
 import com.example.fundapp.adapter.TransactionAdapter
+import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
 import com.example.fundapp.extensions.visibility
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class TransactionDetailsFragment : Fragment() {
+class TransactionDetailsFragment :
+    BindingFragment<FragmentTransactionDetailsBinding>(FragmentTransactionDetailsBinding::inflate) {
 
-    private lateinit var binding: FragmentTransactionDetailsBinding
     private lateinit var transactionAdapter: TransactionAdapter
     private val transactionViewModel: TransactionViewModel by viewModels()
     private lateinit var auth: FirebaseAuth

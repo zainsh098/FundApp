@@ -14,15 +14,12 @@ import kotlinx.coroutines.launch
 open class UserViewModel : ViewModel() {
 
     private val firestore = FirebaseFirestore.getInstance()
-
     private val userRepository = UserRepository(FirebaseDataSource(firestore))
-
     val currentUser: MutableLiveData<User?> = MutableLiveData()
     var orgBalance: MutableLiveData<Int> = MutableLiveData(0)
     val allUsers: MutableLiveData<List<User>> = MutableLiveData()
-    val userIds: MutableLiveData<List<String>> = MutableLiveData()
+//    val userIds: MutableLiveData<List<String>> = MutableLiveData()
     val userBalance: MutableLiveData<Double?> = MutableLiveData()
-
 
     fun saveUser(user: User) {
         viewModelScope.launch {
@@ -49,14 +46,14 @@ open class UserViewModel : ViewModel() {
             }
         }
     }
-
-    fun getAllUserIds() {
-        viewModelScope.launch {
-            val userList = userRepository.getAllUsers()
-            val ids = userList.map { it.userId }
-            userIds.value = ids
-        }
-    }
+//
+//    fun getAllUserIds() {
+//        viewModelScope.launch {
+//            val userList = userRepository.getAllUsers()
+//            val ids = userList.map { it.userId }
+//            userIds.value = ids
+//        }
+//    }
 
     fun getUserCurrentBalance(userId: String) {
         viewModelScope.launch {
@@ -65,8 +62,6 @@ open class UserViewModel : ViewModel() {
 
         }
     }
-
-
 }
 
 

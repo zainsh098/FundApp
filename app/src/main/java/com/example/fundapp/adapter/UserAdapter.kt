@@ -14,7 +14,7 @@ class UserAdapter(
     private val listener: OnItemClickListenerUser
 ) :
     RecyclerView.Adapter<UserAdapter.MyViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = UserItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
@@ -26,7 +26,7 @@ class UserAdapter(
                 emailID.text = user.email.getEmailMasked()
                 totalDepositedValue.text = user.totalDeposited.toString()
                 totalWithdrawValue.text = user.totalWithdrawAmount.toString()
-                userCurrentBalance.text = "Balance: "+user.currentBalance.toString()
+                userCurrentBalance.text = "Balance: " + user.currentBalance.toString()
 
                 user.photoUrl?.let { url ->
                     Glide.with(root)
@@ -38,7 +38,7 @@ class UserAdapter(
         }
     }
 
-    override fun onBindViewHolder(holder: UserAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(users.get(position))
         holder.itemView.setOnClickListener {
             listener.onItemClick(users[position])

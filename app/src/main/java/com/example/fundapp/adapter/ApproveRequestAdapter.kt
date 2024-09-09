@@ -19,7 +19,7 @@ class ApproveRequestAdapter(
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
-    ): ApproveRequestAdapter.ViewHolder {
+    ): ViewHolder {
         val binding =
             RequestApproveItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -36,31 +36,21 @@ class ApproveRequestAdapter(
             Glide.with(holder.itemView.context).load(approveRequest.photoUrl)
                 .placeholder(R.drawable.baseline_person_24).into(it)
         }
-
-
-
         holder.binding.buttonApproveRequest.setOnClickListener {
             listener.onAcceptClick(
                 approveRequest.transactionId,
                 approveRequest.userId,
                 approveRequest.amount,
                 approveRequest.date
-
             )
             requestList.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
-
-
         }
         holder.binding.buttonRejectRequest.setOnClickListener {
             listener.onRejectClick(approveRequest.transactionId)
             requestList.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
-
-
         }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -75,7 +65,6 @@ class ApproveRequestAdapter(
 }
 
 interface ApproveRequestAdapterListener {
-
     fun onAcceptClick(transactionId: String, userId: String, withdrawAmount: Int, date: String)
     fun onRejectClick(transactionId: String)
 

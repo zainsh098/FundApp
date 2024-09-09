@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BindingFragment<Binding : ViewBinding>(private val bindingInflater: (LayoutInflater) -> Binding) : Fragment() {
+abstract class BindingFragment<Binding : ViewBinding>(private val bindingInflater: (LayoutInflater) -> Binding) :
+    Fragment() {
 
     protected lateinit var binding: Binding
 

@@ -1,26 +1,21 @@
 package com.example.fundapp.fragments.menu
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
+import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentMenuBinding
-import com.example.fundapp.extensions.visibility
 import com.example.fundapp.userrole.SessionManager
-import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
-class MenuFragment : Fragment() {
+class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::inflate) {
 
-    private lateinit var binding: FragmentMenuBinding
     private val menuViewModel: MenuViewModel by viewModels()
-    private val userViewModel: UserViewModel by viewModels()
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
@@ -60,6 +55,8 @@ class MenuFragment : Fragment() {
                 findNavController().navigate(R.id.action_menuFragment_to_homeFragment)
             }
         }
+
+        findNavController().popBackStack(R.id.withdrawProofFragment, false)
 
         binding.apply {
             cardDeposit.setOnClickListener {
