@@ -8,7 +8,6 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
 
     suspend fun depositAmount(transaction: TransactionUser) {
         dataSource.depositAmount(transaction)
-        updateDepositBalance(transaction.userId, transaction.amount)
     }
 
     suspend fun acceptWithdrawalRequest(
@@ -18,6 +17,16 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
     ) {
         dataSource.updateRequestStatus(transactionId, TransactionConstant.KEY_ACCEPTED)
         updateWithdrawBalance(userId, withdrawAmount)
+    }
+
+
+    suspend fun acceptDepositRequest(
+        transactionId: String,
+        userId: String,
+        depositAmount: Int
+    ) {
+        updateDepositBalance(userId, depositAmount)
+        dataSource.updateRequestStatus(transactionId, TransactionConstant.KEY_ACCEPTED)
     }
 
     private suspend fun updateDepositBalance(userId: String, depositAmount: Int) {
@@ -52,19 +61,8 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
 
     suspend fun rejectWithdrawalRequest(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "rejected")
-    }
 
-//    suspend fun getAllUsersTransactions(): List<TransactionUser> {
-//        val users = dataSource.getAllUsers()
-//        val usersTransactionsList = mutableListOf<TransactionUser>()
-//
-//        for (user in users) {
-//            val userTransactions = dataSource.getTransactionHistoryData(user.userId)
-//            usersTransactionsList.addAll(userTransactions)
-//            val orgBalance = +user.currentBalance!!
-//        }
-//        return usersTransactionsList
-//    }
+    }
 
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()
@@ -74,6 +72,17 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
             withdrawRequests.addAll(userWithdrawRequests)
         }
         return withdrawRequests
+    }
+
+
+    suspend fun getAllDepositRequests(): List<TransactionUser> {
+        val users = dataSource.getAllUsers()
+        val depositRequests = mutableListOf<TransactionUser>()
+        for (user in users) {
+            val userDepositRequests = dataSource.getAllDepositRequest(user.userId)
+            depositRequests.addAll(userDepositRequests)
+        }
+        return depositRequests
     }
 }
 

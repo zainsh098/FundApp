@@ -14,8 +14,8 @@ class TransactionDataSource {
     suspend fun getAllUsers(): List<User> {
         return firestore.collection(TransactionConstant.KEY_USERS).get()
             .await().documents.mapNotNull {
-            it.toObject(User::class.java)
-        }
+                it.toObject(User::class.java)
+            }
     }
 
     suspend fun getUser(userId: String): User? {
@@ -56,6 +56,20 @@ class TransactionDataSource {
             .await()
             .documents.mapNotNull { it.toObject(TransactionUser::class.java) }
     }
+
+
+    suspend fun getAllDepositRequest(userId: String): List<TransactionUser> {
+        return firestore.collection(TransactionConstant.KEY_TRANSACTIONS)
+            .whereEqualTo(TransactionConstant.USER_ID, userId)
+            .whereEqualTo(TransactionConstant.KEY_TYPE, TransactionConstant.KEY_DEPOSIT)
+            .whereEqualTo(TransactionConstant.KEY_STATUS, TransactionConstant.KEY_PENDING)
+            .get()
+            .await()
+            .documents.mapNotNull { it.toObject(TransactionUser::class.java) }
+
+
+    }
+
 
     suspend fun updateRequestStatus(transactionId: String, status: String) {
         firestore.collection(TransactionConstant.KEY_TRANSACTIONS).document(transactionId)

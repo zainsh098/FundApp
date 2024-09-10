@@ -37,12 +37,6 @@ open class TransactionViewModel : ViewModel() {
     }
 
 
-//    fun getAllUsersTransactionHistory(userId: String) {
-//        viewModelScope.launch {
-//            val history = transactionRepository.getAllUsersTransactions()
-//            allTransactionHistoryUsers.value = history
-//        }
-//    }
 
     fun acceptRequest(transactionId: String, userId: String, withdrawAmount: Int) {
         viewModelScope.launch {
@@ -50,6 +44,14 @@ open class TransactionViewModel : ViewModel() {
 
         }
     }
+
+    fun acceptDepositRequest(transactionId: String, userId: String, withdrawAmount: Int) {
+        viewModelScope.launch {
+            transactionRepository.acceptDepositRequest(transactionId, userId, withdrawAmount)
+
+        }
+    }
+
 
     fun rejectRequest(transactionId: String) {
         viewModelScope.launch {

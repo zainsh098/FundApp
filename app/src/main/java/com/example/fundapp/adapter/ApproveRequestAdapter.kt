@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.RequestApproveItemBinding
+import com.example.fundapp.fragments.approverequest.ApproveRequestFragment
 import com.example.fundapp.model.TransactionUser
 
 class ApproveRequestAdapter(
     private var requestList: MutableList<TransactionUser>,
-    private val listener: ApproveRequestAdapterListener
+    private val listener: ApproveRequestFragment
 
 
 ) : RecyclerView.Adapter<ApproveRequestAdapter.ViewHolder>() {
@@ -67,5 +68,4 @@ class ApproveRequestAdapter(
 interface ApproveRequestAdapterListener {
     fun onAcceptClick(transactionId: String, userId: String, withdrawAmount: Int, date: String)
     fun onRejectClick(transactionId: String)
-
 }

@@ -125,7 +125,7 @@
                     android:fontFamily="@font/inter"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="@+id/textHomeDeposited"
-                    app:layout_constraintStart_toEndOf="@+id/imageViewuparrow"
+                    app:layout_constraintStart_toStartOf="@+id/textHomeDeposited"
                     app:layout_constraintTop_toBottomOf="@+id/textHomeDeposited"
                     tools:text="Rs" />
 

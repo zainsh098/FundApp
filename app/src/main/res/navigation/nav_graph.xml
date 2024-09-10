@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_menuFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_approveDepositFragment"
+            app:destination="@id/approveDepositFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFragment"
@@ -121,7 +124,7 @@
     </fragment>
     <fragment
         android:id="@+id/myRequestFragment"
-        android:name="com.example.fundapp.fragments.myrequest.MyRequestFragment"
+        android:name="com.example.fundapp.fragments.myrequestwithdraw.MyRequestFragment"
         android:label="fragment_my_request"
         tools:layout="@layout/fragment_my_request" >
         <action
@@ -165,4 +168,9 @@
             android:id="@+id/action_withdrawProofFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/approveDepositFragment"
+        android:name="com.example.fundapp.fragments.approvedeposit.ApproveDepositFragment"
+        android:label="fragment_my_request_deposit"
+        tools:layout="@layout/fragment_deposit_approve_request" />
 </navigation>

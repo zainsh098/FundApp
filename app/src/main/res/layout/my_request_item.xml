@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myRequestCardItem"
     style="@style/myrequest_card"
+    android:layout_marginHorizontal="@dimen/_15sdp"
     app:cardBackgroundColor="@color/Light_100"
     app:cardCornerRadius="@dimen/_13sdp"
     app:cardElevation="0dp"
@@ -68,7 +69,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
             android:fontFamily="@font/inter_semibold"
             android:textColor="@color/black"
             android:textSize="@dimen/_10ssp"
@@ -76,6 +77,7 @@
             app:layout_constraintStart_toEndOf="@id/guideline7"
             app:layout_constraintTop_toTopOf="@+id/guideline8"
             tools:text="Reason: Personal Expenses" />
+
 
         <TextView
             android:id="@+id/textViewWithdrawlStatus"
@@ -90,6 +92,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline8"
             tools:text="Pending" />
+
+        <TextView
+            android:id="@+id/textViewTransactionType"
+            style="@style/home_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/Light_20"
+            android:textSize="@dimen/_9ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline8"
+            tools:text="status" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"

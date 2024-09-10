@@ -73,6 +73,7 @@ class DepositViewModel : ViewModel() {
                     amount = depositAmount,
                     date = dateDepositAmount,
                     proofOfDeposit = fileUrl,
+                    status = "pending",
                     photoUrl = auth.currentUser!!.photoUrl.toString(),
                 )
                 try {

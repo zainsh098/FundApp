@@ -7,7 +7,6 @@
     android:background="@color/Violet_100"
     tools:context=".fragments.menu.MenuFragment">
 
-
     <include
         android:id="@+id/component_toolbar"
         layout="@layout/component_toolbar" />
@@ -77,7 +76,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider1"
             android:layout_width="match_parent"
@@ -92,6 +90,76 @@
 
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardApproveRequestDeposit"
+            style="@style/card_menu_style"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:cardBackgroundColor="@color/Light_100"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardApproveRequest"
+            app:rippleColor="@color/Light_20"
+            app:strokeColor="@color/Light_100">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/_13sdp">
+
+                <ImageView
+                    android:id="@id/imageView275"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="TODO"
+                    android:paddingVertical="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:src="@drawable/file"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintWidth_percent="0.2" />
+
+                <TextView
+                    style="@style/card_meu_text_style"
+                    android:text="Approve Deposit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView174"
+                    app:layout_constraintStart_toEndOf="@+id/imageView275"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.6" />
+
+                <ImageView
+                    android:id="@+id/imageView174"
+                    style="@style/menu_arrow_image_style"
+                    android:paddingVertical="@dimen/_19sdp"
+                    android:paddingStart="@dimen/_30sdp"
+                    android:src="@drawable/next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.2"
+                    tools:ignore="RtlSymmetry" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider9"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:dividerColor="@color/Light_60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardApproveRequestDeposit" />
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardMyRequest"
             style="@style/card_menu_style"
             android:layout_marginHorizontal="@dimen/_15sdp"
@@ -100,7 +168,7 @@
             app:cardCornerRadius="@dimen/_8sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divider1"
+            app:layout_constraintTop_toBottomOf="@id/divider9"
             app:rippleColor="@color/Light_20"
             app:strokeColor="@color/Light_100">
 
@@ -157,6 +225,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardMyRequest" />
+
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardWithdrawFunds"
@@ -341,6 +410,9 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

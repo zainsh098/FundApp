@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.myrequest
+package com.example.fundapp.fragments.myrequestwithdraw
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,31 +32,25 @@ class MyRequestFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         myRequestAdapter = MyRequestAdapter(mutableListOf(), this)
+
         binding.apply {
             myRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             myRequestRecyclerView.adapter = myRequestAdapter
         }
-
         binding.componentToolbar.apply {
-
             textToolbar.text = getString(R.string.my_request)
             backArrow.setImageResource(R.drawable.back)
             cardImage.visibility(false)
-
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_myRequestFragment_to_menuFragment)
 
             }
-
         }
         myRequestViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility(isLoading)
 
         }
-
-
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
             val myRequestHistory =
                 history.filterNotNull().filter { it.status == "pending" || it.status == "accepted" }
@@ -66,9 +60,8 @@ class MyRequestFragment :
             }
             myRequestAdapter.updateList(sortedHistory)
         }
-
-
     }
+
     override fun showPhoto(position: Int, photoUrl: String?) {
         val bundle = Bundle()
         bundle.putString("photoUrl", photoUrl)
@@ -77,6 +70,4 @@ class MyRequestFragment :
         bottomSheet.show(parentFragmentManager, BottomSheetDFragment::class.java.name)
 
     }
-
-
 }

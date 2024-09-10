@@ -7,6 +7,7 @@ class TransactionConstant {
         const val KEY_PROOF_WITHDRAW = "proofOfWithdraw"
         const val USER_ID = "userId"
         const val KEY_WITHDRAW = "withdraw"
+        const val KEY_DEPOSIT = "deposit"
         const val KEY_ACCEPTED = "accepted"
         const val KEY_PENDING = "pending"
         const val KEY_TYPE = "type"

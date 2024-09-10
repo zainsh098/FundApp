@@ -32,18 +32,27 @@ class MyRequestAdapter(
         holder.binding.textViewTransactionDate.text = withdrawlRequest.date
         holder.binding.textViewWithdrawlStatus.text = withdrawlRequest.status
         holder.binding.textViewWithdrawReason.text = withdrawlRequest.reason
+        holder.binding.textViewTransactionType.text = withdrawlRequest.type
         holder.binding.circularImageView.let {
             Glide.with(holder.itemView.context).load(withdrawlRequest.photoUrl)
                 .placeholder(R.drawable.baseline_person_24).into(it)
         }
         holder.binding.myRequestCardItem.setOnClickListener {
-            listener.showPhoto(position, withdrawlRequest.proofOfWithdraw)
+            if (withdrawlRequest.type == "withdraw") {
+                listener.showPhoto(position, withdrawlRequest.proofOfWithdraw)
+
+            } else {
+
+                listener.showPhoto(position, withdrawlRequest.proofOfDeposit)
+
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return withdrawlRequest.size
     }
+
 
     fun updateList(newWithdrawlRequest: List<TransactionUser>) {
         withdrawlRequest.addAll(newWithdrawlRequest)

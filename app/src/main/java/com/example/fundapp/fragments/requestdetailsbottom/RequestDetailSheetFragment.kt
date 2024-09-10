@@ -4,18 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.FragmentRequestDetailSheetBinding
-import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class RequestDetailSheetFragment : BottomSheetDialogFragment() {
-
-
-
     private lateinit var binding: FragmentRequestDetailSheetBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

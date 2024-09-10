@@ -1,4 +1,4 @@
-package com.example.fundapp.fragments.myrequest
+package com.example.fundapp.fragments.myrequestwithdraw
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -7,7 +7,6 @@ import com.example.fundapp.remote.TransactionDataSource
 import com.example.fundapp.repository.TransactionRepository
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
 class MyRequestViewModel : TransactionViewModel() {
