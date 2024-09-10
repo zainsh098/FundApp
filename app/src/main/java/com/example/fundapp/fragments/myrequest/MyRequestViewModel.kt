@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 class MyRequestViewModel : TransactionViewModel() {
 
-    private val firestore = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
     private val transactionRepository = TransactionRepository(TransactionDataSource())
     private val _gettransactionHistory1: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
@@ -23,7 +22,6 @@ class MyRequestViewModel : TransactionViewModel() {
     }
 
     private fun getTransactionHistoryUser(userId: String) {
-
         viewModelScope.launch {
             isLoading.value = true
             val history = transactionRepository.getTransactionHistory(userId)

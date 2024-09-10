@@ -30,7 +30,6 @@ open class TransactionViewModel : ViewModel() {
     fun getTransactionHistory(userId: String) {
         viewModelScope.launch {
             isLoading.value = true
-
             val history = transactionRepository.getTransactionHistory(userId)
             transactionHistory.value = history
             isLoading.value = false

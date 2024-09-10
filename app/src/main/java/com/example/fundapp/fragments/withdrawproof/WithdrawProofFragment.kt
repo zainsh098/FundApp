@@ -31,16 +31,20 @@ class WithdrawProofFragment :
         val date = arguments?.getString("date")
 
         binding.componentToolbar.apply {
+            cardImage.visibility(false)
             textToolbar.text = getString(R.string.withdraw_approval)
+            backArrow.setImageResource(R.drawable.back)
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_withdrawProofFragment_to_menuFragment)
             }
-            cardImage.visibility(false)
+        }
+        binding.apply {
+            textFieldWithdraw.setText(withdrawAmount)
+            textViewSelectedDate.text = date
+            textFieldWithdrawReason.setText(transactionID)
         }
 
-        binding.textFieldWithdraw.setText(withdrawAmount)
-        binding.textViewSelectedDate.text = date
-        binding.textFieldWithdrawReason.setText(transactionID)
+
 
         binding.cardViewAttachment.setOnClickListener {
             pickFile()

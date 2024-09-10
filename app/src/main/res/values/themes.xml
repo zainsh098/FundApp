@@ -14,7 +14,8 @@
         <item name="android:colorAccent">@color/Violet_100</item>
         <item name="android:buttonBarPositiveButtonStyle">@style/DialogButtonStyled</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/DialogButtonStyled</item>
-a    </style>
+        a
+    </style>
 
     <style name="DialogButtonStyled" parent="Theme.MaterialComponents.Light">
         <item name="android:layout_marginEnd">@dimen/_10sdp</item>
