@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -27,9 +28,7 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
+        
         if (SessionManager.getRole() == "admin") {
             binding.cardApproveRequest.visibility = View.VISIBLE
         } else {
@@ -56,7 +55,6 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
             }
         }
 
-        findNavController().popBackStack(R.id.withdrawProofFragment, false)
 
         binding.apply {
             cardDeposit.setOnClickListener {
@@ -72,5 +70,16 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
                 findNavController().navigate(R.id.action_menuFragment_to_approveRequestFragment)
             }
         }
+
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().moveTaskToBack(true)
+                }
+            })
     }
+
+
 }

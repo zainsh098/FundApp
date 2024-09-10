@@ -11,12 +11,13 @@ import com.example.fundapp.model.TransactionUser
 
 class MyRequestAdapter(
 
-    private var withdrawlRequest: MutableList<TransactionUser>
+    private var withdrawlRequest: MutableList<TransactionUser>,
+    private val listener: OnClickItemShowBottomSheet
+
 ) : RecyclerView.Adapter<MyRequestAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             MyRequestItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
         return ViewHolder(binding)
 
     }
@@ -31,10 +32,12 @@ class MyRequestAdapter(
         holder.binding.textViewTransactionDate.text = withdrawlRequest.date
         holder.binding.textViewWithdrawlStatus.text = withdrawlRequest.status
         holder.binding.textViewWithdrawReason.text = withdrawlRequest.reason
-
         holder.binding.circularImageView.let {
             Glide.with(holder.itemView.context).load(withdrawlRequest.photoUrl)
                 .placeholder(R.drawable.baseline_person_24).into(it)
+        }
+        holder.binding.myRequestCardItem.setOnClickListener {
+            listener.showPhoto(position, withdrawlRequest.proofOfWithdraw)
         }
     }
 
@@ -47,5 +50,7 @@ class MyRequestAdapter(
         notifyDataSetChanged()
     }
 
-
+    interface OnClickItemShowBottomSheet {
+        fun showPhoto(position: Int, photoUrl: String?)
+    }
 }
