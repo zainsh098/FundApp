@@ -1,18 +1,18 @@
 package com.example.fundapp.fragments.withdraw
 
-import android.app.Application
 import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.fundapp.R
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Calendar
 import java.util.UUID
 
-class WithdrawViewModel(application: Application) : AndroidViewModel(application) {
+class WithdrawViewModel() : ViewModel() {
     var dateLiveData: MutableLiveData<String> = MutableLiveData()
     private val transactionViewModel = TransactionViewModel()
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -48,6 +48,7 @@ class WithdrawViewModel(application: Application) : AndroidViewModel(application
 
         val datePickerDialog = DatePickerDialog(
             context,
+            R.style.DialogTheme,
             { _, selectedYear, selectedMonth, selectedDay ->
                 val date = "$selectedDay/${selectedMonth + 1}/$selectedYear"
                 dateLiveData.value = date
