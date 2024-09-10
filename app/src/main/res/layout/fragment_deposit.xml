@@ -129,7 +129,7 @@
                 style="@style/button_style"
                 android:layout_width="match_parent"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:fontFamily="@font/inter_semibold"
                 android:gravity="center"
                 android:includeFontPadding="false"

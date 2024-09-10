@@ -1,5 +1,6 @@
 package com.example.fundapp.repository
 
+import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.remote.TransactionDataSource
 
@@ -15,7 +16,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         userId: String,
         withdrawAmount: Int
     ) {
-        dataSource.updateRequestStatus(transactionId, "accepted")
+        dataSource.updateRequestStatus(transactionId, TransactionConstant.KEY_ACCEPTED)
         updateWithdrawBalance(userId, withdrawAmount)
     }
 
@@ -53,17 +54,17 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         dataSource.updateRequestStatus(transactionId, "rejected")
     }
 
-    suspend fun getAllUsersTransactions(): List<TransactionUser> {
-        val users = dataSource.getAllUsers()
-        val usersTransactionsList = mutableListOf<TransactionUser>()
-
-        for (user in users) {
-            val userTransactions = dataSource.getTransactionHistoryData(user.userId)
-            usersTransactionsList.addAll(userTransactions)
-            val orgBalance = +user.currentBalance!!
-        }
-        return usersTransactionsList
-    }
+//    suspend fun getAllUsersTransactions(): List<TransactionUser> {
+//        val users = dataSource.getAllUsers()
+//        val usersTransactionsList = mutableListOf<TransactionUser>()
+//
+//        for (user in users) {
+//            val userTransactions = dataSource.getTransactionHistoryData(user.userId)
+//            usersTransactionsList.addAll(userTransactions)
+//            val orgBalance = +user.currentBalance!!
+//        }
+//        return usersTransactionsList
+//    }
 
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()

@@ -40,17 +40,12 @@ class TransactionDetailsFragment :
         transactionAdapter = TransactionAdapter()
 
         binding.componentToolbar.apply {
-
             textToolbar.text = getString(R.string.transaction_details)
             backArrow.setImageResource(R.drawable.back)
             cardImage.visibility(false)
             backArrow.setOnClickListener {
-
-
                 findNavController().navigate(R.id.action_transactionDetailsFragment_to_homeFragment)
             }
-
-
         }
 //
 //        userViewModel.userIds.observe(viewLifecycleOwner) { ids ->
@@ -71,14 +66,13 @@ class TransactionDetailsFragment :
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
             if (history.isNullOrEmpty()) {
                 binding.txtNoData.visibility = View.VISIBLE
-                binding.recyclerViewTransactionDetails.visibility = View.GONE
+//                binding.recyclerViewTransactionDetails.visibility = View.GONE
             } else {
-                binding.txtNoData.visibility = View.GONE
-                binding.recyclerViewTransactionDetails.visibility = View.VISIBLE
+//                binding.txtNoData.visibility = View.GONE
+//                binding.recyclerViewTransactionDetails.visibility = View.VISIBLE
                 transactionAdapter.updateList(history.filterNotNull())
             }
         }
-
         if (userId != null) {
             transactionViewModel.getTransactionHistory(userId)
         }

@@ -38,12 +38,12 @@ open class TransactionViewModel : ViewModel() {
     }
 
 
-    fun getAllUsersTransactionHistory(userId: String) {
-        viewModelScope.launch {
-            val history = transactionRepository.getAllUsersTransactions()
-            allTransactionHistoryUsers.value = history
-        }
-    }
+//    fun getAllUsersTransactionHistory(userId: String) {
+//        viewModelScope.launch {
+//            val history = transactionRepository.getAllUsersTransactions()
+//            allTransactionHistoryUsers.value = history
+//        }
+//    }
 
     fun acceptRequest(transactionId: String, userId: String, withdrawAmount: Int) {
         viewModelScope.launch {

@@ -43,21 +43,16 @@ class WithdrawFragment :
             cardImage.visibility = View.GONE
         }
 
-        // Observe the user's current balance
+        userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
         userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
             balance?.let {
                 currentUserBalance = it.toInt()
             }
         }
 
-        // Observe the selected date
         withdrawViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
             binding.textViewSelectedDate.text = date
         }
-
-        // Fetch the user's current balance
-        userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
-
         binding.apply {
             textViewSelectedDate.setOnClickListener {
                 withdrawViewModel.selectDate(requireContext())
@@ -67,7 +62,6 @@ class WithdrawFragment :
                 val withdrawAmountText = textFieldWithdraw.text.toString()
                 val withdrawReason = textFieldWithdrawReason.text.toString()
                 val date = textViewSelectedDate.text.toString()
-
                 if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
                     Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 } else {
@@ -89,7 +83,6 @@ class WithdrawFragment :
                 }
             }
         }
-
         withdrawViewModel.withdrawSuccess.observe(viewLifecycleOwner) { success ->
             if (success) {
                 showBottomSheet()
