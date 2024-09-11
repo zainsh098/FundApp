@@ -2,31 +2,27 @@ package com.example.fundapp.fragments.withdraw
 
 import android.app.DatePickerDialog
 import android.content.Context
-import androidx.lifecycle.LiveData
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.fundapp.R
-import com.example.fundapp.extensions.percentOf
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Calendar
 import java.util.UUID
 
-class WithdrawViewModel : TransactionViewModel() {
+class WithdrawViewModel() : ViewModel() {
     var dateLiveData: MutableLiveData<String> = MutableLiveData()
+    private val transactionViewModel = TransactionViewModel()
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     val withdrawSuccess = MutableLiveData<Boolean>()
-    private val _successMessage = MutableLiveData<String>()
-    val successMessage: LiveData<String> get() = _successMessage
-
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> get() = _errorMessage
 
     fun requestWithdrawal(
-        currentBalance: Int,
         withdrawAmount: Int,
         withdrawReason: String,
-        dateWithdraw: String
+        dateWithdraw: String,
+        context: Context
     ) {
         val transaction = TransactionUser(
             photoUrl = auth.currentUser!!.photoUrl.toString(),
@@ -39,14 +35,9 @@ class WithdrawViewModel : TransactionViewModel() {
             userId = auth.currentUser!!.uid,
             status = "pending"
         )
-
-        if (withdrawAmount > currentBalance + (currentBalance.percentOf(50))) {
-            _errorMessage.value = "Amount is greater than the current balance"
-        } else {
-            withdrawAmount(transaction)
-            _successMessage.value = "Withdrawal Request is Submitted"
-            withdrawSuccess.value = true
-        }
+        transactionViewModel.withdrawAmount(transaction)
+        Toast.makeText(context, "Withdrawal request submitted", Toast.LENGTH_SHORT).show()
+        withdrawSuccess.value = true
     }
 
     fun selectDate(context: Context) {
