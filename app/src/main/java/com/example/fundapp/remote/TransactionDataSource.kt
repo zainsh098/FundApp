@@ -57,11 +57,6 @@ class TransactionDataSource {
             .documents.mapNotNull { it.toObject(TransactionUser::class.java) }
     }
 
-    suspend fun removeTransaction(transactionId: String) {
-        firestore.collection(TransactionConstant.KEY_TRANSACTIONS).document(transactionId).delete()
-            .await()
-    }
-
 
     suspend fun getAllDepositRequest(userId: String): List<TransactionUser> {
         return firestore.collection(TransactionConstant.KEY_TRANSACTIONS)
@@ -77,11 +72,6 @@ class TransactionDataSource {
 
 
     suspend fun updateRequestStatus(transactionId: String, status: String) {
-        firestore.collection(TransactionConstant.KEY_TRANSACTIONS).document(transactionId)
-            .update(TransactionConstant.KEY_STATUS, status).await()
-    }
-
-    suspend fun updateDepositRequestStatus(transactionId: String, status: String) {
         firestore.collection(TransactionConstant.KEY_TRANSACTIONS).document(transactionId)
             .update(TransactionConstant.KEY_STATUS, status).await()
     }
