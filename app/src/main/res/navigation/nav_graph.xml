@@ -86,6 +86,9 @@
         <action
             android:id="@+id/action_menuFragment_to_approveDepositFragment"
             app:destination="@id/approveDepositFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_policyFragment"
+            app:destination="@id/policyFragment" />
     </fragment>
     <fragment
         android:id="@+id/depositFragment"
@@ -173,4 +176,13 @@
         android:name="com.example.fundapp.fragments.approvedeposit.ApproveDepositFragment"
         android:label="fragment_my_request_deposit"
         tools:layout="@layout/fragment_deposit_approve_request" />
+    <fragment
+        android:id="@+id/policyFragment"
+        android:name="com.example.fundapp.fragments.policies.PolicyFragment"
+        android:label="fragment_policy"
+        tools:layout="@layout/fragment_policy" >
+        <action
+            android:id="@+id/action_policyFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
 </navigation>

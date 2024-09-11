@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Violet_100"
+    tools:context=".fragments.policies.PolicyFragment">
+
+    <!-- Include the custom toolbar component -->
+    <include
+        android:id="@+id/component_toolbar"
+        layout="@layout/component_toolbar" />
+
+    <!-- Main Content Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/component_toolbar">
+
+        <!-- Scrollable container for the policies text -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Section I - Introduction -->
+                <TextView
+                    android:id="@+id/introductionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/i_introduction"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <TextView
+                    android:id="@+id/introductionBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/the_fund_app_the_app_allows_users_to_manage_and_track_their_investments_savings_and_expenses_the_added_feature_of_tat_boost_offers_users_the_chance_to_receive_up_to_50_extra_of_their_current_balance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <TextView
+                    android:id="@+id/userAccountTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/ii_user_account_and_registration"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <TextView
+                    android:id="@+id/userAccountBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/to_use_the_app_users_must_create_an_account_by_providing_required_information_including_name_email_address_and_password"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <!-- Section III - TAT Boost Feature -->
+                <TextView
+                    android:id="@+id/tatBoostTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/iii_tat_boost_feature"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <TextView
+                    android:id="@+id/tatBoostBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/the_tat_boost_feature_allows_users_to_receive_up_to_50_extra_of_their_current_balance_subject_to_terms_and_conditions"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <!-- Section IV - Withdrawal Policy -->
+                <TextView
+                    android:id="@+id/withdrawalPolicyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/iv_withdrawal_policy"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <TextView
+                    android:id="@+id/withdrawalPolicyBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/users_can_request_withdrawals_of_their_available_balance_at_any_time_subject_to_withdrawal_limits_and_terms_set_by_the_app_withdrawals_are_subject_to_approval_by_the_admin"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <!-- Section V - Privacy and Data Protection -->
+                <TextView
+                    android:id="@+id/privacyPolicyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/v_privacy_and_data_protection"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <TextView
+                    android:id="@+id/privacyPolicyBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/we_value_your_privacy_and_are_committed_to_protecting_your_personal_data_your_information_will_be_used_only_for_managing_your_account_and_transactions_within_the_app_and_will_not_be_shared_with_third_parties"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <!-- Section VI - Amendments to Terms -->
+                <TextView
+                    android:id="@+id/amendmentsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="@string/vi_amendments_to_terms"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp" />
+
+                <TextView
+                    android:id="@+id/amendmentsBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_13sdp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/we_reserve_the_right_to_amend_these_terms_at_any_time_users_will_be_notified_of_any_significant_changes_and_continued_use_of_the_app_after_changes_are_made_implies_acceptance_of_the_new_termss"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

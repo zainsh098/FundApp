@@ -49,7 +49,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
-                    app:layout_constraintWidth_percent="0.2" />
+                    app:layout_constraintWidth_percent="0.2"
+                    tools:ignore="RtlSymmetry" />
 
                 <TextView
                     style="@style/card_meu_text_style"
@@ -274,7 +275,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintWidth_percent="0.2"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,RtlSymmetry" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -360,7 +361,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardDeposit" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card5"
+            android:id="@+id/cardPolicy"
             style="@style/card_menu_style"
             android:layout_marginHorizontal="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_10sdp"

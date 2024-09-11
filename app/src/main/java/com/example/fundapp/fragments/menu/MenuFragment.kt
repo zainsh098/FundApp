@@ -69,10 +69,13 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
             cardApproveRequest.setOnClickListener {
                 findNavController().navigate(R.id.action_menuFragment_to_approveRequestFragment)
             }
-
             cardApproveRequestDeposit.setOnClickListener {
                 findNavController().navigate(R.id.action_menuFragment_to_approveDepositFragment)
+            }
 
+            cardPolicy.setOnClickListener {
+
+                findNavController().navigate(R.id.action_menuFragment_to_policyFragment)
             }
         }
 
