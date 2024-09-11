@@ -19,14 +19,13 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         updateWithdrawBalance(userId, withdrawAmount)
     }
 
-
     suspend fun acceptDepositRequest(
         transactionId: String,
         userId: String,
         depositAmount: Int
     ) {
         updateDepositBalance(userId, depositAmount)
-        dataSource.updateRequestStatus(transactionId, TransactionConstant.KEY_ACCEPTED)
+        dataSource.updateDepositRequestStatus(transactionId, TransactionConstant.KEY_ACCEPTED)
     }
 
     private suspend fun updateDepositBalance(userId: String, depositAmount: Int) {
@@ -59,8 +58,9 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         return dataSource.updateTransaction(transactionId, withdrawProof)
     }
 
-    suspend fun rejectWithdrawalRequest(transactionId: String) {
+    suspend fun rejectRequest(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "rejected")
+        dataSource.removeTransaction(transactionId)
 
     }
 

@@ -32,15 +32,12 @@ class ApproveRequestFragment: BindingFragment<FragmentApproveRequestBinding>(Fra
         adapter = ApproveRequestAdapter(mutableListOf(), this)
         binding.approveRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.approveRequestRecyclerView.adapter = adapter
-
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.approvals)
             backArrow.setImageResource(R.drawable.back)
             cardImage.visibility(false)
             backArrow.setOnClickListener {
-
                 findNavController().navigate(R.id.action_approveRequestFragment_to_menuFragment)
-
             }
         }
         approveRequestViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
@@ -55,8 +52,6 @@ class ApproveRequestFragment: BindingFragment<FragmentApproveRequestBinding>(Fra
             } else {
                 binding.txtNoData.visibility = View.GONE
                 adapter.updateList(withdrawalRequests)
-
-
             }
             Log.d("ApproveRequestFragment", "Withdrawal Requests: $withdrawalRequests")
         }

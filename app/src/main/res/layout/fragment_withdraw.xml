@@ -116,7 +116,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonWithdrawAmount"
+            android:id="@+id/buttonRequestWithdraw"
             style="@style/button_style"
             android:layout_width="match_parent"
             android:layout_marginEnd="@dimen/_20sdp"

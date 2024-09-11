@@ -12,7 +12,6 @@ open class TransactionViewModel : ViewModel() {
 
     private val transactionRepository = TransactionRepository(TransactionDataSource())
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
-    val allTransactionHistoryUsers: MutableLiveData<List<TransactionUser>> = MutableLiveData()
     val isLoading = MutableLiveData<Boolean>()
 
     fun submitDeposit(transaction: TransactionUser) {
@@ -36,12 +35,9 @@ open class TransactionViewModel : ViewModel() {
         }
     }
 
-
-
     fun acceptRequest(transactionId: String, userId: String, withdrawAmount: Int) {
         viewModelScope.launch {
             transactionRepository.acceptWithdrawalRequest(transactionId, userId, withdrawAmount)
-
         }
     }
 
@@ -52,10 +48,9 @@ open class TransactionViewModel : ViewModel() {
         }
     }
 
-
     fun rejectRequest(transactionId: String) {
         viewModelScope.launch {
-            transactionRepository.rejectWithdrawalRequest(transactionId)
+            transactionRepository.rejectRequest(transactionId)
         }
     }
 
