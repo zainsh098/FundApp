@@ -112,9 +112,6 @@
             app:exitAnim="@animator/slide_in_left"
 
             />
-        <action
-            android:id="@+id/action_withdrawFragment_to_menuFragment2"
-            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionDetailsFragment"
@@ -175,9 +172,5 @@
         android:id="@+id/approveDepositFragment"
         android:name="com.example.fundapp.fragments.approvedeposit.ApproveDepositFragment"
         android:label="fragment_my_request_deposit"
-        tools:layout="@layout/fragment_deposit_approve_request" >
-        <action
-            android:id="@+id/action_approveDepositFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_deposit_approve_request" />
 </navigation>
