@@ -34,7 +34,7 @@ class ApproveDepositFragment :
             cardImage.visibility(false)
             backArrow.setOnClickListener {
 
-                findNavController().navigate(R.id.action_approveDepositFragment_to_menuFragment)
+                findNavController().navigate(R.id.action_approveRequestFragment_to_menuFragment)
 
             }
         }
