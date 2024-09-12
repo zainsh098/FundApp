@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentMenuBinding
+import com.example.fundapp.extensions.visibility
 import com.example.fundapp.userrole.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 
@@ -28,14 +29,14 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         if (SessionManager.getRole() == "admin") {
-            binding.cardApproveRequest.visibility = View.VISIBLE
+            binding.cardApproveRequest.visibility(true)
+            binding.cardApproveRequestDeposit.visibility(true)
         } else {
+            binding.cardApproveRequestDeposit.visibility(false)
             binding.cardApproveRequest.visibility = View.GONE
         }
-
-
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.menu)
             context?.let {
@@ -44,17 +45,14 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
                     .into(binding.componentToolbar.circularImageView)
             }
             backArrow.setImageResource(R.drawable.back)
-
             cardImage.setOnClickListener {
                 auth.signOut()
                 findNavController().navigate(R.id.action_menuFragment_to_loginFragment)
             }
-
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_menuFragment_to_homeFragment)
             }
         }
-
 
         binding.apply {
             cardDeposit.setOnClickListener {
@@ -72,9 +70,7 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
             cardApproveRequestDeposit.setOnClickListener {
                 findNavController().navigate(R.id.action_menuFragment_to_approveDepositFragment)
             }
-
             cardPolicy.setOnClickListener {
-
                 findNavController().navigate(R.id.action_menuFragment_to_policyFragment)
             }
         }

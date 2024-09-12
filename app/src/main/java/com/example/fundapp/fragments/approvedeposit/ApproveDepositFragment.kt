@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.R
-import com.example.fundapp.adapter.ApproveRequestAdapter
 import com.example.fundapp.adapter.DepositApproveAdapter
 import com.example.fundapp.adapter.DepositApproveAdapter.OnClickItemListenerDeposit
 import com.example.fundapp.base.BindingFragment
@@ -34,7 +33,7 @@ class ApproveDepositFragment :
             cardImage.visibility(false)
             backArrow.setOnClickListener {
 
-                findNavController().navigate(R.id.action_approveRequestFragment_to_menuFragment)
+                findNavController().navigate(R.id.action_approveDepositFragment_to_menuFragment)
 
             }
         }
@@ -61,6 +60,7 @@ class ApproveDepositFragment :
         approveDepositViewModel.acceptDepositRequest(transactionId, userId, depositAmount)
 
     }
+
     override fun rejectClick(transactionId: String) {
         approveDepositViewModel.rejectRequest(transactionId)
     }

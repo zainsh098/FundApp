@@ -47,6 +47,7 @@ class ApproveRequestAdapter(
             requestList.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
         }
+
         holder.binding.buttonRejectRequest.setOnClickListener {
             listener.onRejectClick(approveRequest.transactionId)
             requestList.removeAt(holder.adapterPosition)

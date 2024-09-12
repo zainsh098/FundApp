@@ -10,7 +10,7 @@ import com.example.fundapp.model.TransactionUser
 
 class DepositApproveAdapter(
     private val depositRequest: ArrayList<TransactionUser>,
-    val listener: OnClickItemListenerDeposit
+    private val listener: OnClickItemListenerDeposit
 
 ) : RecyclerView.Adapter<DepositApproveAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
@@ -27,22 +27,27 @@ class DepositApproveAdapter(
     }
 
     class ViewHolder(val binding: ApproveRequestDepositItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(transactionUser: TransactionUser) {
+
+            binding.apply {
+                textViewUserName.text = transactionUser.name.split(" ")[0]
+                textViewDepositAmount.text = "Rs" + transactionUser.amount
+                textViewTransactionDate.text = "Rs" + transactionUser.date
+
+                circularImageView.let {
+                    Glide.with(root.context).load(transactionUser.photoUrl)
+                        .placeholder(R.drawable.baseline_person_24).into(it)
+                }
+            }
+        }
+    }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val request = depositRequest[position]
-        holder.binding.textViewUserName.text = request.name
-        holder.binding.textViewDepositAmount.text = "Rs" + request.amount
-        holder.binding.textViewTransactionDate.text = "Rs" + request.date
-        holder.binding
-
-        holder.binding.circularImageView.let {
-            holder.binding.circularImageView.let {
-                Glide.with(holder.itemView.context).load(request.photoUrl)
-                    .placeholder(R.drawable.baseline_person_24).into(it)
-            }
-
-        }
+        holder.bind(depositRequest[position])
 
         holder.binding.buttonApproveRequest.setOnClickListener {
             listener.acceptClick(request.transactionId, request.userId, request.amount)
@@ -50,22 +55,24 @@ class DepositApproveAdapter(
             notifyItemRemoved(holder.adapterPosition)
         }
 
+        holder.binding.buttonRejectRequest.setOnClickListener {
+            listener.acceptClick(request.transactionId, request.userId, request.amount)
+            depositRequest.removeAt(holder.adapterPosition)
+            notifyItemRemoved(holder.adapterPosition)
+        }
+        notifyItemChanged(position)
     }
 
     override fun getItemCount(): Int {
         return depositRequest.size
-
     }
 
     fun updateList(newDeposit: List<TransactionUser>) {
         depositRequest.clear()
         depositRequest.addAll(newDeposit)
-        notifyDataSetChanged()
-
     }
 
     interface OnClickItemListenerDeposit {
-
         fun acceptClick(transactionId: String, userId: String, depositAmount: Int)
         fun rejectClick(transactionId: String)
     }
