@@ -20,18 +20,16 @@ class ApproveRequestFragment: BindingFragment<FragmentApproveRequestBinding>(Fra
     private lateinit var adapter: ApproveRequestAdapter
     private val approveRequestViewModel: ApproveRequestViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentApproveRequestBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = ApproveRequestAdapter(mutableListOf(), this)
-        binding.approveRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.approveRequestRecyclerView.adapter = adapter
+
+        binding.apply {
+            approveRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+          approveRequestRecyclerView.adapter = adapter
+        }
+
 
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.approvals)
@@ -43,19 +41,19 @@ class ApproveRequestFragment: BindingFragment<FragmentApproveRequestBinding>(Fra
 
             }
         }
+
+
+
         approveRequestViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility(isLoading)
-
         }
         approveRequestViewModel.withdrawalRequests.observe(viewLifecycleOwner) { withdrawalRequests ->
-
             if (withdrawalRequests.isNullOrEmpty()) {
                 binding.txtNoData.visibility = View.VISIBLE
 
             } else {
                 binding.txtNoData.visibility = View.GONE
                 adapter.updateList(withdrawalRequests)
-
 
             }
             Log.d("ApproveRequestFragment", "Withdrawal Requests: $withdrawalRequests")

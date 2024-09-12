@@ -16,7 +16,6 @@ class MenuViewModel : ViewModel() {
         auth.currentUser?.photoUrl.let {
             _photoUrl.value = it.toString()
 
-
         }
     }
 }
