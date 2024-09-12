@@ -54,11 +54,6 @@ class MyRequestFragment :
         }
 
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
-            if (history.isNullOrEmpty()) {
-                binding.txtNoData.visibility(true)
-
-            } else {
-                binding.txtNoData.visibility(false)
                 val myRequestHistory =
                     history.filterNotNull()
                         .filter { it.status == "pending" || it.status == "accepted" || it.type == "withdraw" || it.type == "deposit" }
@@ -68,7 +63,19 @@ class MyRequestFragment :
                     dateFormat.parse(it.date)
 
                 }
+                if(sortedHistory.isEmpty())
+                {
+
+                binding.txtNoData.visibility(true)
+
+                }
+                else
+                {
+                binding.txtNoData.visibility(false)
                 myRequestAdapter.updateList(sortedHistory)
+
+
+
             }
         }
     }
