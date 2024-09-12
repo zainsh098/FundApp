@@ -45,10 +45,6 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
                     .into(binding.componentToolbar.circularImageView)
             }
             backArrow.setImageResource(R.drawable.back)
-            cardImage.setOnClickListener {
-                auth.signOut()
-                findNavController().navigate(R.id.action_menuFragment_to_loginFragment)
-            }
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_menuFragment_to_homeFragment)
             }
@@ -76,13 +72,13 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
         }
 
 
-        requireActivity().onBackPressedDispatcher.addCallback(
+      /*  requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     requireActivity().moveTaskToBack(true)
                 }
-            })
+            })*/
     }
 
 

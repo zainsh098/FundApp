@@ -26,11 +26,11 @@ class UserAdapter(
                 emailID.text = user.email.getEmailMasked()
                 totalDepositedValue.text = user.totalDeposited.toString()
                 totalWithdrawValue.text = user.totalWithdrawAmount.toString()
-                userCurrentBalance.text = "Balance:" + user.currentBalance.toString()
+                userCurrentBalance.text = "Balance: ${user.currentBalance}"
 
                 user.photoUrl?.let { url ->
                     Glide.with(root)
-                        .load(user.photoUrl)
+                        .load(url)
                         .placeholder(R.drawable.baseline_person_24)
                         .into(circularImageView)
                 }

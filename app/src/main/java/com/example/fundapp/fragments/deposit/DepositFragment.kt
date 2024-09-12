@@ -30,6 +30,7 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
             backArrow.setImageResource(R.drawable.back)
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_depositFragment_to_menuFragment)
+                findNavController().popBackStack(R.id.depositFragment, true)
             }
             cardImage.visibility = View.GONE
 
@@ -107,5 +108,9 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
 
 }

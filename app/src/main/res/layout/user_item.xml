@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_60sdp"
+    android:layout_height="@dimen/_62sdp"
     android:layout_marginHorizontal="@dimen/_3sdp"
     android:layout_marginTop="@dimen/_5sdp"
     android:background="@color/Light_100">
@@ -123,14 +123,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView2downarrow"
         app:layout_constraintStart_toEndOf="@+id/imageView2downarrow"
         app:layout_constraintTop_toBottomOf="@+id/imageViewuparrow"
-        tools:text="Withdraw" />
+        tools:text="Withdraw"
+        tools:ignore="RtlSymmetry" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divider4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_21sdp"
         android:paddingBottom="@dimen/_4sdp"
         app:dividerColor="@color/Light_60"
         app:layout_constraintBottom_toBottomOf="parent"
