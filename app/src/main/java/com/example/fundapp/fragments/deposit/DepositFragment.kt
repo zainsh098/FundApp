@@ -24,7 +24,6 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.deposit)
             backArrow.setImageResource(R.drawable.back)
@@ -33,7 +32,6 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
                 findNavController().popBackStack(R.id.depositFragment, true)
             }
             cardImage.visibility = View.GONE
-
         }
         binding.apply {
             cardViewAttachment.setOnClickListener {
@@ -44,7 +42,6 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
             }
 
             binding.buttonDeposit.setOnClickListener {
-
                 val depositAmountText = textFieldDeposit.text.toString()
                 val dateDepositAmount = textViewSelectedDate.text.toString()
                 val selectedFileUri = depositViewModel.fileUriLiveData.value
