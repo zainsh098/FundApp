@@ -10,7 +10,7 @@
     <string name="menu">Menu\n</string>
     <string name="login_prompt_text">Tap the button below to log in\n with your Google account</string>
     <string name="approve_requests">Approve Requests</string>
-    <string name="approve_request">Approve Request</string>
+    <string name="withdrawal_request">Withdrawal Request</string>
     <string name="my_request">My Request</string>
     <string name="withdraw_funds">Withdraw Funds</string>
     <string name="submit_deposit">Submit Deposit</string>
@@ -58,5 +58,6 @@
     <string name="users_can_request_withdrawals_of_their_available_balance_at_any_time_subject_to_withdrawal_limits_and_terms_set_by_the_app_withdrawals_are_subject_to_approval_by_the_admin">Users can request withdrawals of their available balance at any time, subject to withdrawal limits and terms set by the App. Withdrawals are subject to approval by the Admin...</string>
     <string name="iv_withdrawal_policy">IV. Withdrawal Policy</string>
     <string name="ii_user_account_and_registration">II. User Account and Registration</string>
+    <string name="deposit_request">Deposit Request</string>
 
 </resources>
