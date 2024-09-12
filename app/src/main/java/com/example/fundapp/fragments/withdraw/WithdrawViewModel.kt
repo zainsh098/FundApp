@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.fundapp.R
 import com.example.fundapp.extensions.percentOf
 import com.example.fundapp.model.TransactionUser
@@ -12,13 +13,12 @@ import com.google.firebase.auth.FirebaseAuth
 import java.util.Calendar
 import java.util.UUID
 
-class WithdrawViewModel() : TransactionViewModel() {
+class WithdrawViewModel : TransactionViewModel() {
     var dateLiveData: MutableLiveData<String> = MutableLiveData()
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     val withdrawSuccess = MutableLiveData<Boolean>()
     private val _successMessage = MutableLiveData<String>()
     val successMessage: LiveData<String> get() = _successMessage
-
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
@@ -42,7 +42,8 @@ class WithdrawViewModel() : TransactionViewModel() {
 
         if (withdrawAmount > currentBalance + (currentBalance.percentOf(50))) {
             _errorMessage.value = "Amount is greater than the current balance"
-        } else {
+        }
+        else {
             withdrawAmount(transaction)
             _successMessage.value = "Withdrawal Request is Submitted"
             withdrawSuccess.value = true

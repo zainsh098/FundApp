@@ -17,18 +17,10 @@ import com.google.firebase.auth.FirebaseAuth
 class WithdrawFragment :
     BindingFragment<FragmentWithdrawBinding>(FragmentWithdrawBinding::inflate) {
 
-    private val userViewModel: UserViewModel by viewModels()
     private lateinit var auth: FirebaseAuth
-    private var currentUserBalance: Int = 0 // Will store the current balance of the user
-
+    private var currentUserBalance: Int = 0
     private val withdrawViewModel: WithdrawViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentWithdrawBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,12 +35,6 @@ class WithdrawFragment :
             cardImage.visibility = View.GONE
         }
 
-        userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
-        userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
-            balance?.let {
-                currentUserBalance = it.toInt()
-            }
-        }
         withdrawViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
             binding.textViewSelectedDate.text = date
         }
@@ -56,11 +42,14 @@ class WithdrawFragment :
         binding.apply {
             textViewSelectedDate.setOnClickListener {
                 withdrawViewModel.selectDate(requireContext())
-
+            }
                 buttonWithdrawAmount.setOnClickListener {
+
                     val withdrawAmountText = textFieldWithdraw.text.toString()
                     val withdrawReason = textFieldWithdrawReason.text.toString()
                     val date = textViewSelectedDate.text.toString()
+
+
 
                     if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
                         showToast("Please fill in all fields")
@@ -75,10 +64,9 @@ class WithdrawFragment :
                     }
                 }
             }
+        observeViewModel()
         }
 
-        observeViewModel()
-    }
 
     private fun observeViewModel() {
         withdrawViewModel.withdrawSuccess.observe(viewLifecycleOwner) { success ->
@@ -107,3 +95,4 @@ class WithdrawFragment :
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }
+

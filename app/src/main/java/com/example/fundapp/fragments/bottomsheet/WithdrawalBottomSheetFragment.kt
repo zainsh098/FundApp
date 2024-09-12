@@ -27,6 +27,8 @@ class WithdrawalBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog?.setCanceledOnTouchOutside(false)
+
         binding.txtCloseButton.setOnClickListener {
             findNavController().navigate(R.id.action_withdrawFragment_to_menuFragment)
             dismiss()

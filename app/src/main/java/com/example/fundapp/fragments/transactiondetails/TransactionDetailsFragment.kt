@@ -15,6 +15,8 @@ import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
 import com.example.fundapp.extensions.visibility
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class TransactionDetailsFragment :
     BindingFragment<FragmentTransactionDetailsBinding>(FragmentTransactionDetailsBinding::inflate) {
@@ -47,13 +49,6 @@ class TransactionDetailsFragment :
                 findNavController().navigate(R.id.action_transactionDetailsFragment_to_homeFragment)
             }
         }
-//
-//        userViewModel.userIds.observe(viewLifecycleOwner) { ids ->
-//            ids.forEach { id ->
-//                Log.d("TransactionDetailsFragment", "User ID: $id")
-//            }
-//        }
-//        userViewModel.getAllUserIds()
 
         binding.apply {
             recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
@@ -66,11 +61,18 @@ class TransactionDetailsFragment :
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
             if (history.isNullOrEmpty()) {
                 binding.txtNoData.visibility = View.VISIBLE
-//                binding.recyclerViewTransactionDetails.visibility = View.GONE
             } else {
-//                binding.txtNoData.visibility = View.GONE
-//                binding.recyclerViewTransactionDetails.visibility = View.VISIBLE
-                transactionAdapter.updateList(history.filterNotNull())
+                binding.txtNoData.visibility = View.GONE
+                val filterHistory = history.filterNotNull()
+                    .filter {
+                        it.type == "withdraw" || it.type == "deposit" || it.status == "accepted"
+                    }
+                    .sortedByDescending {
+                        it.date
+                    }
+
+
+                transactionAdapter.updateList(filterHistory)
             }
         }
         if (userId != null) {

@@ -60,7 +60,6 @@ class DepositApproveAdapter(
             depositRequest.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
         }
-        notifyItemChanged(position)
     }
 
     override fun getItemCount(): Int {
@@ -70,6 +69,7 @@ class DepositApproveAdapter(
     fun updateList(newDeposit: List<TransactionUser>) {
         depositRequest.clear()
         depositRequest.addAll(newDeposit)
+        notifyItemChanged(newDeposit.size)
     }
 
     interface OnClickItemListenerDeposit {
