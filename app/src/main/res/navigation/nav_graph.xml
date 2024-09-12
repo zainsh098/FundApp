@@ -175,7 +175,11 @@
         android:id="@+id/approveDepositFragment"
         android:name="com.example.fundapp.fragments.approvedeposit.ApproveDepositFragment"
         android:label="fragment_my_request_deposit"
-        tools:layout="@layout/fragment_deposit_approve_request" />
+        tools:layout="@layout/fragment_deposit_approve_request" >
+        <action
+            android:id="@+id/action_approveDepositFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/policyFragment"
         android:name="com.example.fundapp.fragments.policies.PolicyFragment"
