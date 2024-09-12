@@ -59,11 +59,10 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
         return dataSource.updateTransaction(transactionId, withdrawProof)
     }
 
-    suspend fun rejectWithdrawalRequest(transactionId: String) {
+    suspend fun rejectRequestStatus(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "rejected")
 
     }
-
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()
         val withdrawRequests = mutableListOf<TransactionUser>()

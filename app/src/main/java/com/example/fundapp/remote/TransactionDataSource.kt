@@ -57,7 +57,6 @@ class TransactionDataSource {
             .documents.mapNotNull { it.toObject(TransactionUser::class.java) }
     }
 
-
     suspend fun getAllDepositRequest(userId: String): List<TransactionUser> {
         return firestore.collection(TransactionConstant.KEY_TRANSACTIONS)
             .whereEqualTo(TransactionConstant.USER_ID, userId)
@@ -70,7 +69,6 @@ class TransactionDataSource {
 
     }
 
-
     suspend fun updateRequestStatus(transactionId: String, status: String) {
         firestore.collection(TransactionConstant.KEY_TRANSACTIONS).document(transactionId)
             .update(TransactionConstant.KEY_STATUS, status).await()
@@ -80,7 +78,5 @@ class TransactionDataSource {
         firestore.collection(TransactionConstant.KEY_TRANSACTIONS).document(transactionId)
             .update(TransactionConstant.KEY_PROOF_WITHDRAW, withdrawProof).await()
 
-
     }
-
 }

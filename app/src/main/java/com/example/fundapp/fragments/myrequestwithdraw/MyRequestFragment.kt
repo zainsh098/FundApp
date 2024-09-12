@@ -52,13 +52,21 @@ class MyRequestFragment :
 
         }
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
-            val myRequestHistory =
-                history.filterNotNull().filter { it.status == "pending" || it.status == "accepted" }
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            val sortedHistory = myRequestHistory.sortedByDescending {
-                dateFormat.parse(it.date)
+            if (history.isNullOrEmpty()) {
+                binding.txtNoData.visibility(true)
+
+            } else {
+                binding.txtNoData.visibility(false)
+                val myRequestHistory =
+                    history.filterNotNull()
+                        .filter { it.status == "pending" || it.status == "accepted" }
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val sortedHistory = myRequestHistory.sortedByDescending {
+                    dateFormat.parse(it.date)
+                }
+                myRequestAdapter.updateList(sortedHistory)
             }
-            myRequestAdapter.updateList(sortedHistory)
+
         }
     }
 
