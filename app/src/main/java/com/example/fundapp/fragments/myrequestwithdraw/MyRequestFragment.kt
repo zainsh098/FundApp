@@ -37,6 +37,7 @@ class MyRequestFragment :
         binding.apply {
             myRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             myRequestRecyclerView.adapter = myRequestAdapter
+
         }
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.my_request)
@@ -51,6 +52,7 @@ class MyRequestFragment :
             binding.progressBar.visibility(isLoading)
 
         }
+
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
             if (history.isNullOrEmpty()) {
                 binding.txtNoData.visibility(true)

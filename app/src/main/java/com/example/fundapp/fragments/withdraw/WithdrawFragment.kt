@@ -20,6 +20,7 @@ class WithdrawFragment :
     private var currentUserBalance: Int = 0
     private val withdrawViewModel: WithdrawViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
+    private var organizationBalance: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,6 +51,14 @@ class WithdrawFragment :
                 withdrawViewModel.selectDate(requireContext())
             }
 
+           userViewModel.getAllUsers()
+            userViewModel.orgBalance.observe(viewLifecycleOwner){
+                orgBalance->
+                orgBalance?.let {
+                    organizationBalance=it
+                }
+
+            }
 
             buttonWithdrawAmount.setOnClickListener {
 
@@ -71,17 +80,15 @@ class WithdrawFragment :
                         Log.d("Status ", pending.toString())
                         if (pending.isNotEmpty()) {
                             showToast("Already have pending request ")
-                        }
-
-
-                        else
-                        {
+                        } else {
                             val withdrawAmount = withdrawAmountText.toInt()
                             withdrawViewModel.requestWithdrawal(
                                 currentUserBalance,
+                                organizationBalance,
                                 withdrawAmount,
                                 withdrawReason,
-                                date
+                                date,
+
                             )
 
                         }
@@ -95,8 +102,6 @@ class WithdrawFragment :
             observeViewModel()
         }
     }
-
-
 
 
     private fun observeViewModel() {

@@ -18,7 +18,6 @@ open class UserViewModel : ViewModel() {
     val currentUser: MutableLiveData<User?> = MutableLiveData()
     var orgBalance: MutableLiveData<Int> = MutableLiveData(0)
     val allUsers: MutableLiveData<List<User>> = MutableLiveData()
-//    val userIds: MutableLiveData<List<String>> = MutableLiveData()
     val userBalance: MutableLiveData<Double?> = MutableLiveData()
 
     fun saveUser(user: User) {

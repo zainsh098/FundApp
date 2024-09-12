@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fundapp.R
 import com.example.fundapp.databinding.MyRequestItemBinding
+import com.example.fundapp.extensions.visibility
 import com.example.fundapp.model.TransactionUser
 
 class MyRequestAdapter(
@@ -31,7 +32,15 @@ class MyRequestAdapter(
         holder.binding.textViewWithdrawAmount.text = "Rs: " + withdrawlRequest.amount.toString()
         holder.binding.textViewTransactionDate.text = withdrawlRequest.date
         holder.binding.textViewWithdrawlStatus.text = withdrawlRequest.status
-        holder.binding.textViewWithdrawReason.text = withdrawlRequest.reason
+        if (withdrawlRequest.type == "deposit") {
+            holder.binding.textViewWithdrawReason.visibility(false)
+        } else if (withdrawlRequest.type == "withdraw") {
+            holder.binding.textViewWithdrawReason.visibility(true)
+            holder.binding.textViewWithdrawReason.text = withdrawlRequest.reason
+        }
+
+
+        holder.binding.textViewWithdrawReason.text= withdrawlRequest.reason
         holder.binding.textViewTransactionType.text = withdrawlRequest.type
         holder.binding.circularImageView.let {
             Glide.with(holder.itemView.context).load(withdrawlRequest.photoUrl)
