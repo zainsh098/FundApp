@@ -49,43 +49,51 @@ class WithdrawFragment :
                 currentUserBalance = it.toInt()
             }
         }
-
         withdrawViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
             binding.textViewSelectedDate.text = date
         }
+
         binding.apply {
             textViewSelectedDate.setOnClickListener {
                 withdrawViewModel.selectDate(requireContext())
-            }
 
-            buttonWithdrawAmount.setOnClickListener {
-                val withdrawAmountText = textFieldWithdraw.text.toString()
-                val withdrawReason = textFieldWithdrawReason.text.toString()
-                val date = textViewSelectedDate.text.toString()
-                if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
-                    Toast.makeText(context, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-                } else {
-                    val withdrawAmount = withdrawAmountText.toInt()
-                    if (withdrawAmount > currentUserBalance) {
-                        Toast.makeText(
-                            context,
-                            "Withdrawal amount is greater than your current balance",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                buttonWithdrawAmount.setOnClickListener {
+                    val withdrawAmountText = textFieldWithdraw.text.toString()
+                    val withdrawReason = textFieldWithdrawReason.text.toString()
+                    val date = textViewSelectedDate.text.toString()
+
+                    if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
+                        showToast("Please fill in all fields")
                     } else {
+                        val withdrawAmount = withdrawAmountText.toInt()
                         withdrawViewModel.requestWithdrawal(
+                            currentUserBalance,
                             withdrawAmount,
                             withdrawReason,
-                            date,
-                            requireContext()
+                            date
                         )
                     }
                 }
             }
         }
+
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
         withdrawViewModel.withdrawSuccess.observe(viewLifecycleOwner) { success ->
             if (success) {
                 showBottomSheet()
+            }
+        }
+        withdrawViewModel.successMessage.observe(viewLifecycleOwner) { message ->
+            message?.let {
+                showToast(it)
+            }
+        }
+        withdrawViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            message?.let {
+                showToast(it)
             }
         }
     }
@@ -94,7 +102,8 @@ class WithdrawFragment :
         val bottomSheet = WithdrawalBottomSheetFragment()
         bottomSheet.show(parentFragmentManager, WithdrawalBottomSheetFragment::class.java.name)
     }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
 }
-
-
-

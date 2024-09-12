@@ -54,7 +54,7 @@
 
                 <TextView
                     style="@style/card_meu_text_style"
-                    android:text="@string/approve_request"
+                    android:text="@string/withdrawal_request"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView172"
                     app:layout_constraintStart_toEndOf="@+id/imageView21"
@@ -124,7 +124,7 @@
 
                 <TextView
                     style="@style/card_meu_text_style"
-                    android:text="Approve Deposit"
+                    android:text="@string/deposit_request"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView174"
                     app:layout_constraintStart_toEndOf="@+id/imageView275"
