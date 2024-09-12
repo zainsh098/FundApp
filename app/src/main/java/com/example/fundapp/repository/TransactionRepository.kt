@@ -60,7 +60,7 @@ class TransactionRepository(private val dataSource: TransactionDataSource) {
     }
 
     suspend fun rejectRequestStatus(transactionId: String) {
-        dataSource.updateRequestStatus(transactionId, "rejected")
+        dataSource.updateRequestStatus(transactionId,"rejected")
 
     }
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {

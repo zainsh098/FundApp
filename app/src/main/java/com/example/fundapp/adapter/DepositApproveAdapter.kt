@@ -56,7 +56,7 @@ class DepositApproveAdapter(
         }
 
         holder.binding.buttonRejectRequest.setOnClickListener {
-            listener.acceptClick(request.transactionId, request.userId, request.amount)
+            listener.rejectClick(request.transactionId)
             depositRequest.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
         }

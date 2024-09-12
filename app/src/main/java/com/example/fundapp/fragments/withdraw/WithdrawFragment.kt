@@ -1,9 +1,8 @@
 package com.example.fundapp.fragments.withdraw
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,7 +19,7 @@ class WithdrawFragment :
     private lateinit var auth: FirebaseAuth
     private var currentUserBalance: Int = 0
     private val withdrawViewModel: WithdrawViewModel by viewModels()
-
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,37 +34,69 @@ class WithdrawFragment :
             cardImage.visibility = View.GONE
         }
 
+        userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
+        userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
+            balance?.let {
+                currentUserBalance = it.toInt()
+            }
+        }
         withdrawViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
             binding.textViewSelectedDate.text = date
         }
+
 
         binding.apply {
             textViewSelectedDate.setOnClickListener {
                 withdrawViewModel.selectDate(requireContext())
             }
-                buttonWithdrawAmount.setOnClickListener {
-
-                    val withdrawAmountText = textFieldWithdraw.text.toString()
-                    val withdrawReason = textFieldWithdrawReason.text.toString()
-                    val date = textViewSelectedDate.text.toString()
 
 
+            buttonWithdrawAmount.setOnClickListener {
 
-                    if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
-                        showToast("Please fill in all fields")
-                    } else {
-                        val withdrawAmount = withdrawAmountText.toInt()
-                        withdrawViewModel.requestWithdrawal(
-                            currentUserBalance,
-                            withdrawAmount,
-                            withdrawReason,
-                            date
-                        )
+                val withdrawAmountText = textFieldWithdraw.text.toString()
+                val withdrawReason = textFieldWithdrawReason.text.toString()
+                val date = textViewSelectedDate.text.toString()
+
+                if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
+                    showToast("Please fill in all fields")
+                } else {
+
+                    withdrawViewModel.getTransactionHistory(auth.currentUser!!.uid)
+                    withdrawViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
+
+                        val pending = history.filter {
+
+                            it!!.status == "pending" && it.type == "withdraw"
+                        }
+                        Log.d("Status ", pending.toString())
+                        if (pending.isNotEmpty()) {
+                            showToast("Already have pending request ")
+                        }
+
+
+                        else
+                        {
+                            val withdrawAmount = withdrawAmountText.toInt()
+                            withdrawViewModel.requestWithdrawal(
+                                currentUserBalance,
+                                withdrawAmount,
+                                withdrawReason,
+                                date
+                            )
+
+                        }
+
                     }
+
+
                 }
+
             }
-        observeViewModel()
+            observeViewModel()
         }
+    }
+
+
 
 
     private fun observeViewModel() {

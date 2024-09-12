@@ -7,7 +7,6 @@
     android:background="@color/Light_100"
     tools:context=".fragments.home.HomeFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/homeDashboard"
         android:layout_width="match_parent"
@@ -16,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <include
             android:id="@+id/component_toolbar"
@@ -182,7 +180,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewUsers"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

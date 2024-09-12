@@ -28,10 +28,4 @@ class FirebaseDataSource(private val firestore: FirebaseFirestore) {
         return documentSnapshot.getDouble("currentBalance")
     }
 
-
-    suspend fun getAllUserIds(): List<String> {
-        return firestore.collection(TransactionConstant.KEY_USERS).get()
-            .await().documents.map { it.id }
-    }
-
 }

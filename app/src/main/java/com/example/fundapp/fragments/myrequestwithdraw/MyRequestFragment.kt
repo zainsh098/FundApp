@@ -59,14 +59,15 @@ class MyRequestFragment :
                 binding.txtNoData.visibility(false)
                 val myRequestHistory =
                     history.filterNotNull()
-                        .filter { it.status == "pending" || it.status == "accepted" }
+                        .filter { it.status == "pending" || it.status == "accepted" || it.type == "withdraw" || it.type == "deposit" }
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 val sortedHistory = myRequestHistory.sortedByDescending {
+                    it.status
                     dateFormat.parse(it.date)
+
                 }
                 myRequestAdapter.updateList(sortedHistory)
             }
-
         }
     }
 

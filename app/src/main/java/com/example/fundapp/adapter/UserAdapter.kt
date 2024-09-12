@@ -26,7 +26,7 @@ class UserAdapter(
                 emailID.text = user.email.getEmailMasked()
                 totalDepositedValue.text = user.totalDeposited.toString()
                 totalWithdrawValue.text = user.totalWithdrawAmount.toString()
-                userCurrentBalance.text = "Balance: " + user.currentBalance.toString()
+                userCurrentBalance.text = "Balance:" + user.currentBalance.toString()
 
                 user.photoUrl?.let { url ->
                     Glide.with(root)
@@ -39,10 +39,9 @@ class UserAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(users.get(position))
+        holder.bind(users[position])
         holder.itemView.setOnClickListener {
             listener.onItemClick(users[position])
-
         }
     }
 

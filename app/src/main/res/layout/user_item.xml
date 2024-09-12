@@ -31,8 +31,10 @@
     <TextView
         android:id="@+id/userName"
         style="@style/home_text_style"
+
         android:fontFamily="@font/inter_medium"
         android:textSize="@dimen/_13ssp"
+        app:layout_constraintTop_toTopOf="@id/flow1"
         app:layout_constraintStart_toStartOf="@id/flow1"
         tools:text="Name" />
 
@@ -42,6 +44,7 @@
         android:fontFamily="@font/inter_medium"
         android:textColor="@color/Light_20"
         android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toTopOf="@id/userCurrentBalance"
         app:layout_constraintStart_toStartOf="@id/flow1"
         tools:text="Email" />
 
@@ -51,6 +54,7 @@
         android:fontFamily="@font/inter_medium"
         android:textColor="@color/Light_20"
         android:textSize="@dimen/_10ssp"
+        app:layout_constraintBottom_toBottomOf="@id/flow1"
         app:layout_constraintStart_toStartOf="@id/flow1"
         tools:text="Current Balance" />
 
