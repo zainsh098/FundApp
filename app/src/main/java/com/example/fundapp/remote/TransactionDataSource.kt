@@ -7,7 +7,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class TransactionDataSource() {
-    private val firestore: FirebaseFirestore=FirebaseFirestore.getInstance()
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+
     // Fetch all users from "O3 -> Users -> userIds"
     suspend fun getAllUsers(): List<User> {
         return firestore.collection("O3").document("Users").collection("userIds")
@@ -69,6 +70,7 @@ class TransactionDataSource() {
             .document(transactionId)
             .update(TransactionConstant.KEY_STATUS, status).await()
     }
+
     suspend fun updateDepositRequestStatus(transactionId: String, status: String) {
         firestore.collection("O3").document("Transactions").collection("transactionIds")
             .document(transactionId)

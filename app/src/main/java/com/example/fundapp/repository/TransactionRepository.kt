@@ -5,7 +5,7 @@ import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.remote.TransactionDataSource
 
 class TransactionRepository() {
-    private val dataSource: TransactionDataSource=TransactionDataSource()
+    private val dataSource: TransactionDataSource = TransactionDataSource()
     suspend fun depositAmount(transaction: TransactionUser) {
         dataSource.depositAmount(transaction)
     }
