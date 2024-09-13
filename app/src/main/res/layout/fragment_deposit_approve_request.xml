@@ -27,8 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/request_approve_item" />
-
+            tools:listitem="@layout/approve_request_deposit_item"/>
         <ProgressBar
 
             android:id="@+id/progressBar"
