@@ -45,14 +45,7 @@ open class UserViewModel : ViewModel() {
             }
         }
     }
-//
-//    fun getAllUserIds() {
-//        viewModelScope.launch {
-//            val userList = userRepository.getAllUsers()
-//            val ids = userList.map { it.userId }
-//            userIds.value = ids
-//        }
-//    }
+
 
     fun getUserCurrentBalance(userId: String) {
         viewModelScope.launch {

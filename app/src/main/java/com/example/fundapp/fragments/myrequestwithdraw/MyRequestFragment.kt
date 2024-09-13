@@ -23,12 +23,6 @@ class MyRequestFragment :
     private val myRequestViewModel: MyRequestViewModel by viewModels()
     private lateinit var myRequestAdapter: MyRequestAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMyRequestBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +46,6 @@ class MyRequestFragment :
             binding.progressBar.visibility(isLoading)
 
         }
-
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
                 val myRequestHistory =
                     history.filterNotNull()
@@ -73,9 +66,6 @@ class MyRequestFragment :
                 {
                 binding.txtNoData.visibility(false)
                 myRequestAdapter.updateList(sortedHistory)
-
-
-
             }
         }
     }

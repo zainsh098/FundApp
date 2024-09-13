@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 open class TransactionViewModel : ViewModel() {
 
-    private val transactionRepository = TransactionRepository(TransactionDataSource())
+    private val transactionRepository = TransactionRepository()
     val transactionHistory: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
     val isLoading = MutableLiveData<Boolean>()
 
@@ -19,6 +19,7 @@ open class TransactionViewModel : ViewModel() {
             transactionRepository.depositAmount(transaction)
         }
     }
+
     fun withdrawAmount(transaction: TransactionUser) {
         viewModelScope.launch {
             transactionRepository.withdrawAmount(transaction)
@@ -44,6 +45,7 @@ open class TransactionViewModel : ViewModel() {
     fun acceptDepositRequest(transactionId: String, userId: String, withdrawAmount: Int) {
         viewModelScope.launch {
             transactionRepository.acceptDepositRequest(transactionId, userId, withdrawAmount)
+            transactionRepository.acceptRequestStatus(transactionId)
 
         }
     }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class MyRequestViewModel : TransactionViewModel() {
 
     private val auth = FirebaseAuth.getInstance()
-    private val transactionRepository = TransactionRepository(TransactionDataSource())
+    private val transactionRepository = TransactionRepository()
     private val _gettransactionHistory1: MutableLiveData<List<TransactionUser?>> = MutableLiveData()
     val getTransactionHistory1: MutableLiveData<List<TransactionUser?>> = _gettransactionHistory1
 
