@@ -4,7 +4,7 @@ import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.remote.TransactionDataSource
 
-class TransactionRepository() {
+class TransactionRepository {
     private val dataSource: TransactionDataSource = TransactionDataSource()
     suspend fun depositAmount(transaction: TransactionUser) {
         dataSource.depositAmount(transaction)
@@ -18,7 +18,6 @@ class TransactionRepository() {
         dataSource.updateRequestStatus(transactionId, TransactionConstant.KEY_ACCEPTED)
         updateWithdrawBalance(userId, withdrawAmount)
     }
-
 
     suspend fun acceptDepositRequest(
         transactionId: String,
@@ -58,17 +57,14 @@ class TransactionRepository() {
     suspend fun updateTransaction(transactionId: String, withdrawProof: String) {
         return dataSource.updateTransaction(transactionId, withdrawProof)
     }
-
     suspend fun rejectRequestStatus(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "rejected")
 
     }
-
     suspend fun acceptRequestStatus(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "accepted")
 
     }
-
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()
         val withdrawRequests = mutableListOf<TransactionUser>()
@@ -78,7 +74,6 @@ class TransactionRepository() {
         }
         return withdrawRequests
     }
-
 
     suspend fun getAllDepositRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()

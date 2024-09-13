@@ -1,9 +1,7 @@
 package com.example.fundapp.fragments.myrequestwithdraw
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,18 +18,16 @@ import java.util.Locale
 class MyRequestFragment :
     BindingFragment<FragmentMyRequestBinding>(FragmentMyRequestBinding::inflate),
     MyRequestAdapter.OnClickItemShowBottomSheet {
+
     private val myRequestViewModel: MyRequestViewModel by viewModels()
     private lateinit var myRequestAdapter: MyRequestAdapter
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         myRequestAdapter = MyRequestAdapter(mutableListOf(), this)
-
         binding.apply {
             myRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             myRequestRecyclerView.adapter = myRequestAdapter
-
         }
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.my_request)
@@ -39,31 +35,23 @@ class MyRequestFragment :
             cardImage.visibility(false)
             backArrow.setOnClickListener {
                 findNavController().navigate(R.id.action_myRequestFragment_to_menuFragment)
-
             }
         }
         myRequestViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility(isLoading)
-
         }
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
-                val myRequestHistory =
-                    history.filterNotNull()
-                        .filter { it.status == "pending" || it.status == "accepted" || it.type == "withdraw" || it.type == "deposit" }
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                val sortedHistory = myRequestHistory.sortedByDescending {
-                    it.status
-                    dateFormat.parse(it.date)
-
-                }
-                if(sortedHistory.isEmpty())
-                {
-
+            val myRequestHistory =
+                history.filterNotNull()
+                    .filter { it.status == "pending" || it.status == "accepted" || it.type == "withdraw" || it.type == "deposit" }
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val sortedHistory = myRequestHistory.sortedByDescending {
+                it.status
+                dateFormat.parse(it.date)
+            }
+            if (sortedHistory.isEmpty()) {
                 binding.txtNoData.visibility(true)
-
-                }
-                else
-                {
+            } else {
                 binding.txtNoData.visibility(false)
                 myRequestAdapter.updateList(sortedHistory)
             }

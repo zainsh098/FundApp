@@ -1,5 +1,4 @@
 package com.example.fundapp.fragments.transactiondetails
-
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,8 +14,6 @@ import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
 import com.example.fundapp.extensions.visibility
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class TransactionDetailsFragment :
     BindingFragment<FragmentTransactionDetailsBinding>(FragmentTransactionDetailsBinding::inflate) {
@@ -59,33 +56,25 @@ class TransactionDetailsFragment :
         }
 
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
-                val filterHistory = history.filterNotNull()
-                    .filter {
-                        (it.type == "withdraw" || it.type == "deposit") && it.status == "accepted"
-                    }
-                    .sortedByDescending {
-                        it.date
-                    }
-                if(filterHistory.isEmpty())
-                {
-                    binding.txtNoData.visibility(true)
-
-
+            val filterHistory = history.filterNotNull()
+                .filter {
+                    (it.type == "withdraw" || it.type == "deposit") && it.status == "accepted"
                 }
-                else{
-
-                    binding.txtNoData.visibility(false)
-                    transactionAdapter.updateList(filterHistory)
-
+                .sortedByDescending {
+                    it.date
                 }
+            if (filterHistory.isEmpty()) {
+                binding.txtNoData.visibility(true)
+            } else {
 
+                binding.txtNoData.visibility(false)
+                transactionAdapter.updateList(filterHistory)
 
-
+            }
         }
         if (userId != null) {
             transactionViewModel.getTransactionHistory(userId)
         }
-
 
     }
 }

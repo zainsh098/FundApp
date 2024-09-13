@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fundapp.model.TransactionUser
-import com.example.fundapp.remote.TransactionDataSource
 import com.example.fundapp.repository.TransactionRepository
 import kotlinx.coroutines.launch
 
@@ -49,7 +48,6 @@ open class TransactionViewModel : ViewModel() {
 
         }
     }
-
 
     fun rejectRequest(transactionId: String) {
         viewModelScope.launch {

@@ -1,9 +1,10 @@
-package com.example.fundapp.viewmodel
+package com.example.fundapp.fragments.withdrawproof
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.storage.FirebaseStorage
 import java.util.UUID
 

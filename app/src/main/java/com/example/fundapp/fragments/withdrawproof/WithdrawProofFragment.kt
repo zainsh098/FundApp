@@ -14,7 +14,6 @@ import com.example.fundapp.R
 import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentWithdawProofBinding
 import com.example.fundapp.extensions.visibility
-import com.example.fundapp.viewmodel.WithdrawProofViewModel
 
 class WithdrawProofFragment :
     BindingFragment<FragmentWithdawProofBinding>(FragmentWithdawProofBinding::inflate) {
