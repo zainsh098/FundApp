@@ -33,7 +33,7 @@ class DepositApproveAdapter(
             binding.apply {
                 textViewUserName.text = transactionUser.name.split(" ")[0]
                 textViewDepositAmount.text = "Rs" + transactionUser.amount
-                textViewTransactionDate.text = "Rs" + transactionUser.date
+                textViewTransactionDate.text =transactionUser.date
 
                 circularImageView.let {
                     Glide.with(root.context).load(transactionUser.photoUrl)
@@ -69,7 +69,7 @@ class DepositApproveAdapter(
     fun updateList(newDeposit: List<TransactionUser>) {
         depositRequest.clear()
         depositRequest.addAll(newDeposit)
-        notifyItemChanged(newDeposit.size)
+        notifyDataSetChanged()
     }
 
     interface OnClickItemListenerDeposit {

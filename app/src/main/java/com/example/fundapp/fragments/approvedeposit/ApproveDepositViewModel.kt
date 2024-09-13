@@ -14,7 +14,7 @@ class ApproveDepositViewModel : TransactionViewModel() {
 
     private val _depositRequests = MutableLiveData<List<TransactionUser>>()
     val depositRequests: LiveData<List<TransactionUser>> get() = _depositRequests
-    private val transactionRepository = TransactionRepository(TransactionDataSource())
+    private val transactionRepository = TransactionRepository()
 
 
     init {

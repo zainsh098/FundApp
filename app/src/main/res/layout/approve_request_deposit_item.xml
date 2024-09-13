@@ -36,7 +36,7 @@
                 android:fontFamily="@font/inter_semibold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_11ssp"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintBottom_toTopOf="@+id/textViewTransactionDate"
                 app:layout_constraintStart_toEndOf="@id/cardImage"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Muhammad Jamshaid" />

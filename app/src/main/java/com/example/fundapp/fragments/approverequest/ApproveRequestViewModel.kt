@@ -15,7 +15,7 @@ class ApproveRequestViewModel : TransactionViewModel() {
 
     private val _withdrawalRequests = MutableLiveData<List<TransactionUser>>()
     val withdrawalRequests: LiveData<List<TransactionUser>> get() = _withdrawalRequests
-    private val transactionRepository = TransactionRepository(TransactionDataSource())
+    private val transactionRepository = TransactionRepository()
 
 
     init {
