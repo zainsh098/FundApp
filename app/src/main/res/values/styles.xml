@@ -8,7 +8,7 @@
         <item name="android:fontFamily">@font/inter_bold</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/Light_100</item>
-        <item name="android:textSize">@dimen/_36ssp</item>
+        <item name="android:textSize">@dimen/_34ssp</item>
     </style>
 
 
@@ -237,7 +237,6 @@
     <style name="dp_card">
         <item name="android:layout_width">@dimen/_35sdp</item>
         <item name="android:layout_height">@dimen/_35sdp</item>
-        <item name="android:layout_marginBottom">@dimen/_15sdp</item>
     </style>
 
 

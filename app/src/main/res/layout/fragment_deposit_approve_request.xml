@@ -34,7 +34,7 @@
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="0dp"
             android:layout_height="@dimen/_70sdp"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:elevation="@dimen/_80sdp"
             android:indeterminateDrawable="@drawable/custom_progress_bar"
             android:visibility="gone"

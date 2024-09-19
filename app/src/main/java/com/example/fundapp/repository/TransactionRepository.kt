@@ -4,12 +4,28 @@ import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.remote.TransactionDataSource
 
+/**
+ * Repository class for managing transaction operations.
+ * @property dataSource The data source for accessing transaction-related data.
+ */
 class TransactionRepository {
+
     private val dataSource: TransactionDataSource = TransactionDataSource()
+
+    /**
+     * Processes a deposit transaction.
+     * @param transaction The transaction details.
+     */
     suspend fun depositAmount(transaction: TransactionUser) {
         dataSource.depositAmount(transaction)
     }
 
+    /**
+     * Accepts a withdrawal request and updates the user's balance.
+     * @param transactionId The ID of the transaction to be accepted.
+     * @param userId The ID of the user making the withdrawal.
+     * @param withdrawAmount The amount to be withdrawn.
+     */
     suspend fun acceptWithdrawalRequest(
         transactionId: String,
         userId: String,
@@ -19,6 +35,12 @@ class TransactionRepository {
         updateWithdrawBalance(userId, withdrawAmount)
     }
 
+    /**
+     * Accepts a deposit request and updates the user's balance.
+     * @param transactionId The ID of the transaction to be accepted.
+     * @param userId The ID of the user making the deposit.
+     * @param depositAmount The amount to be deposited.
+     */
     suspend fun acceptDepositRequest(
         transactionId: String,
         userId: String,
@@ -28,6 +50,11 @@ class TransactionRepository {
         updateDepositBalance(userId, depositAmount)
     }
 
+    /**
+     * Updates the user's balance after a deposit.
+     * @param userId The ID of the user.
+     * @param depositAmount The amount deposited.
+     */
     private suspend fun updateDepositBalance(userId: String, depositAmount: Int) {
         val user = dataSource.getUser(userId)
         user?.apply {
@@ -37,6 +64,11 @@ class TransactionRepository {
         }
     }
 
+    /**
+     * Updates the user's balance after a withdrawal.
+     * @param userId The ID of the user.
+     * @param withdrawAmount The amount withdrawn.
+     */
     private suspend fun updateWithdrawBalance(userId: String, withdrawAmount: Int) {
         val user = dataSource.getUser(userId)
         user?.apply {
@@ -46,25 +78,52 @@ class TransactionRepository {
         }
     }
 
+    /**
+     * Processes a withdrawal transaction.
+     * @param transaction The transaction details.
+     */
     suspend fun withdrawAmount(transaction: TransactionUser) {
         dataSource.withdrawAmount(transaction)
     }
 
+    /**
+     * Retrieves the transaction history for a user.
+     * @param userId The ID of the user.
+     * @return A list of transactions for the user.
+     */
     suspend fun getTransactionHistory(userId: String): List<TransactionUser> {
         return dataSource.getTransactionHistoryData(userId)
     }
 
+    /**
+     * Updates a transaction with a proof of withdrawal.
+     * @param transactionId The ID of the transaction.
+     * @param withdrawProof The URL of the withdrawal proof.
+     */
     suspend fun updateTransaction(transactionId: String, withdrawProof: String) {
         return dataSource.updateTransaction(transactionId, withdrawProof)
     }
+
+    /**
+     * Rejects a request by updating its status.
+     * @param transactionId The ID of the transaction to be rejected.
+     */
     suspend fun rejectRequestStatus(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "rejected")
-
     }
+
+    /**
+     * Accepts a request by updating its status.
+     * @param transactionId The ID of the transaction to be accepted.
+     */
     suspend fun acceptRequestStatus(transactionId: String) {
         dataSource.updateRequestStatus(transactionId, "accepted")
-
     }
+
+    /**
+     * Retrieves all withdrawal requests from all users.
+     * @return A list of all withdrawal requests.
+     */
     suspend fun getAllWithdrawRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()
         val withdrawRequests = mutableListOf<TransactionUser>()
@@ -75,6 +134,10 @@ class TransactionRepository {
         return withdrawRequests
     }
 
+    /**
+     * Retrieves all deposit requests from all users.
+     * @return A list of all deposit requests.
+     */
     suspend fun getAllDepositRequests(): List<TransactionUser> {
         val users = dataSource.getAllUsers()
         val depositRequests = mutableListOf<TransactionUser>()
@@ -85,5 +148,3 @@ class TransactionRepository {
         return depositRequests
     }
 }
-
-

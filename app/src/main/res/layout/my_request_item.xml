@@ -35,77 +35,69 @@
                 tools:ignore="ContentDescription" />
         </com.google.android.material.card.MaterialCardView>
 
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:flow_horizontalAlign="start"
+            app:constraint_referenced_ids="textViewWithdrawAmount,textViewTransactionDate,textViewWithdrawReason"
+            app:layout_constraintStart_toEndOf="@id/guideline7"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
         <TextView
             android:id="@+id/textViewWithdrawAmount"
             style="@style/home_text_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_7sdp"
             android:fontFamily="@font/inter_semibold"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
-            app:layout_constraintStart_toEndOf="@id/guideline7"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="Rs 1500" />
 
         <TextView
             android:id="@+id/textViewTransactionDate"
             style="@style/home_text_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/Light_20"
             android:textSize="@dimen/_9ssp"
-            app:layout_constraintStart_toEndOf="@id/guideline7"
-            app:layout_constraintTop_toBottomOf="@id/guideline8"
             tools:text="Date: 15-2-2023" />
 
         <TextView
             android:id="@+id/textViewWithdrawReason"
             style="@style/home_text_style"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_2sdp"
             android:fontFamily="@font/inter_semibold"
             android:textColor="@color/black"
             android:textSize="@dimen/_10ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guideline7"
-            app:layout_constraintTop_toTopOf="@+id/guideline8"
             tools:text="Reason: Personal Expenses" />
-
+        <androidx.constraintlayout.helper.widget.Flow
+           android:id="@+id/flow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:flow_horizontalAlign="start"
+            app:constraint_referenced_ids="textViewWithdrawlStatus,textViewTransactionType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline8"
+          />
 
         <TextView
             android:id="@+id/textViewWithdrawlStatus"
             style="@style/home_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10sdp"
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/Light_20"
             android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline8"
+            app:layout_constraintStart_toStartOf="@+id/flow3"
             tools:text="Pending" />
 
         <TextView
             android:id="@+id/textViewTransactionType"
             style="@style/home_text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="12dp"
             android:fontFamily="@font/inter_medium"
             android:textColor="@color/Light_20"
             android:textSize="@dimen/_9ssp"
+            app:layout_constraintStart_toStartOf="@+id/flow3"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline8"
             tools:text="status" />
 
         <androidx.constraintlayout.widget.Guideline

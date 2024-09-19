@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 class WithdrawFragment :
     BindingFragment<FragmentWithdrawBinding>(FragmentWithdrawBinding::inflate) {
 
-    private lateinit var auth: FirebaseAuth
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     private var currentUserBalance: Int = 0
     private val withdrawViewModel: WithdrawViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
@@ -24,8 +24,13 @@ class WithdrawFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = FirebaseAuth.getInstance()
 
+        setToolbar()
+        setUI()
+        observeViewModel()
+    }
+
+    private fun setToolbar() {
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.withdraw)
             backArrow.setImageResource(R.drawable.back)
@@ -35,33 +40,15 @@ class WithdrawFragment :
             cardImage.visibility = View.GONE
         }
 
-        userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
-        userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
-            balance?.let {
-                currentUserBalance = it.toInt()
-            }
-        }
-        withdrawViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
-            binding.textViewSelectedDate.text = date
-        }
 
+    }
 
+    private fun setUI() {
         binding.apply {
             textViewSelectedDate.setOnClickListener {
                 withdrawViewModel.selectDate(requireContext())
             }
-
-           userViewModel.getAllUsers()
-            userViewModel.orgBalance.observe(viewLifecycleOwner){
-                orgBalance->
-                orgBalance?.let {
-                    organizationBalance=it
-                }
-
-            }
-
             buttonWithdrawAmount.setOnClickListener {
-
                 val withdrawAmountText = textFieldWithdraw.text.toString()
                 val withdrawReason = textFieldWithdrawReason.text.toString()
                 val date = textViewSelectedDate.text.toString()
@@ -69,12 +56,10 @@ class WithdrawFragment :
                 if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
                     showToast("Please fill in all fields")
                 } else {
-
                     withdrawViewModel.getTransactionHistory(auth.currentUser!!.uid)
                     withdrawViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
 
                         val pending = history.filter {
-
                             it!!.status == "pending" && it.type == "withdraw"
                         }
                         Log.d("Status ", pending.toString())
@@ -89,22 +74,34 @@ class WithdrawFragment :
                                 withdrawReason,
                                 date,
 
-                            )
-
+                                )
                         }
-
                     }
-
-
                 }
-
             }
-            observeViewModel()
         }
+
+
     }
 
-
     private fun observeViewModel() {
+        userViewModel.getAllUsers()
+        userViewModel.getUserCurrentBalance(auth.currentUser!!.uid)
+
+        userViewModel.orgBalance.observe(viewLifecycleOwner) { orgBalance ->
+            orgBalance?.let {
+                organizationBalance = it
+            }
+        }
+
+        userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
+            balance?.let {
+                currentUserBalance = it.toInt()
+            }
+        }
+        withdrawViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
+            binding.textViewSelectedDate.text = date
+        }
         withdrawViewModel.withdrawSuccess.observe(viewLifecycleOwner) { success ->
             if (success) {
                 showBottomSheet()

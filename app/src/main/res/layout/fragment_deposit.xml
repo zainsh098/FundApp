@@ -7,17 +7,19 @@
     android:background="@color/Violet_100"
     tools:context=".fragments.deposit.DepositFragment">
 
+    <!-- Include toolbar -->
     <include
         android:id="@+id/component_toolbar"
         layout="@layout/component_toolbar" />
 
-
+    <!-- Main content layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/_140sdp"
         android:background="@drawable/round_shape">
 
+        <!-- Text Input Layout -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldDepositInputLayout"
             style="@style/text_edit_style_material_new"
@@ -54,6 +56,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Attachment CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewAttachment"
             style="@style/text_edit_attachment"
@@ -91,7 +94,7 @@
 
         </androidx.cardview.widget.CardView>
 
-
+        <!-- Date CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardDateView"
             style="@style/text_edit_style_material_new"
@@ -117,6 +120,7 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!-- Deposit Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_Deposit"
             style="@style/button_style"
@@ -132,21 +136,25 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_80sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:elevation="@dimen/_80sdp"
-        android:indeterminateDrawable="@drawable/custom_progress_bar"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- ProgressBar -->
+
+    <FrameLayout
+        android:id="@+id/blurredBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_fade"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLargeInverse"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/custom_progress_bar"
+            android:visibility="visible" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

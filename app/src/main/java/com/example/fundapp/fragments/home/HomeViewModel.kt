@@ -8,6 +8,12 @@ import com.example.fundapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import java.util.Calendar
 
+/**
+ * ViewModel for the HomeFragment.
+ *
+ * Manages data and business logic for the home screen, including user data, organization balance,
+ * and greeting messages based on the time of day.
+ */
 class HomeViewModel : UserViewModel() {
 
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid.orEmpty()
@@ -15,7 +21,6 @@ class HomeViewModel : UserViewModel() {
     private val _message: MutableLiveData<String> = MutableLiveData()
     val user = User()
     val message: LiveData<String> = _message
-
 
     init {
         getUser(currentUserId)
@@ -25,6 +30,9 @@ class HomeViewModel : UserViewModel() {
         setMessage()
     }
 
+    /**
+     * Sets a greeting message based on the current time of day.
+     */
     private fun setMessage() {
         _message.value = when (dateNow) {
             in 0..5 -> "Good Night"

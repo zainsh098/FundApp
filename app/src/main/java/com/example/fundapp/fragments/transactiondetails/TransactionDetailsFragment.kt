@@ -1,4 +1,5 @@
 package com.example.fundapp.fragments.transactiondetails
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -69,12 +70,10 @@ class TransactionDetailsFragment :
 
                 binding.txtNoData.visibility(false)
                 transactionAdapter.updateList(filterHistory)
-
             }
         }
         if (userId != null) {
             transactionViewModel.getTransactionHistory(userId)
         }
-
     }
 }

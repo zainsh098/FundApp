@@ -1,6 +1,5 @@
 package com.example.fundapp.fragments.home
 
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -18,9 +17,13 @@ import com.example.fundapp.databinding.FragmentHomeBinding
 import com.example.fundapp.model.User
 import com.example.fundapp.viewmodel.UserViewModel
 
+/**
+ * Fragment displaying the home screen with user information and organization balance.
+ *
+ * Handles UI interactions and communicates with [HomeViewModel] to fetch and display data.
+ */
 class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
     OnItemClickListenerUser {
-
 
     private lateinit var userAdapter: UserAdapter
     private val homeViewModel: HomeViewModel by viewModels()
@@ -30,14 +33,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        // Initialize adapter and set up RecyclerView
         userAdapter = UserAdapter(mutableListOf(), this)
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewUsers.adapter = userAdapter
 
-        val userRole = userViewModel.currentUser.value?.role
-        Log.d("HomeFragment", "User Role   Home Fragment : $userRole")
-
+        // Observe and update UI based on LiveData from ViewModel
         homeViewModel.message.observe(viewLifecycleOwner) { message ->
             binding.textHomeGreetings.text = message
         }
@@ -49,11 +50,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
         homeViewModel.orgBalance.observe(viewLifecycleOwner) {
             binding.textHomeOrganizationBalanceValue.text = "Rs: $it"
         }
-        homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
 
+        homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
             binding.apply {
                 textHomeUserName.text = "Hello, " + user?.name
-//                textHomeOrganizationBalanceValue.text = "Rs: ${user?.organizationBalance}"
                 textHomeDepositedValue.text = "Rs: ${user?.totalDeposited}"
                 textHomeWithdrawValue.text = "Rs: ${user?.totalWithdrawAmount}"
             }
@@ -63,9 +63,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }
-
         }
 
+        // Setup toolbar
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.home)
             backArrow.setOnClickListener {
@@ -73,23 +73,26 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
             }
         }
 
+        // Handle back button press to move task to the background
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     requireActivity().moveTaskToBack(true)
                 }
-            })
+            }
+        )
     }
 
+    /**
+     * Handles item click events from the user list.
+     *
+     * @param user The user that was clicked.
+     */
     override fun onItemClick(user: User) {
         val bundle = Bundle().apply {
             putString("userId", user.userId)
         }
         findNavController().navigate(R.id.action_homeFragment_to_transactionDetailsFragment, bundle)
     }
-
-
 }
-
-

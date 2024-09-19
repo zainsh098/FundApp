@@ -13,23 +13,20 @@ import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentMenuBinding
 import com.example.fundapp.extensions.visibility
 import com.example.fundapp.userrole.SessionManager
-import com.google.firebase.auth.FirebaseAuth
 
+/**
+ * Fragment representing the menu screen with navigation options.
+ *
+ * Shows different options based on the user's role (admin or regular user).
+ */
 class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::inflate) {
 
     private val menuViewModel: MenuViewModel by viewModels()
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMenuBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Adjust visibility of menu items based on user role
         if (SessionManager.getRole() == "admin") {
             binding.cardApproveRequest.visibility(true)
             binding.cardApproveRequestDeposit.visibility(true)
@@ -37,10 +34,13 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
             binding.cardApproveRequestDeposit.visibility(false)
             binding.cardApproveRequest.visibility = View.GONE
         }
+
+        // Setup toolbar with user photo and navigation actions
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.menu)
             context?.let {
-                Glide.with(it).load(menuViewModel.photoUrl.value)
+                Glide.with(it)
+                    .load(menuViewModel.photoUrl.value)
                     .placeholder(R.drawable.baseline_person_24)
                     .into(binding.componentToolbar.circularImageView)
             }
@@ -50,6 +50,7 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
             }
         }
 
+        // Setup click listeners for navigation
         binding.apply {
             cardDeposit.setOnClickListener {
                 findNavController().navigate(R.id.action_menuFragment_to_depositFragment)
@@ -70,16 +71,5 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
                 findNavController().navigate(R.id.action_menuFragment_to_policyFragment)
             }
         }
-
-
-      /*  requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    requireActivity().moveTaskToBack(true)
-                }
-            })*/
     }
-
-
 }
