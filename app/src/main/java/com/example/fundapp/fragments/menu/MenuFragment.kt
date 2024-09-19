@@ -27,12 +27,12 @@ class MenuFragment : BindingFragment<FragmentMenuBinding>(FragmentMenuBinding::i
         super.onViewCreated(view, savedInstanceState)
 
         // Adjust visibility of menu items based on user role
-        if (SessionManager.getRole() == "admin") {
+        if (SessionManager.getRole() == getString(R.string.admin)) {
             binding.cardApproveRequest.visibility(true)
             binding.cardApproveRequestDeposit.visibility(true)
         } else {
             binding.cardApproveRequestDeposit.visibility(false)
-            binding.cardApproveRequest.visibility = View.GONE
+            binding.cardApproveRequest.visibility(false)
         }
 
         // Setup toolbar with user photo and navigation actions

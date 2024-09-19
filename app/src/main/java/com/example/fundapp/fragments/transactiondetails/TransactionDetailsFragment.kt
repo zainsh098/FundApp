@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.R
 import com.example.fundapp.adapter.TransactionAdapter
 import com.example.fundapp.base.BindingFragment
+import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
 import com.example.fundapp.extensions.visibility
 import com.example.fundapp.viewmodel.TransactionViewModel
@@ -21,19 +22,10 @@ class TransactionDetailsFragment :
 
     private lateinit var transactionAdapter: TransactionAdapter
     private val transactionViewModel: TransactionViewModel by viewModels()
-    private lateinit var auth: FirebaseAuth
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentTransactionDetailsBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = FirebaseAuth.getInstance()
         val userId = arguments?.getString("userId")
 
         Log.d("USER ID  : ", "User ID ${userId}")
@@ -52,6 +44,7 @@ class TransactionDetailsFragment :
             recyclerViewTransactionDetails.layoutManager = LinearLayoutManager(requireContext())
             recyclerViewTransactionDetails.adapter = transactionAdapter
         }
+
         transactionViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
@@ -59,7 +52,7 @@ class TransactionDetailsFragment :
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
             val filterHistory = history.filterNotNull()
                 .filter {
-                    (it.type == "withdraw" || it.type == "deposit") && it.status == "accepted"
+                    it.type == TransactionConstant.KEY_WITHDRAW || it.type == TransactionConstant.KEY_DEPOSIT && it.status == TransactionConstant.KEY_ACCEPTED
                 }
                 .sortedByDescending {
                     it.date

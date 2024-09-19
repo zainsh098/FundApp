@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fundapp.R
 import com.example.fundapp.adapter.MyRequestAdapter
+import com.example.fundapp.adapter.MyRequestAdapter.OnClickItemShowBottomSheet
 import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.databinding.FragmentMyRequestBinding
@@ -22,7 +23,7 @@ import java.util.Locale
  */
 class MyRequestFragment :
     BindingFragment<FragmentMyRequestBinding>(FragmentMyRequestBinding::inflate),
-    MyRequestAdapter.OnClickItemShowBottomSheet {
+    OnClickItemShowBottomSheet {
 
     private val myRequestViewModel: MyRequestViewModel by viewModels()
     private lateinit var myRequestAdapter: MyRequestAdapter

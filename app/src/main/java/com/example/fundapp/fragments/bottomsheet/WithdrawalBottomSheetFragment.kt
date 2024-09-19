@@ -50,7 +50,10 @@ class WithdrawalBottomSheetFragment : BottomSheetDialogFragment() {
             // Navigate to the menu fragment and clear the back stack
             findNavController().navigate(R.id.action_withdrawFragment_to_menuFragment)
             dismiss() // Close the bottom sheet dialog
-            findNavController().popBackStack(R.id.withdrawFragment, true) // Remove withdrawFragment from back stack
+            findNavController().popBackStack(
+                R.id.withdrawFragment,
+                true
+            ) // Remove withdrawFragment from back stack
         }
     }
 }

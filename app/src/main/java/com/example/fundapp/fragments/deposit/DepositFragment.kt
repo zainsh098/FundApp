@@ -77,7 +77,6 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
                         depositAmountText.toInt(),
                         dateDepositAmount,
                         selectedFileUri,
-                        requireContext()
                     )
                 }
             }

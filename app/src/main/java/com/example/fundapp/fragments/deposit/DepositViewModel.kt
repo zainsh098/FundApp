@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.fundapp.R
+import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -22,13 +23,16 @@ import java.util.UUID
 class DepositViewModel : TransactionViewModel() {
 
     private val storage = FirebaseStorage.getInstance()
-    var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     var dateLiveData: MutableLiveData<String> = MutableLiveData()
     val fileUriLiveData: MutableLiveData<Uri?> = MutableLiveData()
+
     private val _depositSuccess = MutableLiveData<Boolean>()
     val depositSuccess: LiveData<Boolean> get() = _depositSuccess
+
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
+
     private val _successMessage = MutableLiveData<String>()
     val successMessage: LiveData<String> get() = _successMessage
 
@@ -89,7 +93,6 @@ class DepositViewModel : TransactionViewModel() {
         depositAmount: Int,
         dateDepositAmount: String,
         selectedFileUri: Uri?,
-        context: Context
     ) {
         if (selectedFileUri != null) {
             isLoading.value = true
@@ -98,11 +101,11 @@ class DepositViewModel : TransactionViewModel() {
                     name = auth.currentUser?.displayName ?: "Unknown",
                     transactionId = UUID.randomUUID().toString(),
                     userId = auth.currentUser?.uid ?: "",
-                    type = "deposit",
+                    type = TransactionConstant.KEY_DEPOSIT,
                     amount = depositAmount,
                     date = dateDepositAmount,
                     proofOfDeposit = fileUrl,
-                    status = "pending",
+                    status = TransactionConstant.KEY_STATUS,
                     photoUrl = auth.currentUser?.photoUrl.toString()
                 )
                 try {

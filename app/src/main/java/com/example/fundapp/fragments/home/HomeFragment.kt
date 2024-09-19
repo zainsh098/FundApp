@@ -2,7 +2,6 @@ package com.example.fundapp.fragments.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
@@ -15,7 +14,6 @@ import com.example.fundapp.adapter.UserAdapter
 import com.example.fundapp.base.BindingFragment
 import com.example.fundapp.databinding.FragmentHomeBinding
 import com.example.fundapp.model.User
-import com.example.fundapp.viewmodel.UserViewModel
 
 /**
  * Fragment displaying the home screen with user information and organization balance.
@@ -27,7 +25,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
 
     private lateinit var userAdapter: UserAdapter
     private val homeViewModel: HomeViewModel by viewModels()
-    private val userViewModel: UserViewModel by viewModels()
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,9 +50,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
 
         homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
             binding.apply {
-                textHomeUserName.text = "Hello, " + user?.name
-                textHomeDepositedValue.text = "Rs: ${user?.totalDeposited}"
-                textHomeWithdrawValue.text = "Rs: ${user?.totalWithdrawAmount}"
+                textHomeUserName.text = getString(R.string.hello) + user?.name
+                textHomeDepositedValue.text = getString(R.string.rs) + user?.totalDeposited
+                textHomeWithdrawValue.text = getString(R.string.rs) + user?.totalWithdrawAmount
             }
             context?.let {
                 Glide.with(it)
@@ -64,7 +61,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
                     .into(binding.componentToolbar.circularImageView)
             }
         }
-
         // Setup toolbar
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.home)
@@ -96,3 +92,4 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
         findNavController().navigate(R.id.action_homeFragment_to_transactionDetailsFragment, bundle)
     }
 }
+

@@ -60,5 +60,8 @@
     <string name="ii_user_account_and_registration">II. User Account and Registration</string>
     <string name="deposit_request">Deposit Request</string>
     <string name="organization_name">Organization Name</string>
+    <string name="hello">"Hello, "</string>
+    <string name="rs">Rs:</string>
+    <string name="admin">admin</string>
 
 </resources>
