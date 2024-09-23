@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -35,7 +33,7 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         setupUI()
-        observeViewModel()
+
     }
 
     /**
@@ -80,6 +78,7 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
                     )
                 }
             }
+            observeViewModel()
         }
     }
 
@@ -92,6 +91,8 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
         }
 
         depositViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+
+
             binding.apply {
                 blurredBackground.visibility = if (isLoading) View.VISIBLE else View.GONE
                 progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -149,10 +150,8 @@ class DepositFragment : BindingFragment<FragmentDepositBinding>(FragmentDepositB
             val selectedFileUri = data?.data
             depositViewModel.fileUriLiveData.value = selectedFileUri
             selectedFileUri?.let {
-                binding.cardViewAttachment.findViewById<TextView>(R.id.textViewAttachment).text =
-                    getString(R.string.file_attached)
-                binding.cardViewAttachment.findViewById<ImageView>(R.id.imageViewAttachment)
-                    .setImageResource(R.drawable.attachfile)
+                binding.textViewAttachment.text = getString(R.string.file_attached)
+                binding.imageViewAttachment.setImageResource(R.drawable.attachfile)
             }
         }
     }

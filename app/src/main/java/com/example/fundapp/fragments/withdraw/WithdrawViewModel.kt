@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.fundapp.R
+import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.extensions.percentOf
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.viewmodel.TransactionViewModel
@@ -35,10 +36,10 @@ class WithdrawViewModel : TransactionViewModel() {
             amount = withdrawAmount,
             reason = withdrawReason,
             date = dateWithdraw,
-            type = "withdraw",
+            type = TransactionConstant.KEY_WITHDRAW,
             transactionId = UUID.randomUUID().toString(),
             userId = auth.currentUser!!.uid,
-            status = "pending"
+            status = TransactionConstant.KEY_PENDING
         )
         val maxUserWithdrawal = currentBalance + (currentBalance.percentOf(50))
         if (withdrawAmount > maxUserWithdrawal) {

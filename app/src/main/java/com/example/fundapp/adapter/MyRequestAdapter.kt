@@ -18,11 +18,11 @@ import com.example.fundapp.model.TransactionUser
  */
 class MyRequestAdapter(
 
-    private var withdrawlRequest: MutableList<TransactionUser>,
     private val listener: OnClickItemShowBottomSheet
 
 ) : RecyclerView.Adapter<MyRequestAdapter.ViewHolder>() {
 
+    private var withdrawlRequest: MutableList<TransactionUser> = mutableListOf()
     /**
      * Creates a new ViewHolder instance to hold the view for each request item.
      *
@@ -101,6 +101,7 @@ class MyRequestAdapter(
      * @param newWithdrawlRequest The new list of requests to be displayed.
      */
     fun updateList(newWithdrawlRequest: List<TransactionUser>) {
+        withdrawlRequest.clear()
         withdrawlRequest.addAll(newWithdrawlRequest)
         notifyDataSetChanged() // Refresh the entire list
     }

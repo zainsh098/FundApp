@@ -27,3 +27,21 @@ object SessionManager {
         return currentUserRole
     }
 }
+
+object organizationManager {
+    private var nameOrg: String? = null
+
+
+    fun setName(name: String?) {
+        nameOrg = name
+
+    }
+
+    fun getName(): String? {
+
+        return nameOrg
+
+    }
+
+
+}

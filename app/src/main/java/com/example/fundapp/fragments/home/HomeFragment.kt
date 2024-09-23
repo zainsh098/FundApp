@@ -23,7 +23,7 @@ import com.example.fundapp.model.User
 class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
     OnItemClickListenerUser {
 
-    private lateinit var userAdapter: UserAdapter
+    private var userAdapter: UserAdapter=UserAdapter(this)
     private val homeViewModel: HomeViewModel by viewModels()
 
     @SuppressLint("SetTextI18n")
@@ -31,7 +31,6 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize adapter and set up RecyclerView
-        userAdapter = UserAdapter(mutableListOf(), this)
         binding.recyclerViewUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewUsers.adapter = userAdapter
 
@@ -45,14 +44,15 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(FragmentHomeBinding::i
         }
 
         homeViewModel.orgBalance.observe(viewLifecycleOwner) {
-            binding.textHomeOrganizationBalanceValue.text = "Rs: $it"
+            binding.textHomeOrganizationBalanceValue.text = getString(R.string.rs) + " " + it
         }
 
         homeViewModel.currentUser.observe(viewLifecycleOwner) { user ->
             binding.apply {
                 textHomeUserName.text = getString(R.string.hello) + user?.name
-                textHomeDepositedValue.text = getString(R.string.rs) + user?.totalDeposited
-                textHomeWithdrawValue.text = getString(R.string.rs) + user?.totalWithdrawAmount
+                textHomeDepositedValue.text = getString(R.string.rs) + " " + user?.totalDeposited
+                textHomeWithdrawValue.text =
+                    getString(R.string.rs) + " " + user?.totalWithdrawAmount
             }
             context?.let {
                 Glide.with(it)

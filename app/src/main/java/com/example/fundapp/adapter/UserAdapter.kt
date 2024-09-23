@@ -16,9 +16,9 @@ import com.example.fundapp.model.User
  * @param listener The listener for item click events.
  */
 class UserAdapter(
-    private var users: MutableList<User>,
     private val listener: OnItemClickListenerUser
 ) : RecyclerView.Adapter<UserAdapter.MyViewHolder>() {
+    private var users: MutableList<User> = mutableListOf()
 
     /**
      * Creates a new ViewHolder to hold the view for each user item.
@@ -47,9 +47,12 @@ class UserAdapter(
             binding.apply {
                 userName.text = user.name.split(" ")[0]  // Display the first name only
                 emailID.text = user.email.getEmailMasked()  // Mask the email for privacy
-                totalDepositedValue.text = user.totalDeposited.toString()  // Display total deposited amount
-                totalWithdrawValue.text = user.totalWithdrawAmount.toString()  // Display total withdrawn amount
-                userCurrentBalance.text = "Balance: ${user.currentBalance}"  // Display current balance
+                totalDepositedValue.text =
+                    user.totalDeposited.toString()  // Display total deposited amount
+                totalWithdrawValue.text =
+                    user.totalWithdrawAmount.toString()  // Display total withdrawn amount
+                userCurrentBalance.text =
+                    "Balance: ${user.currentBalance}"  // Display current balance
 
                 // Load the user's photo using Glide
                 user.photoUrl?.let { url ->

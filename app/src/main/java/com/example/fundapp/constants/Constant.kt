@@ -10,6 +10,7 @@ class TransactionConstant {
         const val KEY_DEPOSIT = "deposit"
         const val KEY_ACCEPTED = "accepted"
         const val KEY_PENDING = "pending"
+        const val KEY_REJECTED = "rejected"
         const val KEY_TYPE = "type"
         const val KEY_STATUS = "status"
         const val KEY_O3 = "O3"
@@ -17,5 +18,7 @@ class TransactionConstant {
         const val KEY_TRANSACTIONS = "Transactions"
         const val KEY_TRANSACTIONS_IDS = "transactionIds"
         const val KEY_USERS_IDS = "userIds"
+
+
     }
 }

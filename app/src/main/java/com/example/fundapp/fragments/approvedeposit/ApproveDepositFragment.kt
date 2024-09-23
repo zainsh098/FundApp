@@ -24,14 +24,13 @@ class ApproveDepositFragment :
     BindingFragment<FragmentDepositApproveRequestBinding>(FragmentDepositApproveRequestBinding::inflate),
     OnClickItemListenerDeposit {
 
-    private lateinit var adapter: DepositApproveAdapter
+    private  val adapter: DepositApproveAdapter=DepositApproveAdapter(this)
     private val approveDepositViewModel: ApproveDepositViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize the adapter and set it to the RecyclerView
-        adapter = DepositApproveAdapter(arrayListOf(), this)
         binding.approveRequestRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.approveRequestRecyclerView.adapter = adapter
 

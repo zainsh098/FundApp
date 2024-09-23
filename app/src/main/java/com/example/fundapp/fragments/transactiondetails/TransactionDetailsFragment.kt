@@ -2,9 +2,7 @@ package com.example.fundapp.fragments.transactiondetails
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,12 +13,11 @@ import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.databinding.FragmentTransactionDetailsBinding
 import com.example.fundapp.extensions.visibility
 import com.example.fundapp.viewmodel.TransactionViewModel
-import com.google.firebase.auth.FirebaseAuth
 
 class TransactionDetailsFragment :
     BindingFragment<FragmentTransactionDetailsBinding>(FragmentTransactionDetailsBinding::inflate) {
 
-    private lateinit var transactionAdapter: TransactionAdapter
+    private var transactionAdapter: TransactionAdapter = TransactionAdapter()
     private val transactionViewModel: TransactionViewModel by viewModels()
 
 
@@ -29,7 +26,7 @@ class TransactionDetailsFragment :
         val userId = arguments?.getString("userId")
 
         Log.d("USER ID  : ", "User ID ${userId}")
-        transactionAdapter = TransactionAdapter()
+//        transactionAdapter = TransactionAdapter()
 
         binding.componentToolbar.apply {
             textToolbar.text = getString(R.string.transaction_details)
@@ -50,9 +47,11 @@ class TransactionDetailsFragment :
         }
 
         transactionViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
+            Log.d("Trancation ", history.toString())
             val filterHistory = history.filterNotNull()
                 .filter {
-                    it.type == TransactionConstant.KEY_WITHDRAW || it.type == TransactionConstant.KEY_DEPOSIT && it.status == TransactionConstant.KEY_ACCEPTED
+                    (it.type == TransactionConstant.KEY_WITHDRAW || it.type == TransactionConstant.KEY_DEPOSIT) &&
+                            it.status == TransactionConstant.KEY_ACCEPTED
                 }
                 .sortedByDescending {
                     it.date
@@ -65,6 +64,7 @@ class TransactionDetailsFragment :
                 transactionAdapter.updateList(filterHistory)
             }
         }
+
         if (userId != null) {
             transactionViewModel.getTransactionHistory(userId)
         }

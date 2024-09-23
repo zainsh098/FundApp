@@ -24,10 +24,10 @@ class WithdrawProofFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val transactionID = arguments?.getString("transactionId")
-        val withdrawAmount = arguments?.getString("withdrawAmount")
-        val userID = arguments?.getString("userID")
-        val date = arguments?.getString("date")
+        val transactionID = arguments?.getString(getString((R.string.transactionid)))
+        val withdrawAmount = arguments?.getString(getString((R.string.withdrawamount)))
+        val userID = arguments?.getString(getString((R.string.userid)))
+        val date = arguments?.getString(getString((R.string.date)))
 
         binding.componentToolbar.apply {
             cardImage.visibility(false)
@@ -58,7 +58,7 @@ class WithdrawProofFragment :
                     withdrawAmount.toInt()
                 )
             } else {
-                showToast("Missing information")
+                showToast(getString(R.string.missing_information))
             }
         }
 

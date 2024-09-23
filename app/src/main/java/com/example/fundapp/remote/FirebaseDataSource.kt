@@ -2,6 +2,7 @@ package com.example.fundapp.remote
 
 import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.model.User
+import com.example.fundapp.userrole.organizationManager
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
@@ -11,13 +12,15 @@ import kotlinx.coroutines.tasks.await
  */
 class FirebaseDataSource(private val firestore: FirebaseFirestore) {
 
+    private  val getOrgName=organizationManager.getName()
     /**
      * Saves a user to the Firestore database.
      * @param user The user object containing user details to be saved.
      */
+
     suspend fun saveUser(user: User) {
         // Access the "O3" collection, then the "Users" collection, and create a document with userId containing the user details
-        firestore.collection(TransactionConstant.KEY_O3)
+        firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_USERS)  // Access the "Users" document under the "O3" collection
             .collection(TransactionConstant.KEY_USERS_IDS)  // Access the "userIds" collection inside the "Users" document
             .document(user.userId)  // Create a document with the userId
@@ -32,7 +35,7 @@ class FirebaseDataSource(private val firestore: FirebaseFirestore) {
      */
     suspend fun getUser(userId: String): User? {
         // Fetch user data from the "userIds" collection under the "Users" document
-        return firestore.collection(TransactionConstant.KEY_O3).document(TransactionConstant.KEY_USERS).collection(TransactionConstant.KEY_USERS_IDS).document(userId)
+        return firestore.collection(getOrgName!!).document(TransactionConstant.KEY_USERS).collection(TransactionConstant.KEY_USERS_IDS).document(userId)
             .get().await().toObject(User::class.java)
     }
 
@@ -42,7 +45,7 @@ class FirebaseDataSource(private val firestore: FirebaseFirestore) {
      */
     suspend fun getAllUsers(): List<User> {
         // Fetch all users from the "userIds" collection
-        return firestore.collection(TransactionConstant.KEY_O3).document(TransactionConstant.KEY_USERS).collection(TransactionConstant.KEY_USERS_IDS).get()
+        return firestore.collection(getOrgName!!).document(TransactionConstant.KEY_USERS).collection(TransactionConstant.KEY_USERS_IDS).get()
             .await().documents.mapNotNull { it.toObject(User::class.java) }
     }
 
@@ -54,7 +57,7 @@ class FirebaseDataSource(private val firestore: FirebaseFirestore) {
     suspend fun getUserCurrentBalance(userId: String): Double? {
         // Fetch current balance for a user from the "userIds" collection
         val documentSnapshot =
-            firestore.collection(TransactionConstant.KEY_O3).document(TransactionConstant.KEY_USERS).collection(TransactionConstant.KEY_USERS_IDS).document(userId)
+            firestore.collection(getOrgName!!).document(TransactionConstant.KEY_USERS).collection(TransactionConstant.KEY_USERS_IDS).document(userId)
                 .get()
                 .await()
         return documentSnapshot.getDouble("currentBalance")

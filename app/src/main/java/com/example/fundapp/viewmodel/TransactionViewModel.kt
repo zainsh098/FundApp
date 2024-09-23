@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.repository.TransactionRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -80,7 +81,7 @@ open class TransactionViewModel : ViewModel() {
      * @param transactionId The ID of the transaction to be rejected.
      */
     fun rejectRequest(transactionId: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             transactionRepository.rejectRequestStatus(transactionId)
         }
     }

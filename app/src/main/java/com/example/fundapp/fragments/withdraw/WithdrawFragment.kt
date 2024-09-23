@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fundapp.R
 import com.example.fundapp.base.BindingFragment
+import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.databinding.FragmentWithdrawBinding
 import com.example.fundapp.fragments.bottomsheet.WithdrawalBottomSheetFragment
 import com.example.fundapp.viewmodel.UserViewModel
@@ -28,6 +29,7 @@ class WithdrawFragment :
         setToolbar()
         setUI()
         observeViewModel()
+
     }
 
     private fun setToolbar() {
@@ -52,19 +54,27 @@ class WithdrawFragment :
                 val withdrawAmountText = textFieldWithdraw.text.toString()
                 val withdrawReason = textFieldWithdrawReason.text.toString()
                 val date = textViewSelectedDate.text.toString()
-
+                userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
+                    balance?.let {
+                        currentUserBalance = it.toInt()
+                    }
+                }
                 if (withdrawAmountText.isEmpty() || withdrawReason.isEmpty() || date.isEmpty()) {
-                    showToast("Please fill in all fields")
+                    showToast(getString(R.string.please_fill_in_all_fields))
+                } else if (currentUserBalance == 0) {
+                    showToast("You have 0 Current Balance")
+
+
                 } else {
                     withdrawViewModel.getTransactionHistory(auth.currentUser!!.uid)
                     withdrawViewModel.transactionHistory.observe(viewLifecycleOwner) { history ->
 
                         val pending = history.filter {
-                            it!!.status == "pending" && it.type == "withdraw"
+                            it!!.status == TransactionConstant.KEY_PENDING && it.type == TransactionConstant.KEY_WITHDRAW
                         }
                         Log.d("Status ", pending.toString())
                         if (pending.isNotEmpty()) {
-                            showToast("Already have pending request ")
+                            showToast(getString(R.string.already_have_pending_request))
                         } else {
                             val withdrawAmount = withdrawAmountText.toInt()
                             withdrawViewModel.requestWithdrawal(
@@ -73,15 +83,12 @@ class WithdrawFragment :
                                 withdrawAmount,
                                 withdrawReason,
                                 date,
-
-                                )
+                            )
                         }
                     }
                 }
             }
         }
-
-
     }
 
     private fun observeViewModel() {
@@ -94,11 +101,6 @@ class WithdrawFragment :
             }
         }
 
-        userViewModel.userBalance.observe(viewLifecycleOwner) { balance ->
-            balance?.let {
-                currentUserBalance = it.toInt()
-            }
-        }
         withdrawViewModel.dateLiveData.observe(viewLifecycleOwner) { date ->
             binding.textViewSelectedDate.text = date
         }

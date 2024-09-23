@@ -26,13 +26,10 @@ class MyRequestFragment :
     OnClickItemShowBottomSheet {
 
     private val myRequestViewModel: MyRequestViewModel by viewModels()
-    private lateinit var myRequestAdapter: MyRequestAdapter
+    private  var myRequestAdapter: MyRequestAdapter=MyRequestAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Initialize the adapter for displaying requests
-        myRequestAdapter = MyRequestAdapter(mutableListOf(), this)
 
         // Set up RecyclerView with the adapter
         binding.apply {
@@ -58,9 +55,14 @@ class MyRequestFragment :
         // Observe request history and update the RecyclerView
         myRequestViewModel.getTransactionHistory1.observe(viewLifecycleOwner) { history ->
             val myRequestHistory = history.filterNotNull()
-                .filter { it.status == TransactionConstant.KEY_PENDING || it.status == TransactionConstant.KEY_ACCEPTED || it.type == TransactionConstant.KEY_WITHDRAW || it.type == TransactionConstant.KEY_DEPOSIT }
+                .filter {
+                    it.status == TransactionConstant.KEY_PENDING ||
+                            it.status == TransactionConstant.KEY_ACCEPTED ||
+                            it.type == TransactionConstant.KEY_WITHDRAW ||
+                            it.type == TransactionConstant.KEY_DEPOSIT
+                }
 
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val dateFormat = SimpleDateFormat(getString(R.string.dd_mm_yyyy), Locale.getDefault())
             val sortedHistory = myRequestHistory.sortedByDescending {
                 dateFormat.parse(it.date)
             }

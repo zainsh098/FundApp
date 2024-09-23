@@ -47,15 +47,15 @@
     <string name="policies">Policies</string>
     <string name="the_tat_boost_feature_allows_users_to_receive_up_to_50_extra_of_their_current_balance_subject_to_terms_and_conditions">The TAT Boost feature allows users to receive up to 50% extra of their current balance, subject to terms and conditions...</string>
     <string name="iii_tat_boost_feature">III. TAT Boost Feature</string>
-    <string name="to_use_the_app_users_must_create_an_account_by_providing_required_information_including_name_email_address_and_password">To use the App, users must create an account by providing required information, including name, email address, and password...</string>
-    <string name="the_fund_app_the_app_allows_users_to_manage_and_track_their_investments_savings_and_expenses_the_added_feature_of_tat_boost_offers_users_the_chance_to_receive_up_to_50_extra_of_their_current_balance">The Fund App (the \'App\') allows users to manage and track their investments, savings, and expenses. The added feature of \'TAT Boost\' offers users the chance to receive up to 50% extra of their current balance...</string>
+    <string name="to_use_the_app_users_must_create_an_account_by_providing_required_information_including_name_email_address_and_password">To use the App, users must create an account by providing required information, including name, email address, and password…</string>
+    <string name="the_fund_app_the_app_allows_users_to_manage_and_track_their_investments_savings_and_expenses_the_added_feature_of_tat_boost_offers_users_the_chance_to_receive_up_to_50_extra_of_their_current_balance">The Fund App (the \'App\') allows users to manage and track their investments, savings, and expenses. The added feature of \'TAT Boost\' offers users the chance to receive up to 50% extra of their current balance…</string>
     <string name="i_introduction">I. Introduction</string>
-    <string name="we_reserve_the_right_to_amend_these_terms_at_any_time_users_will_be_notified_of_any_significant_changes_and_continued_use_of_the_app_after_changes_are_made_implies_acceptance_of_the_new_terms">We reserve the right to amend these terms at any time. Users will be notified of any significant changes and continued use of the App after changes are made implies acceptance of the new terms...</string>
-    <string name="we_reserve_the_right_to_amend_these_terms_at_any_time_users_will_be_notified_of_any_significant_changes_and_continued_use_of_the_app_after_changes_are_made_implies_acceptance_of_the_new_termss">We reserve the right to amend these terms at any time. Users will be notified of any significant changes and continued use of the App after changes are made implies acceptance of the new terms...</string>
+    <string name="we_reserve_the_right_to_amend_these_terms_at_any_time_users_will_be_notified_of_any_significant_changes_and_continued_use_of_the_app_after_changes_are_made_implies_acceptance_of_the_new_terms">We reserve the right to amend these terms at any time. Users will be notified of any significant changes and continued use of the App after changes are made implies acceptance of the new terms…</string>
+    <string name="we_reserve_the_right_to_amend_these_terms_at_any_time_users_will_be_notified_of_any_significant_changes_and_continued_use_of_the_app_after_changes_are_made_implies_acceptance_of_the_new_termss">We reserve the right to amend these terms at any time. Users will be notified of any significant changes and continued use of the App after changes are made implies acceptance of the new terms…</string>
     <string name="vi_amendments_to_terms">VI. Amendments to Terms</string>
-    <string name="we_value_your_privacy_and_are_committed_to_protecting_your_personal_data_your_information_will_be_used_only_for_managing_your_account_and_transactions_within_the_app_and_will_not_be_shared_with_third_parties">We value your privacy and are committed to protecting your personal data. Your information will be used only for managing your account and transactions within the App and will not be shared with third parties...</string>
+    <string name="we_value_your_privacy_and_are_committed_to_protecting_your_personal_data_your_information_will_be_used_only_for_managing_your_account_and_transactions_within_the_app_and_will_not_be_shared_with_third_parties">We value your privacy and are committed to protecting your personal data. Your information will be used only for managing your account and transactions within the App and will not be shared with third parties…</string>
     <string name="v_privacy_and_data_protection">V. Privacy and Data Protection</string>
-    <string name="users_can_request_withdrawals_of_their_available_balance_at_any_time_subject_to_withdrawal_limits_and_terms_set_by_the_app_withdrawals_are_subject_to_approval_by_the_admin">Users can request withdrawals of their available balance at any time, subject to withdrawal limits and terms set by the App. Withdrawals are subject to approval by the Admin...</string>
+    <string name="users_can_request_withdrawals_of_their_available_balance_at_any_time_subject_to_withdrawal_limits_and_terms_set_by_the_app_withdrawals_are_subject_to_approval_by_the_admin">Users can request withdrawals of their available balance at any time, subject to withdrawal limits and terms set by the App. Withdrawals are subject to approval by the Admin…</string>
     <string name="iv_withdrawal_policy">IV. Withdrawal Policy</string>
     <string name="ii_user_account_and_registration">II. User Account and Registration</string>
     <string name="deposit_request">Deposit Request</string>
@@ -63,5 +63,17 @@
     <string name="hello">"Hello, "</string>
     <string name="rs">Rs:</string>
     <string name="admin">admin</string>
+    <string name="transactionid">transactionId</string>
+    <string name="withdrawamount">withdrawAmount</string>
+    <string name="userid">userID</string>
+    <string name="date">date</string>
+    <string name="dd_mm_yyyy">dd/MM/yyyy</string>
+    <string name="photourl">photoUrl</string>
+    <string name="please_fill_in_all_fields">Please fill in all fields</string>
+    <string name="already_have_pending_request">"Already have pending request "</string>
+    <string name="missing_information">Missing information</string>
+    <string name="next">Next</string>
+    <string name="google_sign_in_failed">Google sign in failed: %1$s</string>
+    <string name="authentication_failed">Authentication Failed: %1$s</string>
 
 </resources>

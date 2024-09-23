@@ -19,8 +19,8 @@ class HomeViewModel : UserViewModel() {
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid.orEmpty()
     private val dateNow = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
     private val _message: MutableLiveData<String> = MutableLiveData()
-    val user = User()
     val message: LiveData<String> = _message
+    val user = User()
 
     init {
         getUser(currentUserId)

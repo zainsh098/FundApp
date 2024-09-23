@@ -109,7 +109,7 @@ class TransactionRepository {
      * @param transactionId The ID of the transaction to be rejected.
      */
     suspend fun rejectRequestStatus(transactionId: String) {
-        dataSource.updateRequestStatus(transactionId, "rejected")
+        dataSource.updateRequestStatus(transactionId, TransactionConstant.KEY_REJECTED)
     }
 
     /**
@@ -117,7 +117,7 @@ class TransactionRepository {
      * @param transactionId The ID of the transaction to be accepted.
      */
     suspend fun acceptRequestStatus(transactionId: String) {
-        dataSource.updateRequestStatus(transactionId, "accepted")
+        dataSource.updateRequestStatus(transactionId, TransactionConstant.KEY_ACCEPTED)
     }
 
     /**

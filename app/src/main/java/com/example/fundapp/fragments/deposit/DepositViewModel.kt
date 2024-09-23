@@ -105,7 +105,7 @@ class DepositViewModel : TransactionViewModel() {
                     amount = depositAmount,
                     date = dateDepositAmount,
                     proofOfDeposit = fileUrl,
-                    status = TransactionConstant.KEY_STATUS,
+                    status = TransactionConstant.KEY_PENDING,
                     photoUrl = auth.currentUser?.photoUrl.toString()
                 )
                 try {

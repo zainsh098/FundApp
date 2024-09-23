@@ -1,8 +1,10 @@
 package com.example.fundapp.remote
 
+import android.util.Log
 import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.model.TransactionUser
 import com.example.fundapp.model.User
+import com.example.fundapp.userrole.organizationManager
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
@@ -12,6 +14,8 @@ import kotlinx.coroutines.tasks.await
  */
 class TransactionDataSource() {
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val getOrgName = organizationManager.getName()
+
 
     /**
      * Retrieves all users from Firestore.
@@ -22,7 +26,7 @@ class TransactionDataSource() {
      * @return A list of all user objects.
      */
     suspend fun getAllUsers(): List<User> {
-        return firestore.collection(TransactionConstant.KEY_O3)
+        return firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_USERS)
             .collection(TransactionConstant.KEY_USERS_IDS)
             .get().await().documents.mapNotNull { it.toObject(User::class.java) }
@@ -38,7 +42,7 @@ class TransactionDataSource() {
      * @return The user object, or null if the user does not exist.
      */
     suspend fun getUser(userId: String): User? {
-        return firestore.collection(TransactionConstant.KEY_O3)
+        return firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_USERS)
             .collection(TransactionConstant.KEY_USERS_IDS)
             .document(userId).get().await().toObject(User::class.java)
@@ -53,7 +57,7 @@ class TransactionDataSource() {
      * @param user The user object containing updated balance information.
      */
     suspend fun updateUserBalance(user: User) {
-        firestore.collection(TransactionConstant.KEY_O3).document(TransactionConstant.KEY_USERS)
+        firestore.collection(getOrgName!!).document(TransactionConstant.KEY_USERS)
             .collection(TransactionConstant.KEY_USERS_IDS)
             .document(user.userId).set(user).await()
     }
@@ -67,7 +71,7 @@ class TransactionDataSource() {
      * @param transaction The transaction object containing deposit details to be saved.
      */
     suspend fun depositAmount(transaction: TransactionUser) {
-        firestore.collection(TransactionConstant.KEY_O3)
+        firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_TRANSACTIONS)
             .collection(TransactionConstant.KEY_TRANSACTIONS_IDS)
             .document(transaction.transactionId).set(transaction).await()
@@ -82,7 +86,7 @@ class TransactionDataSource() {
      * @param transaction The transaction object containing withdrawal details to be saved.
      */
     suspend fun withdrawAmount(transaction: TransactionUser) {
-        firestore.collection(TransactionConstant.KEY_O3)
+        firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_TRANSACTIONS)
             .collection(TransactionConstant.KEY_TRANSACTIONS_IDS)
             .document(transaction.transactionId).set(transaction).await()
@@ -98,7 +102,7 @@ class TransactionDataSource() {
      * @return A list of transaction objects related to the user.
      */
     suspend fun getTransactionHistoryData(userId: String): List<TransactionUser> {
-        return firestore.collection(TransactionConstant.KEY_O3)
+        return firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_TRANSACTIONS)
             .collection(TransactionConstant.KEY_TRANSACTIONS_IDS)
             .whereEqualTo(TransactionConstant.USER_ID, userId)
@@ -115,7 +119,7 @@ class TransactionDataSource() {
      * @return A list of pending withdrawal transaction objects.
      */
     suspend fun getAllWithdrawRequests(userId: String): List<TransactionUser> {
-        return firestore.collection(TransactionConstant.KEY_O3)
+        return firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_TRANSACTIONS)
             .collection(TransactionConstant.KEY_TRANSACTIONS_IDS)
             .whereEqualTo(TransactionConstant.USER_ID, userId)
@@ -134,14 +138,21 @@ class TransactionDataSource() {
      * @return A list of pending deposit transaction objects.
      */
     suspend fun getAllDepositRequest(userId: String): List<TransactionUser> {
-        return firestore.collection(TransactionConstant.KEY_O3)
+        Log.d("Name oRG ", getOrgName!!)
+
+        return firestore.collection(getOrgName)
             .document(TransactionConstant.KEY_TRANSACTIONS)
             .collection(TransactionConstant.KEY_TRANSACTIONS_IDS)
             .whereEqualTo(TransactionConstant.USER_ID, userId)
             .whereEqualTo(TransactionConstant.KEY_TYPE, TransactionConstant.KEY_DEPOSIT)
             .whereEqualTo(TransactionConstant.KEY_STATUS, TransactionConstant.KEY_PENDING)
-            .get().await().documents.mapNotNull { it.toObject(TransactionUser::class.java) }
+            .get().await().documents.mapNotNull {
+                it.toObject(TransactionUser::class.java)
+            }
+
+
     }
+
 
     /**
      * Updates the status of a specific transaction.
@@ -153,7 +164,7 @@ class TransactionDataSource() {
      * @param status The new status to be set for the transaction.
      */
     suspend fun updateRequestStatus(transactionId: String, status: String) {
-        firestore.collection(TransactionConstant.KEY_O3)
+        firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_TRANSACTIONS)
             .collection(TransactionConstant.KEY_TRANSACTIONS_IDS)
             .document(transactionId)
@@ -170,7 +181,7 @@ class TransactionDataSource() {
      * @param status The new status to be set for the deposit request.
      */
     suspend fun updateDepositRequestStatus(transactionId: String, status: String) {
-        firestore.collection(TransactionConstant.KEY_O3)
+        firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_TRANSACTIONS)
             .collection(TransactionConstant.KEY_TRANSACTIONS_IDS)
             .document(transactionId)
@@ -187,7 +198,7 @@ class TransactionDataSource() {
      * @param withdrawProof The URL of the withdrawal proof to be set.
      */
     suspend fun updateTransaction(transactionId: String, withdrawProof: String) {
-        firestore.collection(TransactionConstant.KEY_O3)
+        firestore.collection(getOrgName!!)
             .document(TransactionConstant.KEY_TRANSACTIONS)
             .collection(TransactionConstant.KEY_TRANSACTIONS_IDS)
             .document(transactionId)

@@ -15,10 +15,10 @@ import com.example.fundapp.model.TransactionUser
  * @property listener Listener to handle approve/reject actions.
  */
 class DepositApproveAdapter(
-    private val depositRequest: ArrayList<TransactionUser>,
     private val listener: OnClickItemListenerDeposit
 ) : RecyclerView.Adapter<DepositApproveAdapter.ViewHolder>() {
 
+    private val depositRequest: ArrayList<TransactionUser> = arrayListOf()
     /**
      * Called when RecyclerView needs a new ViewHolder of the given type to represent an item.
      *

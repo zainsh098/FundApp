@@ -80,10 +80,10 @@ class ApproveRequestFragment :
         transactionId: String, userId: String, withdrawAmount: Int, date: String
     ) {
         val bundle = Bundle().apply {
-            putString("transactionId", transactionId)
-            putString("withdrawAmount", withdrawAmount.toString())
-            putString("userID", userId)
-            putString("date", date)
+            putString(getString(R.string.transactionid), transactionId)
+            putString(getString(R.string.withdrawamount), withdrawAmount.toString())
+            putString(getString(R.string.userid), userId)
+            putString(getString(R.string.date), date)
         }
         findNavController().navigate(
             R.id.action_approveRequestFragment_to_withdrawProofFragment, bundle

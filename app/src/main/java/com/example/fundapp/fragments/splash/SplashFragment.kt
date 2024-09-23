@@ -13,12 +13,11 @@ import kotlinx.coroutines.launch
 
 class SplashFragment : BindingFragment<FragmentSplashBinding>(FragmentSplashBinding::inflate) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
             delay(2000L)
-            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            findNavController().navigate(R.id.action_splashFragment_to_organizationNameFragment)
         }
     }
 }

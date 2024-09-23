@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fundapp.R
+import com.example.fundapp.constants.TransactionConstant
 import com.example.fundapp.databinding.TransactionDetailsItemBinding
 import com.example.fundapp.model.TransactionUser
 
@@ -33,7 +34,7 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionAdapter.ViewHolder>()
         fun bind(transactionUser: TransactionUser) {
             binding.apply {
                 // Set the text color based on the transaction type
-                if (transactionUser.type == "withdraw") {
+                if (transactionUser.type == TransactionConstant.KEY_WITHDRAW) {
                     transcationAmount.setTextColor(Color.RED)
                 } else {
                     transcationAmount.setTextColor(Color.GREEN)
